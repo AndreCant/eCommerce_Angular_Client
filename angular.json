@@ -27,24 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/style/fontawesome.min.css",
-              "src/assets/style/ionicons.min.css",
-              "src/assets/style/simple-line-icons.css",
-              "src/assets/style/plugins/jquery-ui.min.css",
-              "src/assets/style/bootstrap.min.css",
-              "src/assets/style/plugins/plugins.css",
-              "src/assets/style/style.min.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/scripts/vendor/jquery-3.5.1.min.js",
-              "src/assets/scripts/vendor/modernizr-3.7.1.min.js",
-              "src/assets/scripts/popper.min.js",
-              "src/assets/scripts/plugins/jquery-ui.min.js",
-              "src/assets/scripts/bootstrap.min.js",
-              "src/assets/scripts/plugins/plugins.js",
-              "src/assets/scripts/main.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

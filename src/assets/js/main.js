@@ -225,7 +225,7 @@
       ],
     })
     .slickAnimation();
-  
+
   function progressBar() {
     $(".slick-progress").find("span").removeAttr("style");
     $(".slick-progress").find("span").removeClass("active");
