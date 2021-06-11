@@ -16,6 +16,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginResult } from './model/LoginResult';
 import { AppConstants } from './app.constants';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,14 @@ import { AppConstants } from './app.constants';
         tokenGetter,
         allowedDomains: [AppConstants.DOMAIN]
       }
+    }),
+    
+    //https://angular.io/guide/service-worker-config
+    ServiceWorkerModule.register('ngsw-worker.js', { 
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [],
