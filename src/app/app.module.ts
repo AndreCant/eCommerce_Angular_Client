@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './commons/navbar/navbar.component';
-import { FooterComponent } from './commons/footer/footer.component';
+import { NavbarComponent } from './components/commons/navbar/navbar.component';
+import { FooterComponent } from './components/commons/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginResult } from './model/LoginResult';
+import { AppConstants } from './app.constants';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
           deps: [HttpClient]
       }
     }),
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: [AppConstants.DOMAIN]
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -46,4 +55,18 @@ export class AppModule { }
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function tokenGetter() {
+  let loginStored: LoginResult;
+
+  let loginStr: string | null = localStorage.getItem(AppConstants.LOGIN_STORAGE);
+
+  if (loginStr) {
+    loginStored = JSON.parse(loginStr);
+  } else {
+    return '';
+  }
+
+  return loginStored.token;
 }
