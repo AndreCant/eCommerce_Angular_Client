@@ -23,15 +23,17 @@
                                     <hr/>
                                 </div>
                                 <div class="form-body">
-                                    <form class="row g-3">
+                                    <form class="row g-3" #loginForm="ngForm" (ngSubmit)="login()">
                                         <div class="col-12">
                                             <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Email Address">
+                                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Email Address" 
+                                                    [(ngModel)]="loginData.email" name="email" #email="ngModel" required>
                                         </div>
                                         <div class="col-12">
                                             <label for="inputChoosePassword" class="form-label">Enter Password</label>
                                             <div class="input-group" id="show_hide_password">
-                                                <input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                <input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Enter Password"
+                                                [(ngModel)]="loginData.password" name="password" #password="ngModel" required> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -44,7 +46,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-danger"><i class="bx bxs-lock-open"></i>Sign in</button>
+                                                <button type="submit" class="btn btn-danger" [disabled]="!loginForm.valid"><i class="bx bxs-lock-open"></i>Sign in</button>
                                             </div>
                                         </div>
                                     </form>

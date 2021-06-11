@@ -18,6 +18,7 @@ import { LoginResult } from './model/LoginResult';
 import { AppConstants } from './app.constants';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     TranslateModule,
@@ -49,7 +51,7 @@ import { environment } from '../environments/environment';
         allowedDomains: [AppConstants.DOMAIN]
       }
     }),
-    
+
     //https://angular.io/guide/service-worker-config
     ServiceWorkerModule.register('ngsw-worker.js', { 
       enabled: environment.production,
