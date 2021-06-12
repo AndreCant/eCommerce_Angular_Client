@@ -18,7 +18,7 @@ import { LoginResult } from './model/LoginResult';
 import { AppConstants } from './app.constants';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     TranslateModule,

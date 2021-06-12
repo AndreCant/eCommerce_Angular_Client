@@ -8,45 +8,48 @@
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="text-center">
-                                    <h3 class="">Sign in</h3>
-                                    <p>Don't have an account yet? <a href="authentication-signup.html">Sign up here</a>
+                                    <h3 class="">{{"login.title" | translate}}</h3>
+                                    <p>{{"login.noAccount" | translate}}<a href="/registration">{{"login.here" | translate}}</a>
                                     </p>
                                 </div>
                                 <div class="d-grid">
                                     <a class="btn my-4 shadow-sm btn-white" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
                                     <img class="me-2" src="assets/img/icons/search.svg" width="16" alt="Image Description">
-                                    <span>Sign in with Google</span>
+                                    <span>{{"login.google" | translate}}</span>
                                         </span>
-                                    </a> <a href="javascript:;" class="btn btn-white"><i class="bx bxl-facebook"></i>Sign in with Facebook</a>
+                                    </a> <a href="javascript:;" class="btn btn-white"><i class="bx bxl-facebook"></i>{{"login.facebook" | translate}}</a>
                                 </div>
-                                <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span>
+                                <div class="login-separater text-center mb-4"> <span>{{"login.title" | translate}}</span>
                                     <hr/>
+                                </div>
+                                <div>
+                                    <p *ngIf="unauthorised" class="mb-3 text-danger">{{"login.unauthorised" | translate}}</p>
                                 </div>
                                 <div class="form-body">
                                     <form class="row g-3" #loginForm="ngForm" (ngSubmit)="login()">
                                         <div class="col-12">
-                                            <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Email Address" 
+                                            <label for="inputEmailAddress" class="form-label">{{"login.email" | translate}}</label>
+                                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="{{'login.email' | translate}}"
                                                     [(ngModel)]="loginData.email" name="email" #email="ngModel" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="inputChoosePassword" class="form-label">Enter Password</label>
+                                            <label for="inputChoosePassword" class="form-label">{{"login.password" | translate}}</label>
                                             <div class="input-group" id="show_hide_password">
-                                                <input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Enter Password"
+                                                <input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="{{'login.password' | translate}}"
                                                 [(ngModel)]="loginData.password" name="password" #password="ngModel" required> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input custom-check" type="checkbox" id="flexSwitchCheckChecked" checked>
-                                                <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">{{"login.remember" | translate}}</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password ?</a>
+                                        <div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">{{"login.forgot" | translate}}</a>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-danger" [disabled]="!loginForm.valid"><i class="bx bxs-lock-open"></i>Sign in</button>
+                                                <button type="submit" class="btn btn-danger" [disabled]="!loginForm.valid"><i class="bx bxs-lock-open"></i>{{"login.title" | translate}}</button>
                                             </div>
                                         </div>
                                     </form>

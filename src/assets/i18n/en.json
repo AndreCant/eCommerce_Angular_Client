@@ -1,5 +1,30 @@
 {
     "registration": {
-        "title": "Sign Up"
+        "title": "Sign Up",
+        "validation": {
+            "username": "Username must be at least 5 characters.",
+            "email": "Email format: example@test.com.",
+            "password": "Password minimum eight characters, at least one upper case letter, one lower case letter, one number and one special character."
+        },
+        "terms": "I read and agree to Terms & Conditions",
+        "alredyRegister": "Already have an account? ",
+        "here": "Sign in here",
+        "google": "Sign Up with Google",
+        "facebook": "Sign Up with Facebook",
+        "username": "Username",
+        "email": "Email Address",
+        "signUp": "Sign Up"
+    },
+    "login": {
+        "title": "Sign in",
+        "noAccount": "Don't have an account yet? ",
+        "here": "Sign up here",
+        "google": "Sign In with Google",
+        "facebook": "Sign In with Facebook",
+        "email": "Email Address",
+        "password": "Enter Password",
+        "remember": "Remember Me",
+        "forgot": "Forgot Password ?",
+        "unauthorised": "Wrong Email or Password!"
     }
 }

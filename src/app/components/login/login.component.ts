@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginData: LoginData;
-  loginError: any;
+  unauthorised: Boolean = false;
 
   constructor(private auth: AuthService, public router: Router) { 
     this.loginData = {email: '', password: ''};
@@ -20,13 +20,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
+  public login() {
     this.auth.authenticate(this.loginData).subscribe(res => {
       console.log(res);
       localStorage.setItem(AppConstants.LOGIN_STORAGE, JSON.stringify(res));
       this.router.navigate(['']);
     }, error => {
-       this.loginError = error;
+      this.checkError(error);
     });
+  }
+
+  private checkError(error: any){
+    if (error && error.status == 401) {
+      this.unauthorised = true;
+    }
   }
 }

@@ -7,8 +7,10 @@ import { catchError } from 'rxjs/operators';
 import { AppConstants } from '../../app.constants';
 import { LoginData } from '../../model/LoginData';
 import { LoginResult } from '../../model/LoginResult';
+import { User } from 'src/app/model/User';
 
-const baseURL = `${AppConstants.SERVICES_BASE_URL}/login`;
+const loginURL = `${AppConstants.SERVICES_BASE_URL}/login`;
+const registerURL = `${AppConstants.SERVICES_BASE_URL}/register`;
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,13 @@ export class AuthService {
 
   public authenticate(loginData: LoginData): Observable<LoginResult> {
     return this.httpClient
-      .post<LoginResult>(baseURL, loginData)
+      .post<LoginResult>(loginURL, loginData)
+      .pipe(catchError(this.handleError));
+  }
+
+  public register(user: User): Observable<LoginResult> {
+    return this.httpClient
+      .post<LoginResult>(registerURL, user)
       .pipe(catchError(this.handleError));
   }
 
