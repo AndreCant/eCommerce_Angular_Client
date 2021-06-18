@@ -19,6 +19,10 @@ import { AppConstants } from './app.constants';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
+import { appReducers } from './reducers/app.reducers';
+import { RegistryEffects } from './effects/registry-effects.service';
+import { UserEffects } from './effects/user-effects.service';
 
 @NgModule({
   declarations: [
@@ -27,16 +31,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    TranslateModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([RegistryEffects, UserEffects]),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

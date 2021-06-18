@@ -26,5 +26,18 @@
         "remember": "Remember Me",
         "forgot": "Forgot Password ?",
         "unauthorised": "Wrong Email or Password!"
+    },
+    "profile": {
+        "title": "My Account",
+        "username": "Username",
+        "email": "Email Address",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "mobile": "Mobile",
+        "street": "Street",
+        "city": "City",
+        "county": "County",
+        "postalCode": "PostalCode",
+        "state": "State"
     }
 }
