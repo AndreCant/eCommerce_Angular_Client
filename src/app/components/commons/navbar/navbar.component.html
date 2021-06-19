@@ -260,8 +260,11 @@
                                 </ul>
                             </li>
                             <li class="pl-3">
-                                <a href="#" id="dropdown2" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="icon-logout"></i> 
+                                <a *ngIf="isAuthenticated()" href="#" title="Logout" (click)="logout()" aria-haspopup="true"
+                                    aria-expanded="false"><i class="icon-logout"></i>
+                                </a>
+                                <a *ngIf="!isAuthenticated()" href="/login" title="Login" aria-haspopup="true"
+                                    aria-expanded="false"><i class="icon-login"></i>
                                 </a>
                             </li>
                         </ul>

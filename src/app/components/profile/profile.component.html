@@ -114,12 +114,12 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-12 mb-30">
                                             <label class="form-label">{{ "profile.username" | translate }}</label>
-                                            <p class="font-weight-bold">{{ user$?.name | async }}</p>
+                                            <p class="">{{(user$ | async)?.name}}</p>
                                         </div>
 
                                         <div class="col-lg-6 col-12 mb-30">
                                             <label class="form-label">{{ "profile.email" | translate }}</label>
-                                            <p class="font-weight-bold">Username</p>
+                                            <p class="">{{(user$ | async)?.email}}</p>
                                         </div>
 
                                         <div class="col-lg-6 col-12 mb-30">

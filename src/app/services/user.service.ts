@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AppConstants } from '../app.constants';
 import { User } from '../model/User';
 
-
 @Injectable({
   providedIn: 'root'
 })

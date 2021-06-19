@@ -8,6 +8,7 @@ import { AppConstants } from '../../app.constants';
 import { LoginData } from '../../model/LoginData';
 import { LoginResult } from '../../model/LoginResult';
 import { User } from 'src/app/model/User';
+import { Router } from '@angular/router';
 
 const loginURL = `${AppConstants.SERVICES_BASE_URL}/login`;
 const registerURL = `${AppConstants.SERVICES_BASE_URL}/register`;
@@ -16,7 +17,7 @@ const registerURL = `${AppConstants.SERVICES_BASE_URL}/register`;
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public httpClient: HttpClient, public jwtHelper: JwtHelperService) { }
+  constructor(public httpClient: HttpClient, public jwtHelper: JwtHelperService, public router: Router) { }
 
   public authenticate(loginData: LoginData): Observable<LoginResult> {
     return this.httpClient
@@ -32,6 +33,7 @@ export class AuthService {
 
   public logout() {
     localStorage.setItem(AppConstants.LOGIN_STORAGE, '');
+    this.router.navigate(['']);
   }
 
   public isAuthenticated(): boolean {

@@ -20,12 +20,13 @@ export class ProfileComponent implements OnInit {
   user$?: Observable<User>;
 
   constructor(private store: Store<IAppState>) {
-    // this.registry$ = this.store.pipe(select(selectorRegistry));
     this.user$ = this.store.pipe(select(selectorUser));
+    this.registry$ = this.store.pipe(select(selectorRegistry));
   }
 
   ngOnInit(): void {
     this.getUser();
+    this.getRegistry();
   }
 
   getRegistry() {
@@ -33,7 +34,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser(){
-    this.store.dispatch(new ShowUserAction())
+    this.store.dispatch(new ShowUserAction());
   }
 
 }
