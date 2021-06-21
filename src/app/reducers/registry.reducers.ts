@@ -10,6 +10,12 @@ export function registryReducer(state = initialRegistryState, action: fromAction
                 registry: action.payload
             };
         }
+        case ERegistryActions.UPDATE_SUCCESS: {
+            return {
+                ...state,
+                registry: action.payload
+            };
+        }
 
         default:
             return state;
