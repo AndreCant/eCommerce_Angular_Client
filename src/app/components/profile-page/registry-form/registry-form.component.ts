@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ERegistryActions, UpdateRegistryAction } from 'src/app/actions/registry.actions';
@@ -18,15 +20,25 @@ export class RegistryFormComponent implements OnInit {
 
   registryForm: FormGroup;
   destroyed$ = new Subject<boolean>();
+  isButtonDisabled: boolean = false;
   
-  constructor(private fb: FormBuilder, private store: Store<IAppState>, updates$: Actions) {
+  constructor(private fb: FormBuilder, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService, private translate$: TranslateService) {
+    let success: string;
+    let detail: string;
+
+    this.translate$.get("profile.registry.message").subscribe(labels => {
+      success = labels.success;
+      detail = labels.detail;
+    })
+    
     updates$.pipe(
       ofType(ERegistryActions.UPDATE_SUCCESS),
       takeUntil(this.destroyed$)
     ).subscribe(() => {
-      alert('okok');
+      this.enableButton();
+      this.toastr.success(detail, success);
     });
-    
+
     this.registryForm = this.fb.group({
           id: [0, []],
           name: ['', []],
@@ -63,7 +75,16 @@ export class RegistryFormComponent implements OnInit {
   }
 
   saveRegistry(){
+    this.disableButton();
     this.store.dispatch(new UpdateRegistryAction(this.registryForm.value));
+  }
+
+  disableButton(){
+    this.isButtonDisabled = true;
+  }
+
+  enableButton(){
+    this.isButtonDisabled = false;
   }
 
 }

@@ -24,6 +24,9 @@ import { appReducers } from './reducers/app.reducers';
 import { RegistryEffects } from './effects/registry-effects.service';
 import { UserEffects } from './effects/user-effects.service';
 import { RegistryFormComponent } from './components/profile-page/registry-form/registry-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,13 @@ import { RegistryFormComponent } from './components/profile-page/registry-form/r
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([RegistryEffects, UserEffects]),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
+    CommonModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

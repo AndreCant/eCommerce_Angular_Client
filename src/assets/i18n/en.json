@@ -43,6 +43,10 @@
             "validation": {
                 "postalCode": "Postal Code must be exacly 5 digits.",
                 "phone": "Mobile must be exacly 10 digits."
+            },
+            "message":{
+                "success": "Success!",
+                "detail": "Account details saved successfully."
             }
         }
     }
