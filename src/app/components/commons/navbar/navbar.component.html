@@ -243,19 +243,14 @@
                     <nav class="navbar-top pb-2 pb-md-0 position-relative">
                         <ul class="d-flex justify-content-center justify-content-md-end align-items-center">
                             <li class="english">
-                                <a href="#" id="dropdown3" class="pr-0" data-toggle="dropdown" aria-haspopup="true"
+                                <a  id="dropdown3" class="pr-0" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
-                                    <img src="assets/img/logo/us-flag.jpg" alt="us flag"> English
+                                    <img src={{currLanguage.flag}} alt="us flag" width="20" height="15">{{currLanguage.acronym}}
                                     <i class="ion ion-ios-arrow-down"></i>
                                 </a>
                                 <ul class="topnav-submenu dropdown-menu" aria-labelledby="dropdown3">
-                                    <li class="active">
-                                        <a href="#"><img src="assets/img/logo/us-flag.jpg" alt="us flag">
-                                            English</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="assets/img/logo/france.jpg" alt="france flag">
-                                            Français</a>
+                                    <li *ngFor="let lang of Object.keys(languages)" (click)="changeLanguage(lang)">
+                                        <a ><img src="{{languages[lang].flag}}" width="20" height="15">{{languages[lang].acronym}}</a>
                                     </li>
                                 </ul>
                             </li>
