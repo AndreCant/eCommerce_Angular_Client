@@ -5,7 +5,8 @@ export enum ERegistryActions {
   SHOW = '[Registry] Show',
   SHOW_SUCCESS = '[Registry] Show Success',
   UPDATE = '[Registry] Update',
-  UPDATE_SUCCESS = '[Registry] Update Success'
+  UPDATE_SUCCESS = '[Registry] Update Success',
+  UPDATE_FAILURE = '[Registry] Update Failure'
 }
 
 export class ShowAction implements Action {
@@ -23,6 +24,10 @@ export class UpdateRegistrySuccessAction implements Action {
   readonly type = ERegistryActions.UPDATE_SUCCESS;
   constructor(public payload: Registry) {}
 }
+export class UpdateRegistryFailureAction implements Action {
+  readonly type = ERegistryActions.UPDATE_FAILURE;
+  constructor(public payload: any) {}
+}
 
 
-export type ALL_REDUCER_ACTIONS = ShowSuccessAction | UpdateRegistrySuccessAction;
+export type ALL_REDUCER_ACTIONS = ShowSuccessAction | UpdateRegistrySuccessAction | UpdateRegistryFailureAction;

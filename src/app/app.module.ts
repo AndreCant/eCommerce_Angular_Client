@@ -19,10 +19,11 @@ import { AppConstants } from './app.constants';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/profile-page/profile/profile.component';
 import { appReducers } from './reducers/app.reducers';
 import { RegistryEffects } from './effects/registry-effects.service';
 import { UserEffects } from './effects/user-effects.service';
+import { RegistryFormComponent } from './components/profile-page/registry-form/registry-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserEffects } from './effects/user-effects.service';
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegistryFormComponent
   ],
   imports: [
     BrowserModule,

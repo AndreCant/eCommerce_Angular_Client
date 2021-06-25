@@ -1,11 +1,12 @@
 export interface Registry{
+    id?: number;
     name?: string;
     surname?: string;
-    mobile?: number;
+    phone?: number;
     street?: string;
     city?: string;
     county?: string;
-    postalCode?: number;
+    postal_code?: number;
     state?: string;
     userId?: string;
 }

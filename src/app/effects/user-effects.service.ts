@@ -7,9 +7,7 @@ import { EUserActions, ShowUserAction, ShowUserSuccessAction } from '../actions/
 import { User } from '../model/User';
 import { UserService } from '../services/user.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserEffects {
 
   constructor(private actions$: Actions, private userService: UserService) {}

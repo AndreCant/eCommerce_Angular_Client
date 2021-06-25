@@ -110,67 +110,20 @@
                             <h3>Account Details</h3>
 
                             <div class="account-details-form">
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.username" | translate }}</label>
-                                            <p class="">{{(user$ | async)?.name}}</p>
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.email" | translate }}</label>
-                                            <p class="">{{(user$ | async)?.email}}</p>
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.firstName" | translate }}</label>
-                                            <input placeholder="First Name" type="text" value="{{(registry$ | async)?.name}}">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.lastName" | translate }}</label>
-                                            <input placeholder="Last Name" type="text" value="{{(registry$ | async)?.surname}}">
-                                        </div>
-
-                                        <div class="col-12 mb-30">
-                                            <label class="form-label">{{ "profile.mobile" | translate }}</label>
-                                            <input placeholder="Mobile" type="tel" maxlength="10" value="{{(registry$ | async)?.mobile}}">
-                                        </div>
-                                        
-                                        <div class="col-12 mb-30">
-                                            <h4>Billing Address</h4>
-                                        </div>
-
-                                        <div class="col-12 mb-30">
-                                            <label class="form-label">{{ "profile.street" | translate }}</label>
-                                            <input placeholder="Street" type="text" value="{{(registry$ | async)?.street}}">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.city" | translate }}</label>
-                                            <input placeholder="City" type="text" value="{{(registry$ | async)?.city}}">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.county" | translate }}</label>
-                                            <input placeholder="County" type="text" value="{{(registry$ | async)?.county}}">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.postalCode" | translate }}</label>
-                                            <input placeholder="Postal Code" type="text" value="{{(registry$ | async)?.postalCode}}">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <label class="form-label">{{ "profile.state" | translate }}</label>
-                                            <input placeholder="State" type="text" value="{{(registry$ | async)?.state}}">
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button class="btn theme-btn--dark1 btn--md">Save Changes</button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-12 mb-30">
+                                        <label class="form-label">{{ "profile.username" | translate }}</label>
+                                        <p class="">{{(user$ | async)?.name}}</p>
                                     </div>
-                                </form>
+                            
+                                    <div class="col-lg-6 col-12 mb-30">
+                                        <label class="form-label">{{ "profile.email" | translate }}</label>
+                                        <p class="">{{(user$ | async)?.email}}</p>
+                                    </div>
+                                </div>
+
+                                <app-registry-form [registry]="registry$ | async"></app-registry-form>
+
                             </div>
                         </div>
                     </div>

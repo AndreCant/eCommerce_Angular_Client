@@ -29,15 +29,21 @@
     },
     "profile": {
         "title": "My Account",
-        "username": "Username",
-        "email": "Email Address",
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "mobile": "Mobile",
-        "street": "Street",
-        "city": "City",
-        "county": "County",
-        "postalCode": "PostalCode",
-        "state": "State"
+        "registry": {
+            "username": "Username",
+            "email": "Email Address",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "mobile": "Mobile",
+            "street": "Street",
+            "city": "City",
+            "county": "County",
+            "postalCode": "PostalCode",
+            "state": "State",
+            "validation": {
+                "postalCode": "Postal Code must be exacly 5 digits.",
+                "phone": "Mobile must be exacly 10 digits."
+            }
+        }
     }
 }

@@ -1,0 +1,61 @@
+<form [formGroup]="registryForm" (ngSubmit)="saveRegistry()">
+    <div class="row">
+        <div class="col-lg-6 col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.firstName" | translate }}</label>
+            <input placeholder="First Name" type="text" formControlName="name">
+        </div>
+
+        <div class="col-lg-6 col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.lastName" | translate }}</label>
+            <input placeholder="Last Name" type="text" formControlName="surname">
+        </div>
+
+        <div class="col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.mobile" | translate }}</label>
+            <input placeholder="Mobile" type="text" maxlength="10" formControlName="phone">
+            <div class="alert alert-danger" role="alert" 
+                *ngIf="!registryForm.get('phone')?.valid && registryForm.get('phone')?.dirty">
+                {{"profile.registry.validation.phone" | translate}}
+            </div>
+        </div>
+        
+        <div class="col-12 mb-30">
+            <h4>Billing Address</h4>
+        </div>
+
+        <div class="col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.street" | translate }}</label>
+            <input placeholder="Street" type="text" formControlName="street">
+        </div>
+
+        <div class="col-lg-6 col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.city" | translate }}</label>
+            <input placeholder="City" type="text" formControlName="city">
+        </div>
+
+        <div class="col-lg-6 col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.county" | translate }}</label>
+            <input placeholder="County" type="text" formControlName="county">
+        </div>
+
+        <div class="col-lg-6 col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.postalCode" | translate }}</label>
+            <input placeholder="Postal Code" type="text" maxlength="5" formControlName="postal_code">
+            <div class="alert alert-danger" role="alert" 
+                *ngIf="!registryForm.get('postal_code')?.valid && registryForm.get('postal_code')?.dirty">
+                {{"profile.registry.validation.postalCode" | translate}}
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-12 mb-30">
+            <label class="form-label">{{ "profile.registry.state" | translate }}</label>
+            <input placeholder="State" type="text" formControlName="state">
+        </div>
+
+        <div class="col-12">
+            <input type="hidden" formControlName="id">
+            <input type="hidden" formControlName="userId">
+            <button class="btn theme-btn--dark1 btn--md">Save Changes</button>
+        </div>
+    </div>
+</form>

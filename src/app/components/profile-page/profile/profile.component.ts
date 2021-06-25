@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ShowAction } from 'src/app/actions/registry.actions';
+import { ShowAction, UpdateRegistryAction } from 'src/app/actions/registry.actions';
 import { ShowUserAction } from 'src/app/actions/user.actions';
 import { Registry } from 'src/app/model/Registry';
 import { User } from 'src/app/model/User';
