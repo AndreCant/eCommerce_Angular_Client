@@ -24,9 +24,13 @@ export class NavbarComponent implements OnInit {
   }
 
   constructor(private authService: AuthService, private translate: TranslateService) {
-    console.log(this.translate.currentLang);
+    let lang: string | null = localStorage.getItem(AppConstants.LANG_STORAGE);
 
-    this.setLanguage(this.translate.currentLang);
+    if (lang) {
+      this.setLanguage(lang);
+    }else{
+      this.setLanguage(this.translate.getDefaultLang());
+    }
   }
 
   setLanguage(lang: string){
@@ -51,6 +55,7 @@ export class NavbarComponent implements OnInit {
   changeLanguage(lang: string){
     this.translate.use(lang);
     this.setLanguage(lang);
+    localStorage.setItem(AppConstants.LANG_STORAGE, lang);
   }
 
 }

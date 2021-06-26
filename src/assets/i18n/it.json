@@ -1,5 +1,53 @@
 {
     "registration": {
-        "title": "Registrazione"
+        "title": "Registrazione",
+        "validation": {
+            "username": "Username deve avere una lunghezza minima di 5 caratteri.",
+            "email": "Formato email: example@test.com.",
+            "password": "La password deve avere una lunghezza minima di 8 caratteri, almeno un carattere maiuscolo, un carattere minuscolo, un numero ed un carattere speciale."
+        },
+        "terms": "Ho letto e acceto i Termini & Condizioni.",
+        "alredyRegister": "Sei già registrato? ",
+        "here": "Loggati qui",
+        "google": "Registrati con Google",
+        "facebook": "Registrati con Facebook",
+        "username": "Username",
+        "email": "Email",
+        "signUp": "Registrati"
+    },
+    "login": {
+        "title": "Log in",
+        "noAccount": "Non hai ancora un account? ",
+        "here": "Registrati qui",
+        "google": "Log In con Google",
+        "facebook": "Log In con Facebook",
+        "email": "Email",
+        "password": "Password",
+        "remember": "Ricordami",
+        "forgot": "Password dimenticata ?",
+        "unauthorised": "Email or Password non valide!"
+    },
+    "profile": {
+        "title": "Il mio Account",
+        "username": "Username",
+        "email": "Email",
+        "registry": {
+            "firstName": "Nome",
+            "lastName": "Cognome",
+            "mobile": "Telefono",
+            "street": "Via",
+            "city": "Città",
+            "county": "Provincia",
+            "postalCode": "CAP",
+            "state": "Stato",
+            "validation": {
+                "postalCode": "CAP deve essere esattamente di 5 numeri.",
+                "phone": "Telefono deve essere esattamente di 10 numeri."
+            },
+            "message":{
+                "success": "Successo!",
+                "detail": "Informazioni dell'account salvate con successo!."
+            }
+        }
     }
 }

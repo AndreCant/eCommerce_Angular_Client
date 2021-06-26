@@ -29,9 +29,9 @@
     },
     "profile": {
         "title": "My Account",
+        "username": "Username",
+        "email": "Email Address",
         "registry": {
-            "username": "Username",
-            "email": "Email Address",
             "firstName": "First Name",
             "lastName": "Last Name",
             "mobile": "Mobile",
