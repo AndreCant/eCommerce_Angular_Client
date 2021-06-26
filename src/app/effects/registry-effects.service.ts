@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { ERegistryActions, ShowAction, ShowSuccessAction, UpdateRegistryAction, UpdateRegistrySuccessAction } from '../actions/registry.actions';
 import { Registry } from '../model/Registry';
 import { RegistryService } from '../services/registry.service';

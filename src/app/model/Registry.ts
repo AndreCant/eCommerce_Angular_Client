@@ -8,5 +8,5 @@ export interface Registry{
     county?: string;
     postal_code?: number;
     state?: string;
-    userId?: string;
+    userId?: number;
 }

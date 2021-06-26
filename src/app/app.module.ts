@@ -27,6 +27,7 @@ import { RegistryFormComponent } from './components/profile-page/registry-form/r
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { PaymentEffects } from './effects/payment-effects.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([RegistryEffects, UserEffects]),
+    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects]),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,

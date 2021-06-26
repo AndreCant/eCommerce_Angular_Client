@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ShowAction, UpdateRegistryAction } from 'src/app/actions/registry.actions';
+import { ShowAllAction } from 'src/app/actions/payment.actions';
+import { ShowAction } from 'src/app/actions/registry.actions';
 import { ShowUserAction } from 'src/app/actions/user.actions';
+import { Payment } from 'src/app/model/Payment';
 import { Registry } from 'src/app/model/Registry';
 import { User } from 'src/app/model/User';
+import { selectorPayment } from 'src/app/selectors/payment.selector';
 import { selectorRegistry } from 'src/app/selectors/registry.selector';
 import { selectorUser } from 'src/app/selectors/user.selector';
 import { IAppState } from 'src/app/state/app.states';
@@ -19,15 +21,18 @@ export class ProfileComponent implements OnInit {
 
   registry$?: Observable<Registry>;
   user$?: Observable<User>;
+  payments$?: Observable<Payment[]>;
 
   constructor(private store: Store<IAppState>) {
     this.user$ = this.store.pipe(select(selectorUser));
     this.registry$ = this.store.pipe(select(selectorRegistry));
+    this.payments$ = this.store.pipe(select(selectorPayment));
   }
 
   ngOnInit(): void {
     this.getUser();
     this.getRegistry();
+    this.getPayments();
   }
 
   getRegistry() {
@@ -36,6 +41,10 @@ export class ProfileComponent implements OnInit {
 
   getUser(){
     this.store.dispatch(new ShowUserAction());
+  }
+
+  getPayments(){
+    this.store.dispatch(new ShowAllAction());
   }
 
 }
