@@ -14,7 +14,7 @@ import { CustomValidators } from 'src/app/utility/CustomValidators';
 export class RegistrationComponent implements OnInit {
 
   registerForm: FormGroup;
-  loginError: any;
+  conflictError: boolean = false;
 
   constructor(private fb: FormBuilder, private auth: AuthService, public router: Router) {
     this.registerForm = this.fb.group({
@@ -35,7 +35,9 @@ export class RegistrationComponent implements OnInit {
       localStorage.setItem(AppConstants.LOGIN_STORAGE, JSON.stringify(res));
       this.router.navigate(['']);
     }, error => {
-       this.loginError = error;
+       if(error.status === 409){
+        this.conflictError = true;
+      }
     });
   }
 

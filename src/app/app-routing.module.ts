@@ -5,11 +5,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ProfileComponent } from './components/profile-page/profile/profile.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
+import { GuestGuardService } from './services/auth/guest-guard.service';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
-  {path: "login", component: LoginComponent},
-  {path: "registration", component: RegistrationComponent},
+  {path: "login", component: LoginComponent, canActivate: [GuestGuardService]},
+  {path: "registration", canActivate: [GuestGuardService], component: RegistrationComponent},
   {path: "profile", canActivate: [AuthGuardService], component: ProfileComponent}
 ];
 

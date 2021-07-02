@@ -20,6 +20,8 @@
                                 <div class="login-separater text-center mb-4"> <span>{{ "registration.title" | translate }}</span>
                                     <hr/>
                                 </div>
+                                <div *ngIf="conflictError" class="text-center text-danger mb-2"><span>{{ "registration.error" | translate }}</span></div>
+
                                 <div class="form-body">
                                     <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="register()">
                                         <div class="col-sm-12">

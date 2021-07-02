@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { PaymentEffects } from './effects/payment-effects.service';
+import { AddPaymentComponent } from './components/commons/add-payment/add-payment.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PaymentEffects } from './effects/payment-effects.service';
     LoginComponent,
     RegistrationComponent,
     ProfileComponent,
-    RegistryFormComponent
+    RegistryFormComponent,
+    AddPaymentComponent
   ],
   imports: [
     BrowserModule,
