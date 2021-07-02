@@ -1,0 +1,64 @@
+<form [formGroup]="paymentForm" (ngSubmit)="savePayment()">
+    <div class="row">
+        <div class="col-lg-3 col-12"></div>
+        <div class="col-lg-6 col-12">
+            <h3 >{{ "payment.title" | translate }}</h3>
+        </div>
+        <div class="col-lg-3 col-12"></div>
+
+        <div class="col-lg-3 col-12 mb-30"></div>
+        <div class="col-lg-6 col-12 mb-30 text-center">
+            <img class="panel-title" src="assets/img/payment/1.png" alt="thumbnail">
+        </div>
+        <div class="col-lg-3 col-12 mb-30"></div>
+
+        <div class="col-lg-3 col-12 mb-30"></div>
+        <div class="col-lg-3 col-12 mb-30">
+            <label class="form-label">{{ "payment.firstName" | translate }}</label>
+            <input placeholder="First Name" type="text" formControlName="name">
+        </div>
+
+        <div class="col-lg-3 col-12 mb-30">
+            <label class="form-label">{{ "payment.lastName" | translate }}</label>
+            <input placeholder="Last Name" type="text" formControlName="surname">
+        </div>
+        <div class="col-lg-3 col-12 mb-30"></div>
+
+        <div class="col-lg-3 col-12 mb-30"></div>
+        <div class="col-6 mb-30">
+            <label class="form-label">{{ "payment.cardNumber" | translate }}</label>
+            <input placeholder="0000 0000 0000 0000" type="number" onKeyPress="if(this.value.length==16) return false;" formControlName="number">
+            <!-- <div class="alert alert-danger" role="alert" 
+                *ngIf="!registryForm.get('phone')?.valid && registryForm.get('phone')?.dirty">
+                {{"profile.registry.validation.phone" | translate}}
+            </div> -->
+        </div>
+        <div class="col-lg-3 col-12 mb-30"></div>
+
+        <div class="col-lg-3 col-12 mb-30"></div>
+        <div class="col-2 mb-30">
+            <label class="form-label">{{ "payment.year" | translate }}</label>
+            <input placeholder="YYYY" type="number" onKeyPress="if(this.value.length==4) return false;" formControlName="year">
+        </div>
+
+        <div class="col-lg-2 col-12 mb-30">
+            <label class="form-label">{{ "payment.month" | translate }}</label>
+            <input placeholder="MM" type="number" onKeyPress="if(this.value.length==2) return false;" formControlName="month">
+        </div>
+
+        <div class="col-lg-2 col-12 mb-30">
+            <label class="form-label">{{ "payment.cvv" | translate }}</label>
+            <input placeholder="000" type="number" onKeyPress="if(this.value.length==3) return false;" formControlName="cvv">
+        </div>
+        <div class="col-lg-3 col-12 mb-30"></div>
+
+        <div class="col-lg-3 col-12 mb-30"></div>
+        <div class="col-2">
+            <button type="button" (click)="close()" class="btn border theme-btn--light1 btn--md float-right" style="width: 100%">{{ "payment.cancel" | translate }}</button>
+        </div>
+        <div class="col-4">
+            <button class="btn theme-btn--dark1 btn--md float-right" style="width: 100%" [disabled]="isButtonDisabled || !paymentForm.valid">{{ "payment.save" | translate }}</button>
+        </div>
+        <div class="col-lg-3 col-12 mb-30"></div>
+    </div>
+</form>

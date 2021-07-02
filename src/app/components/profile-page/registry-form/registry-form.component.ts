@@ -29,7 +29,7 @@ export class RegistryFormComponent implements OnInit {
     this.translate$.get("profile.registry.message").subscribe(labels => {
       success = labels.success;
       detail = labels.detail;
-    })
+    });
     
     updates$.pipe(
       ofType(ERegistryActions.UPDATE_SUCCESS),

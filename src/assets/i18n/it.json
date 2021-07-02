@@ -28,7 +28,7 @@
         "unauthorised": "Email or Password non valide!"
     },
     "profile": {
-        "title": "Il mio Account",
+        "title": "Profilo",
         "username": "Username",
         "email": "Email",
         "registry": {

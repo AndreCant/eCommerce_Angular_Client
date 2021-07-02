@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ShowAllAction } from 'src/app/actions/payment.actions';
+import { DeleteAction, ShowAllAction } from 'src/app/actions/payment.actions';
 import { ShowAction } from 'src/app/actions/registry.actions';
 import { ShowUserAction } from 'src/app/actions/user.actions';
 import { Payment } from 'src/app/model/Payment';
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   registry$?: Observable<Registry>;
   user$?: Observable<User>;
   payments$?: Observable<Payment[]>;
+  addPayment: boolean = false;
 
   constructor(private store: Store<IAppState>) {
     this.user$ = this.store.pipe(select(selectorUser));
@@ -45,6 +46,24 @@ export class ProfileComponent implements OnInit {
 
   getPayments(){
     this.store.dispatch(new ShowAllAction());
+  }
+
+  showPayment(){
+    this.addPayment = true;
+  }
+
+  paymentEventHandler(event: boolean){
+    if(event) {
+      this.addPayment = false;
+      this.getPayments();
+    }
+  }
+
+  deletePayment(id: number | undefined){
+    if (id) {
+      this.store.dispatch(new DeleteAction(id));
+      this.getPayments();
+    }
   }
 
 }

@@ -1,8 +1,10 @@
 export interface Payment{
+    id?: number;
     name?: string;
     surname?: string;
     number?: number;
-    expiration?: string;
-    cvc?: number;
+    year?: number;
+    month?: number;
+    cvv?: number;
     userId?: number;
 }

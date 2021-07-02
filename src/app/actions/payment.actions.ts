@@ -5,7 +5,9 @@ export enum EPaymentActions {
   SHOW_ALL = '[Payment] Show All',
   SHOW_ALL_SUCCESS = '[Payment] Show All Success',
   CREATE = '[Payment] Create',
-  CREATE_SUCCESS = '[Payment] Create Success'
+  CREATE_SUCCESS = '[Payment] Create Success',
+  DELETE = '[Payment] Delete',
+  DELETE_SUCCESS = '[Payment] Delete Success'
 }
 
 export class ShowAllAction implements Action {
@@ -23,5 +25,13 @@ export class CreateSuccessAction implements Action {
   readonly type = EPaymentActions.CREATE_SUCCESS;
   constructor(public payload: Payment) {}
 }
+export class DeleteAction implements Action {
+  readonly type = EPaymentActions.DELETE;
+  constructor(public payload: number) {}
+}
+export class DeleteSuccessAction implements Action {
+  readonly type = EPaymentActions.DELETE_SUCCESS;
+  constructor(public payload: string) {}
+}
 
-export type ALL_REDUCER_ACTIONS = ShowAllSuccessAction | CreateSuccessAction;
+export type ALL_REDUCER_ACTIONS = ShowAllSuccessAction | CreateSuccessAction | DeleteSuccessAction;

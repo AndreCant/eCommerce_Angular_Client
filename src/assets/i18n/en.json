@@ -13,7 +13,8 @@
         "facebook": "Sign Up with Facebook",
         "username": "Username",
         "email": "Email Address",
-        "signUp": "Sign Up"
+        "signUp": "Sign Up",
+        "error": "The chosen email has already been used!"
     },
     "login": {
         "title": "Sign in",
@@ -28,7 +29,7 @@
         "unauthorised": "Wrong Email or Password!"
     },
     "profile": {
-        "title": "My Account",
+        "title": "Profile",
         "username": "Username",
         "email": "Email Address",
         "registry": {
@@ -47,7 +48,30 @@
             "message":{
                 "success": "Success!",
                 "detail": "Account details saved successfully."
-            }
-        }
+            },
+            "save": "Save"
+        },
+        "payment": {
+            "delete": "Delete",
+            "add": "Add Payment Method"
+        },
+        "paymentTab": "Payment Method",
+        "accountTab": "Account Details",
+        "orderTab": "Orders"
+    },
+    "payment": {
+        "title": "Payment Details",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "cardNumber": "Card Number",
+        "year": "Expiry Year",
+        "month": "Expiry Month",
+        "cvv": "CVV",
+        "save": "Save",
+        "message":{
+            "success": "Success!",
+            "detail": "Payment details saved successfully."
+        },
+        "cancel": "Cancel"
     }
 }

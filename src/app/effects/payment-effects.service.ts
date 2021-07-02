@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { CreateAction, CreateSuccessAction, EPaymentActions, ShowAllAction, ShowAllSuccessAction } from '../actions/payment.actions';
+import { CreateAction, CreateSuccessAction, DeleteAction, DeleteSuccessAction, EPaymentActions, ShowAllAction, ShowAllSuccessAction } from '../actions/payment.actions';
 import { Payment } from '../model/Payment';
 import { PaymentService } from '../services/payment.service';
 
@@ -26,6 +26,15 @@ export class PaymentEffects {
       ofType<CreateAction>(EPaymentActions.CREATE),
       switchMap((payment) => this.paymentService.createPayment(payment.payload)),
       switchMap((response) => of(new CreateSuccessAction(response)))
+      )
+  });
+
+  deletePayment$: Observable<Action> = createEffect(() => {
+    return this.actions$
+    .pipe(
+      ofType<DeleteAction>(EPaymentActions.DELETE),
+      switchMap((paymentId) => this.paymentService.deletePayment(paymentId.payload)),
+      switchMap((response) => of(new DeleteSuccessAction(response)))
       )
   });
 }

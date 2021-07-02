@@ -16,6 +16,12 @@ export function paymentReducer(state = initialPaymentState, action: fromActions.
                 message: action.payload
             };
         }
+        case EPaymentActions.DELETE_SUCCESS: {
+            return {
+                ...state,
+                message: action.payload
+            };
+        }
 
         default:
             return state;
