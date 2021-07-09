@@ -1,0 +1,41 @@
+<li class="ml-0 position-static">
+    <a *ngIf="gender=='M'" href="javascript::" class="pl-0">{{ "nav.men" | translate }} <i class="ion-ios-arrow-down"></i></a>
+    <a *ngIf="gender=='F'" href="javascript::" class="pl-0">{{ "nav.women" | translate }} <i class="ion-ios-arrow-down"></i></a>
+    <a *ngIf="gender=='K'" href="javascript::" class="pl-0">{{ "nav.kids" | translate }} <i class="ion-ios-arrow-down"></i></a>
+    
+    <ul class="mega-menu row">
+        <li class="col-4">
+            <ul>
+                <li class="mega-menu-title"><a href="javascript::">{{ "nav.shoes.title" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/shoes/lifestyle']">{{ "nav.shoes.lifestyle" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/shoes/running']">{{ "nav.shoes.running" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/shoes/tennis']">{{ "nav.shoes.tennis" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/shoes/all']">{{ "nav.shoes.all" | translate }}</a></li>
+            </ul>
+        </li>
+        <li class="col-4">
+            <ul>
+                <li class="mega-menu-title"><a href="javascript::">{{ "nav.clothing.title" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/clothing/top']">{{ "nav.clothing.top" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/clothing/pants']">{{ "nav.clothing.pants" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/clothing/shorts']">{{ "nav.clothing.shorts" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/clothing/all']">{{ "nav.clothing.all" | translate }}</a></li>
+            </ul>
+        </li>
+        <li class="col-4">
+            <ul>
+                <li class="mega-menu-title"><a href="javascript::">{{ "nav.accessories.title" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/accessories/bags']">{{ "nav.accessories.bags" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/accessories/hats']">{{ "nav.accessories.hats" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/accessories/watches']">{{ "nav.accessories.watches" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/accessories/all']">{{ "nav.accessories.all" | translate }}</a></li>
+            </ul>
+        </li>
+        <li class="col-6 mt-4">
+            <a href="javascript::" class="zoom-in overflow-hidden"><img src="assets/img/mega-menu/1.jpg" alt="img"></a>
+        </li>
+        <li class="col-6 mt-4">
+            <a href="javascript::" class="zoom-in overflow-hidden"><img src="assets/img/mega-menu/2.jpg" alt="img"></a>
+        </li>
+    </ul>
+</li>

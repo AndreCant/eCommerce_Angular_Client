@@ -73,5 +73,32 @@
             "detail": "Payment details saved successfully."
         },
         "cancel": "Cancel"
+    },
+    "nav": {
+        "men": "Men",
+        "women": "Women",
+        "kids": "Kids",
+        "shoes": {
+            "title": "Shoes",
+            "lifestyle": "Lifestyle",
+            "running": "Running",
+            "tennis": "Tennis",
+            "all": "All Shoes"
+        },
+        "clothing": {
+            "title": "Clothing",
+            "top": "Tops & T-Shirts",
+            "pants": "Pants",
+            "shorts": "Shorts",
+            "all": "All Clothing"
+        },
+        "accessories": {
+            "title": "Accessories",
+            "bags": "Bags",
+            "hats": "Hats",
+            "watches": "Watches",
+            "all": "All Accessories"
+        }
+        
     }
 }
