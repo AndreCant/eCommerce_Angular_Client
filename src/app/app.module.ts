@@ -31,6 +31,8 @@ import { PaymentEffects } from './effects/payment-effects.service';
 import { AddPaymentComponent } from './components/commons/add-payment/add-payment.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { MegaMenuComponent } from './components/commons/mega-menu/mega-menu.component';
+import { ProductService } from './services/product.service';
+import { ProductEffects } from './effects/product-effects.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { MegaMenuComponent } from './components/commons/mega-menu/mega-menu.comp
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects]),
+    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects]),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
