@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedroute.paramMap.subscribe(params => {
-      this.clearFilters();
+      if(this.subtypes.length || this.size.length || this.price.length) window.location.reload();
       this.gender = params.get('gender');  
       this.type = params.get('type');
       this.subtype = params.get('subtype');
@@ -45,16 +45,44 @@ export class ProductListComponent implements OnInit {
     return `${AppConstants.SERVICES_BASE_URL}/products?gender=${this.gender}&type=${this.type}&size=${JSON.stringify(this.size)}&subtype=${JSON.stringify(this.subtypes)}&price=${JSON.stringify(this.price)}`;
   }
 
-  filter(){}
+  filter(event: any){
+    const filter = event.target.id;
+    const area = event.target.name;
+    const isChecked = event.target.checked;
+    
+    switch (area) {
+      case "subtype": 
+        if (isChecked) {
+          this.subtypes.push(filter);
+        } else {
+            this.subtypes.splice(this.subtypes.indexOf(filter), 1);
+        }
+      break;
+
+      case "price":
+        if (isChecked) {
+          this.price.push(filter);
+        } else {
+            this.price.splice(this.price.indexOf(filter), 1);
+        }
+      break;
+
+      case "size":
+        if (isChecked) {
+          this.size.push(filter);
+        } else {
+            this.size.splice(this.size.indexOf(filter), 1);
+        }
+      break;
+    
+      default:
+      break;
+    }
+
+    this.getProducts();
+  }
 
   getProducts(){
     this.store.dispatch(new ShowAllAction(this.url));
   }
-
-  clearFilters(){
-    this.size = [];
-    this.subtypes = [];
-    this.price = [];
-  }
-
 }

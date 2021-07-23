@@ -93,46 +93,46 @@
 
                             <div *ngIf="type=='shoes'">
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="lifestyle" [checked]="subtype=='lifestyle'" (click)="filter()">
-                                    <label for="lifestyle">{{ "nav.shoes.lifestyle" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="lifestyle" name="subtype" [checked]="subtype=='lifestyle'" (click)="filter($event)">
+                                    <label for="lifestyle">{{ "nav.shoes.lifestyle" | translate }} </label>
                                 </div>
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="running" [checked]="subtype=='running'" (click)="filter()">
-                                    <label for="running">{{ "nav.shoes.running" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="running" name="subtype" [checked]="subtype=='running'" (click)="filter($event)">
+                                    <label for="running">{{ "nav.shoes.running" | translate }} </label>
                                 </div>
                                 <div class="filter-check-box" >
-                                    <input type="checkbox" id="tennis" [checked]="subtype=='tennis'" (click)="filter()">
-                                    <label for="tennis">{{ "nav.shoes.tennis" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="tennis" name="subtype" [checked]="subtype=='tennis'" (click)="filter($event)">
+                                    <label for="tennis">{{ "nav.shoes.tennis" | translate }} </label>
                                 </div>
                             </div>
 
                             <div *ngIf="type=='clothing'">
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="top" [checked]="subtype=='top'" (click)="filter()">
-                                    <label for="top">{{ "nav.clothing.top" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="top" name="subtype" [checked]="subtype=='top'" (click)="filter($event)">
+                                    <label for="top">{{ "nav.clothing.top" | translate }} </label>
                                 </div>
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="pants" [checked]="subtype=='pants'" (click)="filter()">
-                                    <label for="pants">{{ "nav.clothing.pants" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="pants" name="subtype" [checked]="subtype=='pants'" (click)="filter($event)">
+                                    <label for="pants">{{ "nav.clothing.pants" | translate }} </label>
                                 </div>
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="shorts" [checked]="subtype=='shorts'" (click)="filter()">
-                                    <label for="shorts">{{ "nav.clothing.shorts" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="shorts" name="subtype" [checked]="subtype=='shorts'" (click)="filter($event)">
+                                    <label for="shorts">{{ "nav.clothing.shorts" | translate }} </label>
                                 </div>
                             </div>
 
                             <div *ngIf="type=='accessories'">
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="bags" [checked]="subtype=='bags'" (click)="filter()">
-                                    <label for="bags">{{ "nav.accessories.bags" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="bags" name="subtype" [checked]="subtype=='bags'" (click)="filter($event)">
+                                    <label for="bags">{{ "nav.accessories.bags" | translate }} </label>
                                 </div>
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="hats" [checked]="subtype=='hats'" (click)="filter()">
-                                    <label for="hats">{{ "nav.accessories.hats" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="hats" name="subtype" [checked]="subtype=='hats'" (click)="filter($event)">
+                                    <label for="hats">{{ "nav.accessories.hats" | translate }} </label>
                                 </div>
                                 <div class="filter-check-box">
-                                    <input type="checkbox" id="watches" [checked]="subtype=='watches'" (click)="filter()">
-                                    <label for="watches">{{ "nav.accessories.watches" | translate }} <span>(13)</span></label>
+                                    <input type="checkbox" id="watches" name="subtype" [checked]="subtype=='watches'" (click)="filter($event)">
+                                    <label for="watches">{{ "nav.accessories.watches" | translate }} </label>
                                 </div>
                             </div>
                         </div>
@@ -140,40 +140,40 @@
                         <div class="check-box-inner mt-10">
                             <h4 class="sub-title">price</h4>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="20" (click)="filter()">
-                                <label for="20">€25 - €50 <span>(2)</span></label>
+                                <input type="checkbox" id="20" name="price" (click)="filter($event)">
+                                <label for="20">€25 - €50 </label>
                             </div>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="50" (click)="filter()">
-                                <label for="50">€50 - €100 <span>(2)</span></label>
+                                <input type="checkbox" id="50" name="price" (click)="filter($event)">
+                                <label for="50">€50 - €100 </label>
                             </div>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="100" (click)="filter()">
-                                <label for="100">€100 - €150 <span>(2)</span></label>
+                                <input type="checkbox" id="100" name="price" (click)="filter($event)">
+                                <label for="100">€100 - €150 </label>
                             </div>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="150" (click)="filter()">
-                                <label for="150">Over €150 <span>(2)</span></label>
+                                <input type="checkbox" id="150" name="price" (click)="filter($event)">
+                                <label for="150">Over €150 </label>
                             </div>
                         </div>
                         
                         <div class="check-box-inner mt-10">
                             <h4 class="sub-title">Size</h4>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="s" (click)="filter()">
-                                <label for="s">s <span>(2)</span></label>
+                                <input type="checkbox" id="S" name="size" (click)="filter($event)">
+                                <label for="S">s </label>
                             </div>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="m" (click)="filter()">
-                                <label for="m">m <span>(2)</span></label>
+                                <input type="checkbox" id="M" name="size" (click)="filter($event)">
+                                <label for="M">m </label>
                             </div>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="l" (click)="filter()">
-                                <label for="l">l <span>(2)</span></label>
+                                <input type="checkbox" id="L" name="size" (click)="filter($event)">
+                                <label for="L">l </label>
                             </div>
                             <div class="filter-check-box">
-                                <input type="checkbox" id="xl" (click)="filter()">
-                                <label for="xl">xl <span>(2)</span></label>
+                                <input type="checkbox" id="XL" name="size" (click)="filter($event)">
+                                <label for="XL">xl </label>
                             </div>
                         </div>
                     </div>
