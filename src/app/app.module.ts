@@ -33,6 +33,7 @@ import { ProductListComponent } from './components/products/product-list/product
 import { MegaMenuComponent } from './components/commons/mega-menu/mega-menu.component';
 import { ProductService } from './services/product.service';
 import { ProductEffects } from './effects/product-effects.service';
+import { ProductPageComponent } from './components/products/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProductEffects } from './effects/product-effects.service';
     RegistryFormComponent,
     AddPaymentComponent,
     ProductListComponent,
-    MegaMenuComponent
+    MegaMenuComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

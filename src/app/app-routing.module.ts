@@ -7,13 +7,15 @@ import { ProfileComponent } from './components/profile-page/profile/profile.comp
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { GuestGuardService } from './services/auth/guest-guard.service';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductPageComponent } from './components/products/product-page/product-page.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "login", component: LoginComponent, canActivate: [GuestGuardService]},
   {path: "registration", canActivate: [GuestGuardService], component: RegistrationComponent},
   {path: "profile", canActivate: [AuthGuardService], component: ProfileComponent},
-  {path: 'products/:gender/:type/:subtype', component: ProductListComponent }
+  {path: 'products/:gender/:type/:subtype', component: ProductListComponent },
+  {path: 'product/:id', component: ProductPageComponent }
 ];
 
 @NgModule({

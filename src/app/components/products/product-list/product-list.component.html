@@ -22,7 +22,7 @@
                                 <div class="card product-card" *ngFor="let product of products$ | async">
                                     <div class="card-body">
                                         <div class="product-thumbnail position-relative">
-                                            <a [href]="product?.url">
+                                            <a [routerLink]="['/product/' + product?.id]">
                                                 <img class="first-img" [src]="product?.preview" alt="thumbnail">
                                             </a>
                                             <!-- product links -->
@@ -43,7 +43,7 @@
                                             <!-- product links end-->
                                         </div>
                                         <div class="product-desc py-0">
-                                            <h3 class="title"><a [href]="product?.url">{{product?.name}}</a></h3>
+                                            <h3 class="title"><a [routerLink]="['/product/' + product?.id]">{{product?.name}}</a></h3>
                                             <div class="star-rating">
                                                 <span class="ion-ios-star"></span>
                                                 <span class="ion-ios-star"></span>

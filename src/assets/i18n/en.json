@@ -99,6 +99,19 @@
             "watches": "Watches",
             "all": "All Accessories"
         }
-        
+    },
+    "product": {
+        "review": "Write a review",
+        "wishist": "Add to wishlist",
+        "size": "Size",
+        "quantity": "Quantity",
+        "cart": "Add to cart",
+        "description": "Description",
+        "details": "Product Details",
+        "reviews": "Reviews",
+        "category": "Category",
+        "material": "Material",
+        "collection": "Collection",
+        "color": "Color"
     }
 }
