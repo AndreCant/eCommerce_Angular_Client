@@ -3,16 +3,16 @@
 <div class="product-tab bg-white pt-20 pb-50">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 mb-30">
+            <div class="col-lg-10 mb-30">
                 <div class="tab-content" id="pills-tabContent">
                     <!-- first tab-pane -->
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="row grid-view theme1">
                             <div class="grid-nav-wraper bg-lighten2 mb-30">
                                 <div class="row align-items-center">
-                                    <h5 *ngIf="gender=='M'" class="sub-title">Men</h5>
-                                    <h5 *ngIf="gender=='F'" class="sub-title">Women</h5>
-                                    <h5 *ngIf="gender=='K'" class="sub-title">Kids</h5>
+                                    <h5 *ngIf="gender=='M'" class="sub-title">Men / {{ type | titlecase }}</h5>
+                                    <h5 *ngIf="gender=='F'" class="sub-title">Women / {{ type | titlecase }}</h5>
+                                    <h5 *ngIf="gender=='K'" class="sub-title">Kids / {{ type | titlecase }}</h5>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-4 col-xl-3 mb-30">
@@ -34,7 +34,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a [href]="product?.url" data-toggle="modal" data-target="#quick-view">
+                                                    <a [routerLink]="['/product/' + product?.id]" data-toggle="modal">
                                                         <span data-toggle="tooltip" data-placement="bottom"
                                                             title="Quick view" class="icon-magnifier"></span>
                                                     </a>
@@ -84,8 +84,8 @@
                 </div> -->
             </div>
 
-            <div class="col-lg-3 mb-30 order-lg-first">
-                <aside class="left-sidebar theme1">
+            <div class="col-lg-2 mb-30 order-lg-first">
+                <aside class="left-sidebar theme1 ml-30">
                     <div class="search-filter">
                         <div class="check-box-inner pt-0">
                             <h4 class="title">Filter By</h4>

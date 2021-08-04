@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { ShowUserAction } from 'src/app/actions/user.actions';
 import { AppConstants } from 'src/app/app.constants';
+import { User } from 'src/app/model/User';
+import { selectorUser } from 'src/app/selectors/user.selector';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { IAppState } from 'src/app/state/app.states';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +16,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  user$?: Observable<User>;
   currLanguage: any;
   Object = Object;
+
   languages: any = {
     it: {
       flag: AppConstants.IT_FLAG_PATH,
@@ -23,7 +31,8 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  constructor(private authService: AuthService, private translate: TranslateService) {
+  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>) {
+    this.user$ = this.store.pipe(select(selectorUser));
     let lang: string | null = localStorage.getItem(AppConstants.LANG_STORAGE);
 
     if (lang) {
@@ -42,7 +51,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUser();
+  }
 
   logout(){
     this.authService.logout();
@@ -56,6 +67,44 @@ export class NavbarComponent implements OnInit {
     this.translate.use(lang);
     this.setLanguage(lang);
     localStorage.setItem(AppConstants.LANG_STORAGE, lang);
+  }
+
+  getUser(){
+    this.store.dispatch(new ShowUserAction());
+  }
+
+  showWishlist(){
+    this.showOverlay();
+    const wishlist = document.getElementById('offcanvas-wishlist');
+    if (wishlist) wishlist.classList.add('offcanvas-open');
+  }
+
+  hideWishlist(){
+    this.hideOverlay();
+    const wishlist = document.getElementById('offcanvas-wishlist');
+    if (wishlist) wishlist.classList.remove('offcanvas-open');
+  }
+
+  showCart(){
+    this.showOverlay();
+    const cart = document.getElementById('offcanvas-cart');
+    if (cart) cart.classList.add('offcanvas-open');
+  }
+
+  hideCart(){
+    this.hideOverlay();
+    const cart = document.getElementById('offcanvas-cart');
+    if (cart) cart.classList.remove('offcanvas-open');
+  }
+
+  showOverlay(){
+    const overlay = document.getElementById('overlay');
+    if (overlay) overlay.style.display = 'block';
+  }
+
+  hideOverlay(){
+    const overlay = document.getElementById('overlay');
+    if (overlay) overlay.style.display = 'none';
   }
 
 }

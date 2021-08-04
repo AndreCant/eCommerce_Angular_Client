@@ -1,12 +1,54 @@
 <!-- offcanvas-overlay start -->
-<div class="offcanvas-overlay"></div>
+<div class="offcanvas-overlay" id="overlay" style="display: none;"></div>
+
+<!-- OffCanvas Wishlist Start -->
+<div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist theme1">
+    <div class="inner">
+        <div class="head d-flex flex-wrap justify-content-between">
+            <span class="title">Wishlist</span>
+            <button class="offcanvas-close" (click)="hideWishlist()">×</button>
+        </div>
+        <ul class="minicart-product-list">
+            <li>
+                <a href="single-product.html" class="image"><img src="assets/img/product/4.jpg"
+                        alt="Cart product Image"></a>
+                <div class="content">
+                    <a href="single-product.html" class="title">Walnut Cutting Board</a>
+                    <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
+                    <a href="#" class="remove">×</a>
+                </div>
+            </li>
+            <li>
+                <a href="single-product.html" class="image"><img src="assets/img/product/5.jpg"
+                        alt="Cart product Image"></a>
+                <div class="content">
+                    <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
+                    <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
+                    <a href="#" class="remove">×</a>
+                </div>
+            </li>
+            <li>
+                <a href="single-product.html" class="image"><img src="assets/img/product/6.jpg"
+                        alt="Cart product Image"></a>
+                <div class="content">
+                    <a href="single-product.html" class="title">Fish Cut Out Set</a>
+                    <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
+                    <a href="#" class="remove">×</a>
+                </div>
+            </li>
+        </ul>
+        <a href="wishlist.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mt-30">view
+            wishlist</a>
+    </div>
+</div>
+<!-- OffCanvas Wishlist End -->
 
 <!-- OffCanvas Cart Start -->
-<div id="offcanvas-cart" class="offcanvas offcanvas-cart theme1">
+<div id="offcanvas-cart" class="offcanvas offcanvas-cart theme1" >
     <div class="inner">
         <div class="head d-flex flex-wrap justify-content-between">
             <span class="title">Cart</span>
-            <button class="offcanvas-close">×</button>
+            <button class="offcanvas-close" (click)="hideCart()">×</button>
         </div>
         <ul class="minicart-product-list">
             <li>
@@ -110,24 +152,16 @@
                         <div class="cart-block-links theme1">
                             <ul class="main-menu d-flex">
                                 <li>
-                                    <a href="compare.html">
-                                        <span class="position-relative">
-                                            <i class="icon-shuffle"></i>
-                                            <span class="badge cbdg1">1</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="offcanvas-toggle" href="#offcanvas-wishlist">
-                                        <span class="position-relative">
+                                    <a class="offcanvas-toggle" href="javascript::" (click)="showWishlist()">
+                                        <span class="position-relative" title="{{ 'nav.wishlist' | translate }}">
                                             <i class="icon-heart"></i>
                                             <span class="badge cbdg1">3</span>
                                         </span>
                                     </a>
                                 </li>
                                 <li class="cart-block position-relative">
-                                    <a class="offcanvas-toggle" href="#offcanvas-cart">
-                                        <span class="position-relative">
+                                    <a class="offcanvas-toggle" href="javascript::" (click)="showCart()">
+                                        <span class="position-relative" title="{{ 'nav.cart' | translate }}">
                                             <i class="icon-bag"></i>
                                             <span class="badge cbdg1">1</span>
                                         </span>
@@ -135,8 +169,15 @@
                                 </li>
                                 <li class="cart-block position-relative">
                                     <a class="offcanvas-toggle" href="/profile">
-                                        <span class="position-relative">
+                                        <span class="position-relative" title="{{ 'nav.profile' | translate }}">
                                             <i class="icon-user"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="cart-block position-relative" *ngIf="(user$ | async)?.role === 'admin' ">
+                                    <a class="offcanvas-toggle" href="#">
+                                        <span class="position-relative" title="{{ 'nav.admin' | translate }}">
+                                            <i class="icon-home"></i>
                                         </span>
                                     </a>
                                 </li>

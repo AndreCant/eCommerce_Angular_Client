@@ -98,7 +98,11 @@
             "hats": "Hats",
             "watches": "Watches",
             "all": "All Accessories"
-        }
+        },
+        "profile": "Profile",
+        "wishlist": "Wishlist",
+        "cart": "Cart",
+        "admin": "Admin Dashboard"
     },
     "product": {
         "review": "Write a review",
