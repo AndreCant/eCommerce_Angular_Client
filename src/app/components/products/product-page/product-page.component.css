@@ -1,0 +1,7 @@
+.imageTrim {
+    overflow: hidden;
+}
+
+.imageTrim img {
+    margin: -300px 0 -300px 0;
+}

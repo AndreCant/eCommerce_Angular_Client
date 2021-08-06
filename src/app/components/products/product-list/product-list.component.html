@@ -15,11 +15,8 @@
                                     <h5 *ngIf="gender=='K'" class="sub-title">Kids / {{ type | titlecase }}</h5>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-4 col-xl-3 mb-30">
-
-                                <!-- {{ products$ | async | json }} -->
-
-                                <div class="card product-card" *ngFor="let product of products$ | async">
+                            <div class="col-sm-6 col-lg-4 col-xl-3 mb-10" *ngFor="let product of products$ | async">
+                                <div class="card product-card " >
                                     <div class="card-body">
                                         <div class="product-thumbnail position-relative">
                                             <a [routerLink]="['/product/' + product?.id]">
@@ -43,7 +40,7 @@
                                             <!-- product links end-->
                                         </div>
                                         <div class="product-desc py-0">
-                                            <h3 class="title"><a [routerLink]="['/product/' + product?.id]">{{product?.name}}</a></h3>
+                                            <h3 class="title pt-20"><a [routerLink]="['/product/' + product?.id]">{{product?.name}}</a></h3>
                                             <div class="star-rating">
                                                 <span class="ion-ios-star"></span>
                                                 <span class="ion-ios-star"></span>
@@ -60,8 +57,8 @@
                                     </div>
                                 </div>
                                 <!-- product-list End -->
-
                             </div>
+
                         </div>
                     </div>
                 </div>
