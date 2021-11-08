@@ -27,11 +27,11 @@
         <div class="col-lg-3 col-12 mb-30"></div>
         <div class="col-6 mb-30">
             <label class="form-label">{{ "payment.cardNumber" | translate }}</label>
-            <input placeholder="0000 0000 0000 0000" type="number" onKeyPress="if(this.value.length==16) return false;" formControlName="number">
-            <!-- <div class="alert alert-danger" role="alert" 
-                *ngIf="!registryForm.get('phone')?.valid && registryForm.get('phone')?.dirty">
-                {{"profile.registry.validation.phone" | translate}}
-            </div> -->
+            <input placeholder="0000 0000 0000 0000" type="text" pattern="[0-9]*"  minlength="16" maxlength="16" formControlName="number">
+            <div class="alert alert-danger" role="alert" *ngIf="!paymentForm.get('number')?.valid && paymentForm.get('number')?.dirty">
+                <!-- {{"profile.registry.validation.phone" | translate}} -->
+                Incorrect Card Number! Accepted format: 0000 0000 0000 0000 (ex: 1234567890123456)
+            </div>
         </div>
         <div class="col-lg-3 col-12 mb-30"></div>
 
@@ -39,16 +39,25 @@
         <div class="col-2 mb-30">
             <label class="form-label">{{ "payment.year" | translate }}</label>
             <input placeholder="YYYY" type="number" onKeyPress="if(this.value.length==4) return false;" formControlName="year">
+            <div class="alert alert-danger" role="alert" *ngIf="!paymentForm.get('year')?.valid && paymentForm.get('year')?.dirty">
+                Incorrect Year! Accepted format: YYYY (ex: 2021)
+            </div>
         </div>
 
         <div class="col-lg-2 col-12 mb-30">
             <label class="form-label">{{ "payment.month" | translate }}</label>
-            <input placeholder="MM" type="number" onKeyPress="if(this.value.length==2) return false;" formControlName="month">
+            <input placeholder="MM" type="number" onKeyPress="if(this.value.length==2) return false;" formControlName="month" min="1" max="12">
+            <div class="alert alert-danger" role="alert" *ngIf="!paymentForm.get('month')?.valid && paymentForm.get('month')?.dirty">
+                Incorrect Month! Accepted format: MM (ex: 03)
+            </div>
         </div>
 
         <div class="col-lg-2 col-12 mb-30">
             <label class="form-label">{{ "payment.cvv" | translate }}</label>
-            <input placeholder="000" type="number" onKeyPress="if(this.value.length==3) return false;" formControlName="cvv">
+            <input placeholder="000" type="text" pattern="[0-9]*" formControlName="cvv" minlength="3" maxlength="3">
+            <div class="alert alert-danger" role="alert" *ngIf="!paymentForm.get('cvv')?.valid && paymentForm.get('cvv')?.dirty">
+                Incorrect CVV! Accepted format: XXX (ex: 958)
+            </div>
         </div>
         <div class="col-lg-3 col-12 mb-30"></div>
 

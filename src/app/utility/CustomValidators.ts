@@ -28,7 +28,7 @@ export class CustomValidators {
 
     static validateCardNumber(control: AbstractControl) {
         let number = control.value;
-        const NUMBER_REGEXP = /^\b\d{16}\b/;
+        const NUMBER_REGEXP = /^[0-9]{16}$/;
         const error = !NUMBER_REGEXP.test(number);
 
         return error ? { 'cardNumberFormatError': { valid: false, value: number } } : null;
@@ -36,7 +36,7 @@ export class CustomValidators {
 
     static validateYear(control: AbstractControl) {
         let year = control.value;
-        const YEAR_REGEXP = /^\b\d{4}\b/;
+        const YEAR_REGEXP = /^[0-9]{4}$/;
         const error = !YEAR_REGEXP.test(year);
 
         return error ? { 'yearFormatError': { valid: false, value: year } } : null;
@@ -44,7 +44,7 @@ export class CustomValidators {
 
     static validateMonth(control: AbstractControl) {
         let month = control.value;
-        const MONTH_REGEXP = /^\b\d{2}\b/;
+        const MONTH_REGEXP = /^[0-9]{1}/;
         const error = !MONTH_REGEXP.test(month);
 
         return error ? { 'monthFormatError': { valid: false, value: month } } : null;
@@ -52,7 +52,7 @@ export class CustomValidators {
 
     static validateCvv(control: AbstractControl) {
         let cvv = control.value;
-        const CVV_REGEXP = /^\b\d{3}\b/;
+        const CVV_REGEXP = /^[0-9]{3}$/;
         const error = !CVV_REGEXP.test(cvv);
 
         return error ? { 'cvvFormatError': { valid: false, value: cvv } } : null;

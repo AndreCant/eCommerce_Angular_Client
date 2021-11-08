@@ -34,7 +34,7 @@ export class ProductListComponent implements OnInit {
       if(this.subtypes.length || this.size.length || this.price.length) window.location.reload();
       this.gender = params.get('gender');  
       this.type = params.get('type');
-      this.subtype = params.get('subtype');
+      this.subtype = params.get('subtype') !== 'all' ? params.get('subtype') : '';
       if(this.subtype) this.subtypes.push(this.subtype);
 
       this.getProducts();

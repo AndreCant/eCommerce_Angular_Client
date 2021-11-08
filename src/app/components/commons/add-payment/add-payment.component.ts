@@ -50,7 +50,7 @@ export class AddPaymentComponent implements OnInit {
       number: [null, [Validators.required, CustomValidators.validateCardNumber]],
       month: [null, [Validators.required, CustomValidators.validateMonth]],
       year: [null, [Validators.required, CustomValidators.validateYear]],
-      cvv: [null, [Validators.required, CustomValidators.validateCvv]]
+      cvv: [null, [Validators.required]]
     });
   }
 
