@@ -4,5 +4,7 @@ export enum AppConstants {
     LOGIN_STORAGE = 'login',
     LANG_STORAGE = 'lang',
     IT_FLAG_PATH = 'assets/flags/4x3/it.svg',
-    US_FLAG_PATH = 'assets/flags/4x3/us.svg'
+    US_FLAG_PATH = 'assets/flags/4x3/us.svg',
+    WISHLIST = 'wishlist',
+    CART = 'cart'
 }

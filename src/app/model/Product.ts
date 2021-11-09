@@ -1,7 +1,7 @@
 import { Image } from "./Image";
 
 export interface Product{
-    id?: number;
+    id: number;
     name?: string;
     short_description?: string;
     description?: string;
@@ -14,4 +14,5 @@ export interface Product{
     material?: string;
     collection?: string;
     images?: Image[];
+    previewUrl?: string;
 }

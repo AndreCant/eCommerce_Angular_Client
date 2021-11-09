@@ -27,7 +27,7 @@
                                 </span> 
                                 {{ 'product.review' | translate }}
                             </a>
-                            <a href="#" class="ml-30"><i class="icon-heart"></i> {{ 'product.wishist' | translate }}</a>
+                            <a href="javascript:" (click)="wishlist()" class="ml-30"><i class="fa fa-heart" [style.color]="isWishlisted ? 'red' : ''" aria-hidden="true"></i> {{ 'product.wishist' | translate }}</a>
                         </div>
                     </div>
                     <div class="product-body mb-40">

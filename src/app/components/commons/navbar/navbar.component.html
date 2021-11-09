@@ -8,37 +8,19 @@
             <span class="title">Wishlist</span>
             <button class="offcanvas-close" (click)="hideWishlist()">×</button>
         </div>
+        <p *ngIf="!products$?.length" class="text-center">Your Wishlist is empty!</p>
         <ul class="minicart-product-list">
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/4.jpg"
-                        alt="Cart product Image"></a>
+            <li *ngFor="let product of products$">
+                <a [routerLink]="['/product/' + product?.id]" class="image" (click)="hideWishlist()">
+                    <img [src]="product?.previewUrl">
+                </a>
                 <div class="content">
-                    <a href="single-product.html" class="title">Walnut Cutting Board</a>
-                    <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/5.jpg"
-                        alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
-                    <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/6.jpg"
-                        alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Fish Cut Out Set</a>
-                    <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                    <a href="#" class="remove">×</a>
+                    <a [routerLink]="['/product/' + product?.id]" (click)="hideWishlist()" class="title">{{product.name}}</a>
+                    <span class="quantity-price"><span class="amount">€ {{product.price}}</span></span>
+                    <a href="javascript:" class="remove" (click)="removeWishList(product.id)">×</a>
                 </div>
             </li>
         </ul>
-        <a href="wishlist.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mt-30">view
-            wishlist</a>
     </div>
 </div>
 <!-- OffCanvas Wishlist End -->
@@ -152,15 +134,15 @@
                         <div class="cart-block-links theme1">
                             <ul class="main-menu d-flex">
                                 <li>
-                                    <a class="offcanvas-toggle" href="javascript::" (click)="showWishlist()">
+                                    <a class="offcanvas-toggle" href="javascript:" (click)="showWishlist()">
                                         <span class="position-relative" title="{{ 'nav.wishlist' | translate }}">
                                             <i class="icon-heart"></i>
-                                            <span class="badge cbdg1">3</span>
+                                            <span *ngIf="prodWishlist.length" class="badge cbdg1">{{prodWishlist.length}}</span>
                                         </span>
                                     </a>
                                 </li>
                                 <li class="cart-block position-relative">
-                                    <a class="offcanvas-toggle" href="javascript::" (click)="showCart()">
+                                    <a class="offcanvas-toggle" href="javascript:" (click)="showCart()">
                                         <span class="position-relative" title="{{ 'nav.cart' | translate }}">
                                             <i class="icon-bag"></i>
                                             <span class="badge cbdg1">1</span>

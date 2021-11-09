@@ -8,6 +8,7 @@ import { ProductsFilter } from 'src/app/model/ProductsFilter';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
+import { getUserId } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-product-list',
@@ -27,6 +28,13 @@ export class ProductListComponent implements OnInit {
 
   constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private ser: ProductService) {
     this.products$ = this.store.pipe(select(selectorProduct));
+  }
+
+  get prodWishlist(){
+    let wishlist = window.localStorage.getItem(AppConstants.WISHLIST);
+
+    if (wishlist) return JSON.parse(wishlist).products;
+    return [];
   }
 
   ngOnInit(): void {
@@ -84,5 +92,38 @@ export class ProductListComponent implements OnInit {
 
   getProducts(){
     this.store.dispatch(new ShowAllAction(this.url));
+  }
+
+  wishlist(productId: any){
+    let wishlist = window.localStorage.getItem(AppConstants.WISHLIST);
+
+    if (productId) {
+      if (wishlist) {
+        let products = JSON.parse(wishlist).products;
+        let userId = JSON.parse(wishlist).userId;
+  
+        if (products.includes(productId)) {
+          products.splice(products.indexOf(productId), 1)
+        }else{
+          products.push(productId);
+        }
+
+        window.localStorage.setItem(
+          AppConstants.WISHLIST, 
+          JSON.stringify({
+            userId: userId,
+            products: products
+          })
+        );
+      }else{
+        window.localStorage.setItem(
+          AppConstants.WISHLIST,
+          JSON.stringify({
+            userId: getUserId(),
+            products: [productId]
+          })
+        );
+      }
+    }
   }
 }

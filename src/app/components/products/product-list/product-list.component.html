@@ -25,9 +25,8 @@
                                             <!-- product links -->
                                             <ul class="product-links d-flex justify-content-center">
                                                 <li>
-                                                    <a href="javascript::">
-                                                        <span data-toggle="tooltip" data-placement="bottom"
-                                                            title="add to wishlist" class="icon-heart"> </span>
+                                                    <a href="javascript::" (click)="wishlist(product.id)">
+                                                        <span [style.color]="prodWishlist.includes(product.id) ? 'red' : ''" data-toggle="tooltip" data-placement="bottom" title="add to wishlist" class="fa fa-heart"></span>
                                                     </a>
                                                 </li>
                                                 <li>

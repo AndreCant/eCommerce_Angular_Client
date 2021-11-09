@@ -4,9 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { ShowUserAction } from 'src/app/actions/user.actions';
 import { AppConstants } from 'src/app/app.constants';
+import { Product } from 'src/app/model/Product';
 import { User } from 'src/app/model/User';
 import { selectorUser } from 'src/app/selectors/user.selector';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
 
 @Component({
@@ -17,6 +19,7 @@ import { IAppState } from 'src/app/state/app.states';
 export class NavbarComponent implements OnInit {
 
   user$?: Observable<User>;
+  products$?: Product[];
   currLanguage: any;
   Object = Object;
 
@@ -31,7 +34,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>) {
+  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>, private service: ProductService) {
     this.user$ = this.store.pipe(select(selectorUser));
     let lang: string | null = localStorage.getItem(AppConstants.LANG_STORAGE);
 
@@ -40,6 +43,13 @@ export class NavbarComponent implements OnInit {
     }else{
       this.setLanguage(this.translate.getDefaultLang());
     }
+  }
+
+  get prodWishlist(){
+    let wishlist = window.localStorage.getItem(AppConstants.WISHLIST);
+
+    if (wishlist) return JSON.parse(wishlist).products;
+    return [];
   }
 
   setLanguage(lang: string){
@@ -75,6 +85,7 @@ export class NavbarComponent implements OnInit {
 
   showWishlist(){
     this.showOverlay();
+    this.getProducts(AppConstants.WISHLIST);
     const wishlist = document.getElementById('offcanvas-wishlist');
     if (wishlist) wishlist.classList.add('offcanvas-open');
   }
@@ -87,6 +98,7 @@ export class NavbarComponent implements OnInit {
 
   showCart(){
     this.showOverlay();
+    this.getProducts(AppConstants.CART);
     const cart = document.getElementById('offcanvas-cart');
     if (cart) cart.classList.add('offcanvas-open');
   }
@@ -105,6 +117,39 @@ export class NavbarComponent implements OnInit {
   hideOverlay(){
     const overlay = document.getElementById('overlay');
     if (overlay) overlay.style.display = 'none';
+  }
+
+  getProducts(type: string){
+    const item = window.localStorage.getItem(type);
+
+    if (item) {
+      let productIds = JSON.parse(item).products;
+
+      if (productIds) this.service.getProductsByIds(`${AppConstants.SERVICES_BASE_URL}/product?id=[${productIds}]`).subscribe(products => {
+        this.products$ = products;
+      });
+    }
+  }
+
+  removeWishList(productId: number){
+    let wishlist = window.localStorage.getItem(AppConstants.WISHLIST);
+
+    if (wishlist && this.products$) {
+      let products = JSON.parse(wishlist).products;
+      let userId = JSON.parse(wishlist).userId;
+
+      products.splice(products.indexOf(productId), 1);
+
+      window.localStorage.setItem(
+        AppConstants.WISHLIST, 
+        JSON.stringify({
+          userId: userId,
+          products: products
+        })
+      );
+
+      this.hideWishlist();
+    }
   }
 
 }
