@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AppConstants } from 'src/app/app.constants';
 import { Image } from 'src/app/model/Image';
 import { Product } from 'src/app/model/Product';
@@ -13,11 +14,15 @@ import { getUserId } from 'src/app/utility/Utitity';
 })
 export class ProductPageComponent implements OnInit {
 
+  @ViewChildren('sizeSelect') sizeSelect?: QueryList<ElementRef>;
+  @ViewChildren('quantitySelect') quantitySelect?: QueryList<ElementRef>;
+
   product$?: Product;
   image$?: Image;
   availableSizes?: string[];
 
-  constructor(private activatedroute: ActivatedRoute, private service: ProductService) { }
+  // constructor(private activatedroute: ActivatedRoute, private service: ProductService, private toastr: ToastrService, private translate$: TranslateService) { }
+  constructor(private activatedroute: ActivatedRoute, private service: ProductService, private toastr: ToastrService) { }
 
   get isWishlisted(){
     let wishlist = window.localStorage.getItem(AppConstants.WISHLIST);
@@ -70,5 +75,50 @@ export class ProductPageComponent implements OnInit {
         );
       }
     }
+  }
+
+  cart(){
+    let cart = window.localStorage.getItem(AppConstants.CART);
+    let size;
+    let quantity;
+
+    Object.values(this.sizeSelect?.first.nativeElement).forEach((elem: any) => {
+        if(elem.selected) size = elem.value;
+    });
+
+    Object.values(this.quantitySelect?.first.nativeElement).forEach((elem: any) => {
+      if(elem.selected) quantity = elem.value;
+    });
+
+    if (this.product$) {
+      if (cart) {
+        let products = JSON.parse(cart).products;
+        let userId = JSON.parse(cart).userId;
+  
+        if (Object.keys(products).includes(String(this.product$.id))) {
+          products[String(this.product$.id)].quantity =  Number(products[String(this.product$.id)].quantity) + Number(quantity);
+        }else{
+          products = {...products, [this.product$.id]: { size: size, quantity: quantity}  };
+        }
+
+        window.localStorage.setItem(
+          AppConstants.CART, 
+          JSON.stringify({
+            userId: userId,
+            products: products
+          })
+        );
+      }else{
+        window.localStorage.setItem(
+          AppConstants.CART,
+          JSON.stringify({
+            userId: getUserId(),
+            products: { [this.product$.id]: { size: size, quantity: quantity} }
+          })
+        );
+      }
+    }
+
+    this.toastr.success('Product added to cart.', 'Success!');
   }
 }

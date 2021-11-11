@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -50,6 +50,25 @@ export class NavbarComponent implements OnInit {
 
     if (wishlist) return JSON.parse(wishlist).products;
     return [];
+  }
+
+  get prodCart(){
+    let cart = window.localStorage.getItem(AppConstants.CART);
+
+    if (cart) return JSON.parse(cart).products;
+    return {};
+  }
+
+  get subTotal(){
+    let total = 0;
+
+    if(this.products$ && this.prodCart){
+      Object.keys(this.prodCart).forEach(productId => {
+        const price = this.products$?.find(product => { return product.id == Number(productId) })?.price;
+        total += Number(price) * this.prodCart[productId].quantity;
+      });
+    }
+    return total.toFixed(2);
   }
 
   setLanguage(lang: string){
@@ -123,7 +142,7 @@ export class NavbarComponent implements OnInit {
     const item = window.localStorage.getItem(type);
 
     if (item) {
-      let productIds = JSON.parse(item).products;
+      let productIds = type === AppConstants.WISHLIST ? JSON.parse(item).products : Object.keys(JSON.parse(item).products);
 
       if (productIds) this.service.getProductsByIds(`${AppConstants.SERVICES_BASE_URL}/product?id=[${productIds}]`).subscribe(products => {
         this.products$ = products;
@@ -149,6 +168,27 @@ export class NavbarComponent implements OnInit {
       );
 
       this.hideWishlist();
+    }
+  }
+
+  removeCart(productId: number){
+    let cart = window.localStorage.getItem(AppConstants.CART);
+
+    if (cart && this.products$) {
+      let products = JSON.parse(cart).products;
+      let userId = JSON.parse(cart).userId;
+
+      delete products[productId];
+
+      window.localStorage.setItem(
+        AppConstants.CART, 
+        JSON.stringify({
+          userId: userId,
+          products: products
+        })
+      );
+
+      this.hideCart();
     }
   }
 

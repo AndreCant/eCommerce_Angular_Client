@@ -32,44 +32,27 @@
             <span class="title">Cart</span>
             <button class="offcanvas-close" (click)="hideCart()">×</button>
         </div>
+        <p *ngIf="!products$?.length" class="text-center">Your Cart is empty!</p>
         <ul class="minicart-product-list">
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/1.jpg"
-                        alt="Cart product Image"></a>
+            <li *ngFor="let product of products$">
+                <a [routerLink]="['/product/' + product?.id]" class="image" (click)="hideCart()">
+                    <img [src]="product?.previewUrl">
+                </a>
                 <div class="content">
-                    <a href="single-product.html" class="title">Walnut Cutting Board</a>
-                    <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/2.jpg"
-                        alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
-                    <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/3.jpg"
-                        alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Fish Cut Out Set</a>
-                    <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                    <a href="#" class="remove">×</a>
+                    <a [routerLink]="['/product/' + product?.id]" (click)="hideWishlist()" class="title">{{product.name}}</a>
+                    <span class="quantity-price">{{prodCart[product.id].quantity}} x <span class="amount">€ {{product.price}}</span></span>
+                    <a href="javascript:" class="remove" (click)="removeCart(product.id)">×</a>
                 </div>
             </li>
         </ul>
-        <div class="sub-total d-flex flex-wrap justify-content-between">
+        
+        <div class="sub-total d-flex flex-wrap justify-content-between" *ngIf="products$?.length">
             <strong>Subtotal :</strong>
-            <span class="amount">$144.00</span>
+            <span class="amount">€ {{subTotal}}</span>
         </div>
-        <a href="cart.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mr-sm-2">view
-            cart</a>
-        <a href="checkout.html"
-            class="btn theme-btn--dark1 btn--lg d-block d-sm-inline-block mt-4 mt-sm-0 rounded-5">checkout</a>
-        <p class="minicart-message">Free Shipping on All Orders Over $100!</p>
+        <div class="text-center" *ngIf="products$?.length">
+            <a href="javascript:" class="btn theme-btn--dark1 btn--lg d-block d-sm-inline-block mt-4 mt-sm-0 rounded-5">checkout</a>
+        </div>
     </div>
 </div>
 <!-- OffCanvas Cart End -->
@@ -145,7 +128,7 @@
                                     <a class="offcanvas-toggle" href="javascript:" (click)="showCart()">
                                         <span class="position-relative" title="{{ 'nav.cart' | translate }}">
                                             <i class="icon-bag"></i>
-                                            <span class="badge cbdg1">1</span>
+                                            <span *ngIf="Object.keys(prodCart).length" class="badge cbdg1">{{Object.keys(prodCart).length}}</span>
                                         </span>
                                     </a>
                                 </li>

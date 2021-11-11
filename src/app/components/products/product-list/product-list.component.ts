@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ShowAllAction } from 'src/app/actions/product.actions';
 import { AppConstants } from 'src/app/app.constants';
@@ -26,7 +27,7 @@ export class ProductListComponent implements OnInit {
   subtypes: string[] = [];
   price: number[] = [];
 
-  constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private ser: ProductService) {
+  constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private ser: ProductService, private toastr: ToastrService) {
     this.products$ = this.store.pipe(select(selectorProduct));
   }
 
@@ -125,5 +126,42 @@ export class ProductListComponent implements OnInit {
         );
       }
     }
+  }
+
+  cart(productId: any){
+    let cart = window.localStorage.getItem(AppConstants.CART);
+    let size = 'M';
+    let quantity = 1;
+
+    if (productId) {
+      if (cart) {
+        let products = JSON.parse(cart).products;
+        let userId = JSON.parse(cart).userId;
+  
+        if (Object.keys(products).includes(String(productId))) {
+          products[String(productId)].quantity =  Number(products[String(productId)].quantity) + Number(quantity);
+        }else{
+          products = {...products, [productId]: { size: size, quantity: quantity}  };
+        }
+
+        window.localStorage.setItem(
+          AppConstants.CART, 
+          JSON.stringify({
+            userId: userId,
+            products: products
+          })
+        );
+      }else{
+        window.localStorage.setItem(
+          AppConstants.CART,
+          JSON.stringify({
+            userId: getUserId(),
+            products: { [productId]: { size: size, quantity: quantity} }
+          })
+        );
+      }
+    }
+
+    this.toastr.success('Product added to cart.', 'Success!');
   }
 }

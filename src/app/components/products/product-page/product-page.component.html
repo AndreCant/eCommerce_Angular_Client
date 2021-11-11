@@ -42,13 +42,13 @@
                         <div class="product-count style d-flex flex-column flex-sm-row mt-30 mb-20">
                             <div class="product-size mr-5">
                                 <h3 class="title">{{ 'product.size' | translate }}</h3>
-                                <select>
+                                <select #sizeSelect>
                                     <option *ngFor="let size of availableSizes" value="{{size}}">{{size}}</option>
                                 </select>
                             </div>
                             <div class="product-size mr-50">
                                 <h3 class="title">{{ 'product.quantity' | translate }}</h3>
-                                <select>
+                                <select #quantitySelect>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -57,13 +57,12 @@
                                 </select>
                             </div>
                             <div>
-                                <button class="btn theme-btn--dark1 btn--xl mt-5 mt-sm-0 rounded-5">
+                                <button class="btn theme-btn--dark1 btn--xl mt-5 mt-sm-0 rounded-5" (click)="cart()">
                                     <span class="mr-2"><i class="ion-android-add"></i></span>
                                     {{ 'product.cart' | translate }}
                                 </button>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
