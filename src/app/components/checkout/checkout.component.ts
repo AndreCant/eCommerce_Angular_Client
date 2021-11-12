@@ -1,0 +1,124 @@
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ShowAllAction } from 'src/app/actions/payment.actions';
+import { AppConstants } from 'src/app/app.constants';
+import { Payment } from 'src/app/model/Payment';
+import { Product } from 'src/app/model/Product';
+import { selectorPayment } from 'src/app/selectors/payment.selector';
+import { ProductService } from 'src/app/services/product.service';
+import { IAppState } from 'src/app/state/app.states';
+
+@Component({
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.css']
+})
+export class CheckoutComponent implements OnInit {
+
+  @ViewChildren('paymentSelect') paymentSelect?: QueryList<ElementRef>;
+
+  payments$?: Observable<Payment[]>;
+  addPayment: boolean = false;
+  selectedPayment?: number;
+  products$?: Product[];
+
+  constructor(private store: Store<IAppState>, private service: ProductService) {
+    this.payments$ = this.store.pipe(select(selectorPayment));
+  }
+
+  get prodCart(){
+    let cart = window.localStorage.getItem(AppConstants.CART);
+
+    if (cart) return JSON.parse(cart).products;
+    return {};
+  }
+
+  get subTotal(){
+    let total = 0;
+
+    if(this.products$ && this.prodCart){
+      Object.keys(this.prodCart).forEach(productId => {
+        const price = this.products$?.find(product => { return product.id == Number(productId) })?.price;
+        total += Number(price) * this.prodCart[productId].quantity;
+      });
+    }
+    return total.toFixed(2);
+  }
+
+  ngOnInit(): void {
+    this.getPayments();
+    this.getProducts(AppConstants.CART);
+  }
+
+  getPayments(){
+    this.store.dispatch(new ShowAllAction());
+    this.setDefaultChecked();
+  }
+
+  showPayment(){
+    this.addPayment = true;
+  }
+
+  paymentEventHandler(event: boolean){
+    if(event) {
+      this.addPayment = false;
+      this.getPayments();
+    }
+  }
+
+  setPaymentMethod(event: any){
+    this.selectedPayment = event.target.id;
+
+    this.paymentSelect?.forEach(elem => {
+      if(elem.nativeElement.id != this.selectedPayment) elem.nativeElement.checked = false;
+    });
+  }
+
+  setDefaultChecked(){
+    setTimeout(() => {
+      let isSet = false;
+      this.paymentSelect?.forEach(elem => {
+        if(!isSet) {
+          elem.nativeElement.checked = true;
+          this.selectedPayment = elem.nativeElement.id;
+          isSet = true;
+        }
+        return;
+      });
+    }, 500);
+  }
+
+  getProducts(type: string){
+    const item = window.localStorage.getItem(type);
+
+    if (item) {
+      let productIds = type === AppConstants.WISHLIST ? JSON.parse(item).products : Object.keys(JSON.parse(item).products);
+
+      if (productIds) this.service.getProductsByIds(`${AppConstants.SERVICES_BASE_URL}/product?id=[${productIds}]`).subscribe(products => {
+        this.products$ = products;
+      });
+    }
+  }
+
+  removeCart(productId: number){
+    let cart = window.localStorage.getItem(AppConstants.CART);
+
+    if (cart && this.products$) {
+      let products = JSON.parse(cart).products;
+      let userId = JSON.parse(cart).userId;
+
+      delete products[productId];
+
+      window.localStorage.setItem(
+        AppConstants.CART, 
+        JSON.stringify({
+          userId: userId,
+          products: products
+        })
+      );
+    }
+
+    this.getProducts(AppConstants.CART);
+  }
+}

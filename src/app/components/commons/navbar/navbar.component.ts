@@ -188,6 +188,7 @@ export class NavbarComponent implements OnInit {
         })
       );
 
+      this.getProducts(AppConstants.CART);
       this.hideCart();
     }
   }

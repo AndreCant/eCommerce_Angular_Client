@@ -51,7 +51,7 @@
             <span class="amount">€ {{subTotal}}</span>
         </div>
         <div class="text-center" *ngIf="products$?.length">
-            <a href="javascript:" class="btn theme-btn--dark1 btn--lg d-block d-sm-inline-block mt-4 mt-sm-0 rounded-5">checkout</a>
+            <a [routerLink]="['/checkout']" (click)="hideCart()" class="btn theme-btn--dark1 btn--lg d-block d-sm-inline-block mt-4 mt-sm-0 rounded-5">checkout</a>
         </div>
     </div>
 </div>

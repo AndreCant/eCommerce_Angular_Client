@@ -34,6 +34,7 @@ import { MegaMenuComponent } from './components/commons/mega-menu/mega-menu.comp
 import { ProductService } from './services/product.service';
 import { ProductEffects } from './effects/product-effects.service';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ProductPageComponent } from './components/products/product-page/product
     AddPaymentComponent,
     ProductListComponent,
     MegaMenuComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

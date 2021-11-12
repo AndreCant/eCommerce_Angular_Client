@@ -8,6 +8,7 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 import { GuestGuardService } from './services/auth/guest-guard.service';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: "registration", canActivate: [GuestGuardService], component: RegistrationComponent},
   {path: "profile", canActivate: [AuthGuardService], component: ProfileComponent},
   {path: 'products/:gender/:type/:subtype', component: ProductListComponent },
-  {path: 'product/:id', component: ProductPageComponent }
+  {path: 'product/:id', component: ProductPageComponent },
+  {path: 'checkout', component: CheckoutComponent,  canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
