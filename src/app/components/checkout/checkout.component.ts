@@ -1,13 +1,21 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { CreateAction, EOrderActions } from 'src/app/actions/order.actions';
 import { ShowAllAction } from 'src/app/actions/payment.actions';
 import { AppConstants } from 'src/app/app.constants';
+import { Order } from 'src/app/model/Order';
+import { OrderLineItem } from 'src/app/model/OrderLineItem';
 import { Payment } from 'src/app/model/Payment';
 import { Product } from 'src/app/model/Product';
 import { selectorPayment } from 'src/app/selectors/payment.selector';
+import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
+import { getUserId } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-checkout',
@@ -22,9 +30,20 @@ export class CheckoutComponent implements OnInit {
   addPayment: boolean = false;
   selectedPayment?: number;
   products$?: Product[];
+  destroyed$ = new Subject<boolean>();
 
-  constructor(private store: Store<IAppState>, private service: ProductService) {
+  constructor(private store: Store<IAppState>, private productService: ProductService, private toastr: ToastrService, updates$: Actions) {
     this.payments$ = this.store.pipe(select(selectorPayment));
+
+    updates$.pipe(
+      ofType(EOrderActions.CREATE_SUCCESS),
+      takeUntil(this.destroyed$)
+    ).subscribe(() => {
+      // this.toastr.success(detail, success);
+      this.toastr.success('Order completed successfully!', 'Success!');
+      setTimeout(() => {window.location.replace('profile');}, 500);
+      
+    });
   }
 
   get prodCart(){
@@ -49,6 +68,11 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.getPayments();
     this.getProducts(AppConstants.CART);
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   getPayments(){
@@ -95,7 +119,7 @@ export class CheckoutComponent implements OnInit {
     if (item) {
       let productIds = type === AppConstants.WISHLIST ? JSON.parse(item).products : Object.keys(JSON.parse(item).products);
 
-      if (productIds) this.service.getProductsByIds(`${AppConstants.SERVICES_BASE_URL}/product?id=[${productIds}]`).subscribe(products => {
+      if (productIds) this.productService.getProductsByIds(`${AppConstants.SERVICES_BASE_URL}/product?id=[${productIds}]`).subscribe(products => {
         this.products$ = products;
       });
     }
@@ -120,5 +144,25 @@ export class CheckoutComponent implements OnInit {
     }
 
     this.getProducts(AppConstants.CART);
+  }
+
+  checkout(){
+    if(Object.keys(this.prodCart).length && this.selectedPayment){
+      let order: Order = {};
+      let items: OrderLineItem[] = [];
+  
+      Object.keys(this.prodCart).forEach((productId: any) => {
+        items.push({
+          product_id: Number(productId),
+          size: this.prodCart[productId].size,
+          quantity: this.prodCart[productId].quantity
+        });
+      });
+
+      order.payment_id = Number(this.selectedPayment);
+      order.items = items;
+      
+      this.store.dispatch(new CreateAction(order));
+    }
   }
 }

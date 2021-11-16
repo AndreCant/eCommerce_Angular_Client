@@ -78,7 +78,7 @@
                     </li>
 
                     <li class="list-group-item text-center">
-                        <button class="btn theme-btn--dark1 btn--md" [disabled]="!this.selectedPayment" >Proceed to checkout</button>
+                        <button class="btn theme-btn--dark1 btn--md" [disabled]="!this.selectedPayment" (click)="checkout()" >Proceed to checkout</button>
                     </li>
                 </ul>
             </div>

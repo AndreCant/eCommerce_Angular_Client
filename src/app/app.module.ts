@@ -35,6 +35,7 @@ import { ProductService } from './services/product.service';
 import { ProductEffects } from './effects/product-effects.service';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrderEffects } from './effects/order-effects.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects]),
+    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects]),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,

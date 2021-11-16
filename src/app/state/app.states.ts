@@ -2,6 +2,7 @@ import { Payment } from "../model/Payment";
 import { ProductsFilter } from "../model/ProductsFilter";
 import { Registry } from "../model/Registry";
 import { User } from "../model/User";
+import { Order } from "../model/Order";
 
 /** APP STATE */
 export interface IAppState {
@@ -9,6 +10,7 @@ export interface IAppState {
     userState: IUserState;
     paymentState: IPaymentState;
     productState: IProductsFilteredState;
+    orderState: IOrderState;
 }
 /**************** */
 
@@ -31,6 +33,11 @@ export interface IProductsFilteredState {
     message: any;
 }
 
+export interface IOrderState {
+    orders: Order[];
+    message: any;
+}
+
 export const initialRegistryState: IRegistryState = {
     registry: {},
     message: null
@@ -48,5 +55,10 @@ export const initialPaymentState: IPaymentState = {
 
 export const initialProductsFilteredState: IProductsFilteredState = {
     products: [],
+    message: null
+};
+
+export const initialOrderState: IOrderState = {
+    orders: [],
     message: null
 };
