@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
       ofType(EOrderActions.CREATE_SUCCESS),
       takeUntil(this.destroyed$)
     ).subscribe(() => {
-      // this.toastr.success(detail, success);
+      window.localStorage.removeItem(AppConstants.CART);
       this.toastr.success('Order completed successfully!', 'Success!');
       setTimeout(() => {window.location.replace('profile');}, 500);
       

@@ -57,7 +57,14 @@
         },
         "paymentTab": "Payment Method",
         "accountTab": "Account Details",
-        "orderTab": "Orders"
+        "orderTab": "Orders",
+        "order": {
+            "code": "Code",
+            "status": "Status",
+            "products": "Products",
+            "size": "Size",
+            "quantity": "Quantity"
+        }
     },
     "payment": {
         "title": "Payment Details",

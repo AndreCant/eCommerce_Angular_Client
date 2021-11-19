@@ -36,6 +36,7 @@ import { ProductEffects } from './effects/product-effects.service';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderEffects } from './effects/order-effects.service';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { OrderEffects } from './effects/order-effects.service';
     ProductListComponent,
     MegaMenuComponent,
     ProductPageComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
