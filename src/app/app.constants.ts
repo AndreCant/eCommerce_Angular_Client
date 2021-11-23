@@ -6,5 +6,7 @@ export enum AppConstants {
     IT_FLAG_PATH = 'assets/flags/4x3/it.svg',
     US_FLAG_PATH = 'assets/flags/4x3/us.svg',
     WISHLIST = 'wishlist',
-    CART = 'cart'
+    CART = 'cart',
+    USERS = 'users',
+    PRODUCTS = 'products'
 }

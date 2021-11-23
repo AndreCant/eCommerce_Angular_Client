@@ -31,12 +31,13 @@ import { PaymentEffects } from './effects/payment-effects.service';
 import { AddPaymentComponent } from './components/commons/add-payment/add-payment.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { MegaMenuComponent } from './components/commons/mega-menu/mega-menu.component';
-import { ProductService } from './services/product.service';
 import { ProductEffects } from './effects/product-effects.service';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderEffects } from './effects/order-effects.service';
-import { OrdersComponent } from './components/orders/orders.component';
+import { AsideComponent } from './components/admin-page/aside/aside.component';
+import { AdminLayoutComponent } from './components/admin-page/admin-layout/admin-layout.component';
+import { ContentComponent } from './components/admin-page/content/content.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { OrdersComponent } from './components/orders/orders.component';
     MegaMenuComponent,
     ProductPageComponent,
     CheckoutComponent,
-    OrdersComponent
+    AsideComponent,
+    AdminLayoutComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,

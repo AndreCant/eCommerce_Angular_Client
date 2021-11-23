@@ -11,6 +11,7 @@ export interface IAppState {
     paymentState: IPaymentState;
     productState: IProductsFilteredState;
     orderState: IOrderState;
+    // usersState: IUsersState;
 }
 /**************** */
 
@@ -38,6 +39,11 @@ export interface IOrderState {
     message: any;
 }
 
+export interface IUsersState {
+    users: User[];
+    message: any;
+}
+
 export const initialRegistryState: IRegistryState = {
     registry: {},
     message: null
@@ -60,5 +66,10 @@ export const initialProductsFilteredState: IProductsFilteredState = {
 
 export const initialOrderState: IOrderState = {
     orders: [],
+    message: null
+};
+
+export const initialUsersState: IUsersState = {
+    users: [],
     message: null
 };

@@ -124,5 +124,12 @@
         "material": "Material",
         "collection": "Collection",
         "color": "Color"
+    },
+    "table": {
+        "users": {
+            "username": "Username",
+            "email": "Email",
+            "role": "Role"
+        }
     }
 }
