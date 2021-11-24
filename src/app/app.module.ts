@@ -38,6 +38,7 @@ import { OrderEffects } from './effects/order-effects.service';
 import { AsideComponent } from './components/admin-page/aside/aside.component';
 import { AdminLayoutComponent } from './components/admin-page/admin-layout/admin-layout.component';
 import { ContentComponent } from './components/admin-page/content/content.component';
+import { UserRegistryEffects } from './effects/userRegistry-effects.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { ContentComponent } from './components/admin-page/content/content.compon
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects]),
+    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects, UserRegistryEffects]),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,

@@ -127,9 +127,28 @@
     },
     "table": {
         "users": {
+            "title": "Users",
             "username": "Username",
             "email": "Email",
-            "role": "Role"
+            "role": "Role",
+            "name": "Name",
+            "surname": "Surname",
+            "address": "Address",
+            "phone": "Phone"
+        },
+        "products": {
+            "title": "Products",
+            "name": "Name",
+            "sDesc": "Short Description",
+            "desc": "Description",
+            "price": "Price",
+            "gender": "Gender",
+            "type": "Type",
+            "subType": "SubType",
+            "size": "Size Available",
+            "color": "Color",
+            "material": "Material",
+            "collection": "Collection"
         }
     }
 }

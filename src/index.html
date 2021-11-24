@@ -60,13 +60,27 @@
   <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
 	<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
 	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<!-- <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
   <script>
 		$(document).ready(function() {
-			$('#dataTable').DataTable();
-		  } );
-	</script>
+			const dataTable = $('#dataTable');
+
+      if(dataTable){
+        setTimeout(() => {
+          if(dataTable[0].children[1].children.length) dataTable.DataTable();
+        }, 1000);
+
+        dataTable.on('dataTable', () => {
+          /*dataTable.DataTable().destroy();*/
+          setTimeout(() => {
+            if(dataTable[0].children[1].children.length) dataTable.DataTable();
+          }, 1000);
+        });
+      }
+
+		});
+	</script> -->
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
 

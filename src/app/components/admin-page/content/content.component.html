@@ -2,8 +2,8 @@
     <div class="card">
         <div class="card-body">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <h3 class="pl-5">Users</h3>
-                <div class="ms-auto">
+                <h3 class="pl-5"><i class='bx bx-user mr-5 ml-5'></i> {{title}}</h3>
+                <!-- <div class="ms-auto">
                     <div class="btn-group">
                         <button type="button" class="btn theme-btn--dark1">Settings</button>
                         <button type="button" class="btn theme-btn--dark1 split-bg dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
@@ -14,7 +14,7 @@
                             <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <hr/>
@@ -28,23 +28,34 @@
                                     <th *ngFor="let field of fields">{{ field }}</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
+                            <!-- Users -->
+                            <tbody *ngIf="!currentTab || currentTab === 'users'">
+                                <tr *ngFor="let user of userRegistries$ | async">
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.role}}</td>
+                                    <td>{{user.registry?.name}}</td>
+                                    <td>{{user.registry?.surname}}</td>
+                                    <td>{{user.registry?.phone}}</td>
+                                    <td>{{user.registry?.street}}, {{user.registry?.postal_code}}, {{user.registry?.city}}, {{user.registry?.county}}, {{user.registry?.state}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
+                            </tbody>
+
+                            <!-- Producst -->
+                            <tbody *ngIf="currentTab === 'products'">
+                                <tr *ngFor="let product of products$ | async">
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.type}}</td>
+                                    <td>{{product.sub_type}}</td>
+                                    <td>{{product.price}}</td>
+                                    <td>{{product.gender}}</td>
+                                    <td>{{product.size_available}}</td>
+                                    <td>{{product.color}}</td>
+                                    <td>{{product.material}}</td>
+                                    <td>{{product.collection}}</td>
+                                    <td class="text-center"><a href="javascript:" title="Delete"><i class='fa fa-trash'></i></a></td>
+                                    <td class="text-center"><a href="javascript:" title="Edit"><i class='fa fa-edit'></i></a></td>
                                 </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                </tr>
-                                
                             </tbody>
                             <tfoot>
                                 <tr>
