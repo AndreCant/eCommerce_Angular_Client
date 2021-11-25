@@ -1,8 +1,11 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
-import { ShowAllAction } from 'src/app/actions/product.actions';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { DeleteAction, EProductActions, ShowAllAction } from 'src/app/actions/product.actions';
 import { ShowUsersAction } from 'src/app/actions/userRegistry.actions';
 import { AppConstants } from 'src/app/app.constants';
 import { Product } from 'src/app/model/Product';
@@ -10,7 +13,6 @@ import { UserRegistry } from 'src/app/model/UserRegistry';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { selectorUserRegistry } from 'src/app/selectors/userRegistry.selector';
 import { IAppState } from 'src/app/state/app.states';
-import { getUserId } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-content',
@@ -27,11 +29,22 @@ export class ContentComponent implements OnInit, OnChanges {
   products$?: Observable<Product[]>;
   title?: string;
   labels?: any = {};
+  destroyed$ = new Subject<boolean>();
 
-  constructor(private translate$: TranslateService, private store: Store<IAppState>) {
+  constructor(private translate$: TranslateService, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService) {
     this.userRegistries$ = this.store.pipe(select(selectorUserRegistry));
     this.products$ = this.store.pipe(select(selectorProduct));
     this.setLabels();
+
+    updates$.pipe(
+      ofType(EProductActions.DELETE_SUCCESS),
+      takeUntil(this.destroyed$)
+    ).subscribe(() => {
+      this.translate$.get("table.products.messages.delete").subscribe(labels => {
+        this.toastr.success(labels.detail, labels.title);
+      });
+      this.getProducts();
+    });
   }
   
   ngOnInit(): void {
@@ -102,7 +115,7 @@ export class ContentComponent implements OnInit, OnChanges {
 
   deleteProduct(id: number | undefined){
     if(id){
-      
+      this.store.dispatch(new DeleteAction(id));
     }
   }
 

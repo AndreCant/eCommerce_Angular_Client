@@ -32,7 +32,7 @@ export enum EProductActions {
 
   export class UpdateAction implements Action {
     readonly type = EProductActions.UPDATE;
-    constructor(public payload: Product) {}
+    constructor(public payload: Product, public id: number) {}
   }
   export class UpdateSuccessAction implements Action {
     readonly type = EProductActions.UPDATE_SUCCESS;

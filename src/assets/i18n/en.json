@@ -148,7 +148,13 @@
             "size": "Size Available",
             "color": "Color",
             "material": "Material",
-            "collection": "Collection"
+            "collection": "Collection",
+            "messages": {
+                "delete": {
+                    "title": "Success!",
+                    "detail": "Product deleted successfully."
+                }
+            }
         }
     }
 }
