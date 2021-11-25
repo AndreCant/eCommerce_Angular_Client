@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ShowAllAction } from 'src/app/actions/product.actions';
 import { AppConstants } from 'src/app/app.constants';
-import { ProductsFilter } from 'src/app/model/ProductsFilter';
+import { Product } from 'src/app/model/Product';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   gender?: string | null;
   type?: string | null;
   subtype?: string | null;
-  products$?: Observable<ProductsFilter[]>;
+  products$?: Observable<Product[]>;
 
   size: string[] = [];
   subtypes: string[] = [];

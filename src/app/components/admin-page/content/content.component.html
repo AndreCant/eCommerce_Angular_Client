@@ -53,15 +53,10 @@
                                     <td>{{product.color}}</td>
                                     <td>{{product.material}}</td>
                                     <td>{{product.collection}}</td>
-                                    <td class="text-center"><a href="javascript:" title="Delete"><i class='fa fa-trash'></i></a></td>
+                                    <td class="text-center"><a href="javascript:" (click)="deleteProduct(product.id)" title="Delete"><i class='fa fa-trash'></i></a></td>
                                     <td class="text-center"><a href="javascript:" title="Edit"><i class='fa fa-edit'></i></a></td>
                                 </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th *ngFor="let field of fields">{{ field }}</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

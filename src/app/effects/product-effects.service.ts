@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { EProductActions, ShowAllAction } from '../actions/product.actions';
 import { ShowAllSuccessAction } from '../actions/product.actions';
-import { ProductsFilter } from '../model/ProductsFilter';
+import { Product } from '../model/Product';
 import { ProductService } from '../services/product.service';
 
 @Injectable()
@@ -18,6 +18,6 @@ export class ProductEffects {
     .pipe(
       ofType<ShowAllAction>(EProductActions.SHOW_ALL),
       switchMap((action) => this.productService.getProducts(action.url)),
-      switchMap((productsResp: ProductsFilter[]) => of(new ShowAllSuccessAction(productsResp))))
+      switchMap((productsResp: Product[]) => of(new ShowAllSuccessAction(productsResp))))
   });
 }

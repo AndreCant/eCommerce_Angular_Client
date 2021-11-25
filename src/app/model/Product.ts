@@ -15,4 +15,5 @@ export interface Product{
     collection?: string;
     images?: Image[];
     previewUrl?: string;
+    preview?: string;
 }

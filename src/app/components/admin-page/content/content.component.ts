@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ShowAllAction } from 'src/app/actions/product.actions';
 import { ShowUsersAction } from 'src/app/actions/userRegistry.actions';
 import { AppConstants } from 'src/app/app.constants';
-import { ProductsFilter } from 'src/app/model/ProductsFilter';
+import { Product } from 'src/app/model/Product';
 import { UserRegistry } from 'src/app/model/UserRegistry';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { selectorUserRegistry } from 'src/app/selectors/userRegistry.selector';
@@ -24,7 +24,7 @@ export class ContentComponent implements OnInit, OnChanges {
 
   fields: string[] = [];
   userRegistries$?: Observable<UserRegistry[]>;
-  products$?: Observable<ProductsFilter[]>;
+  products$?: Observable<Product[]>;
   title?: string;
   labels?: any = {};
 
@@ -98,6 +98,12 @@ export class ContentComponent implements OnInit, OnChanges {
     console.log(this.fields);
 
     document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
+  }
+
+  deleteProduct(id: number | undefined){
+    if(id){
+      
+    }
   }
 
 }
