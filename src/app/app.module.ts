@@ -39,6 +39,7 @@ import { AsideComponent } from './components/admin-page/aside/aside.component';
 import { AdminLayoutComponent } from './components/admin-page/admin-layout/admin-layout.component';
 import { ContentComponent } from './components/admin-page/content/content.component';
 import { UserRegistryEffects } from './effects/userRegistry-effects.service';
+import { ProductFormComponent } from './components/admin-page/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UserRegistryEffects } from './effects/userRegistry-effects.service';
     CheckoutComponent,
     AsideComponent,
     AdminLayoutComponent,
-    ContentComponent
+    ContentComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

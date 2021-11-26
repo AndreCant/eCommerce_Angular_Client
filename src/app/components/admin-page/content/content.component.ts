@@ -29,7 +29,17 @@ export class ContentComponent implements OnInit, OnChanges {
   products$?: Observable<Product[]>;
   title?: string;
   labels?: any = {};
+  button?: string;
   destroyed$ = new Subject<boolean>();
+  openForm: boolean = false;
+
+  get buttonForm(){
+    return this.currentTab === 'products' && !this.openForm;
+  }  
+
+  get buttonLabel(){
+    return this.title?.slice(0, -1);
+  }
 
   constructor(private translate$: TranslateService, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService) {
     this.userRegistries$ = this.store.pipe(select(selectorUserRegistry));
@@ -47,12 +57,16 @@ export class ContentComponent implements OnInit, OnChanges {
     });
   }
   
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.openForm = false;
     this.setData(changes.currentTab.currentValue);
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   getUserRegistry(){
@@ -86,7 +100,6 @@ export class ContentComponent implements OnInit, OnChanges {
   }
 
   setData(object: string){
-    console.log('qui');
     switch (object) {
       case AppConstants.USERS: this.setUserData();
       break;
@@ -108,7 +121,6 @@ export class ContentComponent implements OnInit, OnChanges {
     this.getProducts();
     this.title = this.labels[AppConstants.PRODUCTS].title;
     this.fields = this.labels[AppConstants.PRODUCTS].fields;
-    console.log(this.fields);
 
     document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
   }
@@ -116,6 +128,17 @@ export class ContentComponent implements OnInit, OnChanges {
   deleteProduct(id: number | undefined){
     if(id){
       this.store.dispatch(new DeleteAction(id));
+    }
+  }
+
+  addProduct(){
+    this.openForm = true;
+  }
+
+  productEventHandler(event: boolean){
+    if(event){
+      this.openForm = false;
+      this.getProducts();
     }
   }
 
