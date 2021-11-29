@@ -8,5 +8,6 @@ export enum AppConstants {
     WISHLIST = 'wishlist',
     CART = 'cart',
     USERS = 'users',
-    PRODUCTS = 'products'
+    PRODUCTS = 'products',
+    ORDERS = 'orders'
 }

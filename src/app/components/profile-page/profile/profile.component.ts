@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getOrders(){
-    this.store.dispatch(new ShowAllOrdersAction());
+    this.store.dispatch(new ShowAllOrdersAction('user'));
   }
 
   showPayment(){

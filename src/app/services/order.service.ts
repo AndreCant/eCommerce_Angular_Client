@@ -14,8 +14,9 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUserOrders(): Observable<Order[]>{
-    return this.httpClient.get<Order[]>(`${baseUrl}/orders`);
+  getOrders(mode: string): Observable<Order[]>{
+    let url = mode === 'user' ? `${baseUrl}/orders` : `${AppConstants.SERVICES_BASE_URL}/admin/orders`;
+    return this.httpClient.get<Order[]>(url);
   }
 
   createOrder(order: Order): Observable<Order>{

@@ -16,7 +16,7 @@ export class OrderEffects {
     return this.actions$
     .pipe(
       ofType<ShowAllAction>(EOrderActions.SHOW_ALL),
-      switchMap(() => this.orderService.getUserOrders()),
+      switchMap((mode) => this.orderService.getOrders(mode.payload)),
       switchMap((ordersResp: Order[]) => of(new ShowAllSuccessAction(ordersResp))))
   });
 

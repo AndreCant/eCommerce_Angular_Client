@@ -5,11 +5,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ShowAllAction as ShowAllOrders } from 'src/app/actions/order.actions';
 import { DeleteAction, EProductActions, ShowAllAction } from 'src/app/actions/product.actions';
 import { ShowUsersAction } from 'src/app/actions/userRegistry.actions';
 import { AppConstants } from 'src/app/app.constants';
+import { Order } from 'src/app/model/Order';
 import { Product } from 'src/app/model/Product';
 import { UserRegistry } from 'src/app/model/UserRegistry';
+import { selectorOrder } from 'src/app/selectors/order.selector';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { selectorUserRegistry } from 'src/app/selectors/userRegistry.selector';
 import { IAppState } from 'src/app/state/app.states';
@@ -27,6 +30,7 @@ export class ContentComponent implements OnInit, OnChanges {
   fields: string[] = [];
   userRegistries$?: Observable<UserRegistry[]>;
   products$?: Observable<Product[]>;
+  orders$?: Observable<Order[]>;
   title?: string;
   labels?: any = {};
   button?: string;
@@ -44,6 +48,7 @@ export class ContentComponent implements OnInit, OnChanges {
   constructor(private translate$: TranslateService, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService) {
     this.userRegistries$ = this.store.pipe(select(selectorUserRegistry));
     this.products$ = this.store.pipe(select(selectorProduct));
+    this.orders$ = this.store.pipe(select(selectorOrder));
     this.setLabels();
 
     updates$.pipe(
@@ -77,6 +82,10 @@ export class ContentComponent implements OnInit, OnChanges {
     this.store.dispatch(new ShowAllAction(`${AppConstants.SERVICES_BASE_URL}/products`));
   }
 
+  getOrders(){
+    this.store.dispatch(new ShowAllOrders('admin'));
+  }
+
   setLabels(){
     this.translate$.get('table').subscribe(objects => {
       let fields : any = [];
@@ -87,6 +96,8 @@ export class ContentComponent implements OnInit, OnChanges {
           case AppConstants.USERS: fields = [objects[obj].username, objects[obj].email, objects[obj].role, objects[obj].name, objects[obj].surname, objects[obj].phone, objects[obj].address];
           break;
           case AppConstants.PRODUCTS: fields = [objects[obj].name, objects[obj].type, objects[obj].subType, objects[obj].price, objects[obj].gender, objects[obj].size, objects[obj].color, objects[obj].material, objects[obj].collection, '', ''];
+          break;
+          case AppConstants.ORDERS: fields = [objects[obj].code, objects[obj].status, objects[obj].items, ''];
           break;
         }
 
@@ -106,6 +117,9 @@ export class ContentComponent implements OnInit, OnChanges {
 
       case AppConstants.PRODUCTS: this.setProductData();
       break;
+
+      case AppConstants.ORDERS: this.setOrderData();
+      break;
     }
   }
 
@@ -114,7 +128,7 @@ export class ContentComponent implements OnInit, OnChanges {
     this.title = this.labels[AppConstants.USERS].title;
     this.fields = this.labels[AppConstants.USERS].fields;
 
-    document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
+    // document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
   }
 
   setProductData(){
@@ -122,7 +136,13 @@ export class ContentComponent implements OnInit, OnChanges {
     this.title = this.labels[AppConstants.PRODUCTS].title;
     this.fields = this.labels[AppConstants.PRODUCTS].fields;
 
-    document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
+    // document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
+  }
+
+  setOrderData(){
+    this.getOrders();
+    this.title = this.labels[AppConstants.ORDERS].title;
+    this.fields = this.labels[AppConstants.ORDERS].fields;
   }
 
   deleteProduct(id: number | undefined){

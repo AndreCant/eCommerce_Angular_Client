@@ -124,7 +124,20 @@
         "material": "Material",
         "collection": "Collection",
         "color": "Color",
-        "name": "Product Name"
+        "name": "Product Name",
+        "type": "Type",
+        "subType": "Sub Type",
+        "gender": "Gender",
+        "fw": "Fall / Winter",
+        "ss": "Spring / Summer",
+        "sDesc": "Short Description",
+        "sizeAvl": "Size Available",
+        "small": "Small (S)",
+        "medium": "Medium (M)",
+        "large": "Large (L)",
+        "xlarge": "X-Large (XL)",
+        "img": "Image Url",
+        "price": "Price"
     },
     "table": {
         "users": {
@@ -145,7 +158,7 @@
             "price": "Price",
             "gender": "Gender",
             "type": "Type",
-            "subType": "SubType",
+            "subType": "Sub Type",
             "size": "Size Available",
             "color": "Color",
             "material": "Material",
@@ -156,6 +169,12 @@
                     "detail": "Product deleted successfully."
                 }
             }
+        },
+        "orders": {
+            "title": "Orders",
+            "code": "Code",
+            "items": "N° of items",
+            "status": "Status"
         }
     }
 }

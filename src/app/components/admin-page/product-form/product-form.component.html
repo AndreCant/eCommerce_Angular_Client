@@ -19,100 +19,100 @@
 
         <div class="row">
             <div class="form-group col">
-                <label for="type">Type</label>
+                <label for="type">{{ "product.type" | translate }}</label>
                 <select class="form-control" id="type" formControlName="type" required>
-                    <option value="shoes">Shoes</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="accessories">Accessories</option>
+                    <option value="shoes">{{ "nav.shoes.title" | translate }}</option>
+                    <option value="clothing">{{ "nav.clothing.title" | translate }}</option>
+                    <option value="accessories">{{ "nav.accessories.title" | translate }}</option>
                 </select>
             </div>
     
             <div class="form-group col">
-                <label for="subType">SubType</label>
+                <label for="subType">{{ "product.subType" | translate }}</label>
                 <select class="form-control" id="type" formControlName="subType">
-                    <option *ngIf="productForm.value.type === 'shoes'" value="lifestyle">Lifestyle</option>
-                    <option *ngIf="productForm.value.type === 'shoes'" value="running">Running</option>
-                    <option *ngIf="productForm.value.type === 'shoes'" value="tennis">Tennis</option>
+                    <option *ngIf="productForm.value.type === 'shoes'" value="lifestyle">{{ "nav.shoes.lifestyle" | translate }}</option>
+                    <option *ngIf="productForm.value.type === 'shoes'" value="running">{{ "nav.shoes.running" | translate }}</option>
+                    <option *ngIf="productForm.value.type === 'shoes'" value="tennis">{{ "nav.shoes.tennis" | translate }}</option>
 
-                    <option *ngIf="productForm.value.type === 'clothing'" value="top">Tops & T-Shirts</option>
-                    <option *ngIf="productForm.value.type === 'clothing'" value="pants">Pants</option>
-                    <option *ngIf="productForm.value.type === 'clothing'" value="shorts">Shorts</option>
+                    <option *ngIf="productForm.value.type === 'clothing'" value="top">{{ "nav.clothing.top" | translate }}</option>
+                    <option *ngIf="productForm.value.type === 'clothing'" value="pants">{{ "nav.clothing.pants" | translate }}</option>
+                    <option *ngIf="productForm.value.type === 'clothing'" value="shorts">{{ "nav.clothing.shorts" | translate }}</option>
 
-                    <option *ngIf="productForm.value.type === 'accessories'" value="bags">Bags</option>
-                    <option *ngIf="productForm.value.type === 'accessories'" value="Hats">Hats</option>
-                    <option *ngIf="productForm.value.type === 'accessories'" value="watches">Watches</option>
+                    <option *ngIf="productForm.value.type === 'accessories'" value="bags">{{ "nav.accessories.bags" | translate }}</option>
+                    <option *ngIf="productForm.value.type === 'accessories'" value="hats">{{ "nav.accessories.hats" | translate }}</option>
+                    <option *ngIf="productForm.value.type === 'accessories'" value="watches">{{ "nav.accessories.watches" | translate }}</option>
                 </select>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col">
-                <label for="gender">Gender</label>
+                <label for="gender">{{ "product.gender" | translate }}</label>
                 <select class="form-control" id="gender" formControlName="gender" required>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                    <option value="K">Kid</option>
+                    <option value="M">{{ "nav.men" | translate }}</option>
+                    <option value="F">{{ "nav.women" | translate }}</option>
+                    <option value="K">{{ "nav.kids" | translate }}</option>
                 </select>
             </div>
     
             <div class="form-group col">
-                <label for="collection">Collection</label>
+                <label for="collection">{{ "product.collection" | translate }}</label>
                 <select class="form-control" id="collection" formControlName="collection" required>
-                    <option value="fall/winter">Fall / Winter</option>
-                    <option value="spring/summer">Spring / Summer</option>
+                    <option value="fall/winter">{{ "product.fw" | translate }}</option>
+                    <option value="spring/summer">{{ "product.ss" | translate }}</option>
                 </select>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col">
-                <label for="color">Color</label>
+                <label for="color">{{ "product.color" | translate }}</label>
                 <input type="text" formControlName="color" id="color" class="form-control" maxlength="255" required>
             </div>
     
             <div class="form-group col">
-                <label for="material">Material</label>
+                <label for="material">{{ "product.material" | translate }}</label>
                 <input type="text" formControlName="material" id="material" class="form-control" maxlength="255" required>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col">
-                <label for="short">Short Description</label>
+                <label for="short">{{ "product.sDesc" | translate }}</label>
                 <input type="text" formControlName="short" id="short" class="form-control" maxlength="255" required>
             </div>
     
             <div class="form-group col">
-                <label for="long">Description</label>
+                <label for="long">{{ "product.description" | translate }}</label>
                 <textarea formControlName="long" id="long" class="form-control" required></textarea>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col">
-                <div class="col-sm-3">Size Available</div>
+                <div class="col-sm-3">{{ "product.sizeAvl" | translate }}</div>
                 <div class="col-sm-10 mt-3">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" formControlName="small">
-                        <label class="form-check-label" for="inlineCheckbox1">Small (S)</label>
+                        <label class="form-check-label" for="inlineCheckbox1">{{ "product.small" | translate }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" formControlName="medium">
-                        <label class="form-check-label" for="inlineCheckbox2">Medium (M)</label>
+                        <label class="form-check-label" for="inlineCheckbox2">{{ "product.medium" | translate }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" formControlName="large" >
-                        <label class="form-check-label" for="inlineCheckbox3">Large (L)</label>
+                        <label class="form-check-label" for="inlineCheckbox3">{{ "product.large" | translate }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" formControlName="xlarge" >
-                        <label class="form-check-label" for="inlineCheckbox3">X-Large (XL)</label>
+                        <label class="form-check-label" for="inlineCheckbox3">{{ "product.xlarge" | translate }}</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-group col">
-                <label for="img">Image Url</label>
+                <label for="img">{{ "product.img" | translate }}</label>
                 <input type="text" formControlName="img" id="img" class="form-control" required>
             </div>
         </div>
@@ -120,10 +120,10 @@
         <div class="row">
             <div class="form-group col-8"></div>
             <div class="form-group col-2">
-                <button type="button" (click)="close()" class="btn border theme-btn--light1 btn--md float-right" style="width: 100%">Cancel</button>
+                <button type="button" (click)="close()" class="btn border theme-btn--light1 btn--md float-right" style="width: 100%">{{ "payment.cancel" | translate}}</button>
             </div>
             <div class="form-group col-2">
-                <button class="btn theme-btn--dark1 btn--md float-right" style="width: 100%" [disabled]="isButtonDisabled || !productForm.valid">Save</button>
+                <button class="btn theme-btn--dark1 btn--md float-right" style="width: 100%" [disabled]="isButtonDisabled || !productForm.valid">{{ "payment.save" | translate}}</button>
             </div>
         </div>
 </form>

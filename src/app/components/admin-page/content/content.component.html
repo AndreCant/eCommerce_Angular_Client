@@ -2,11 +2,13 @@
     <div class="card">
         <div class="card-body">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <h3 class="pl-5"><i class='bx bx-user mr-5 ml-5'></i> {{title}}</h3>
+                <h3 class="pl-5">
+                    <i *ngIf="currentTab === 'users'" class='bx bx-user mr-5 ml-5'></i> 
+                    <i *ngIf="currentTab === 'products'" class='bx bx-basket mr-5 ml-5'></i> 
+                    <i *ngIf="currentTab === 'orders'" class='bx bx-file mr-5 ml-5'></i> 
+                    {{title}}
+                </h3>
                 <div class="ms-auto" *ngIf="buttonForm">
-                    <!-- <div class="btn-group">
-                        <button type="button" class="btn theme-btn--dark1 mr-20"><i class='fa fa-plus my-05'></i> Add {{title}}</button>
-                    </div> -->
                     <div class="col">
                         <div class="d-lg-flex align-items-center gap-3">
                             <div class="ms-auto"><button (click)="addProduct()" class="btn theme-btn--dark1 btn--md px-2 float-right"><i class="fa fa-plus-square" aria-hidden="true"></i>{{buttonLabel}}</button></div>
@@ -54,6 +56,16 @@
                                     <td>{{product.collection}}</td>
                                     <td class="text-center"><a href="javascript:" (click)="deleteProduct(product.id)" title="Delete"><i class='fa fa-trash'></i></a></td>
                                     <td class="text-center"><a href="javascript:" title="Edit"><i class='fa fa-edit'></i></a></td>
+                                </tr>
+                            </tbody>
+
+                            <!-- Orders -->
+                            <tbody *ngIf="currentTab === 'orders'">
+                                <tr *ngFor="let order of orders$ | async">
+                                    <td>{{order.code}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.items?.length}}</td>
+                                    <td class="text-center"><a href="javascript:"  title="Details">Show Details</a></td>
                                 </tr>
                             </tbody>
                         </table>
