@@ -36,6 +36,7 @@ export class ContentComponent implements OnInit, OnChanges {
   button?: string;
   destroyed$ = new Subject<boolean>();
   openForm: boolean = false;
+  productToUpdate?: Product;
 
   get buttonForm(){
     return this.currentTab === 'products' && !this.openForm;
@@ -158,8 +159,14 @@ export class ContentComponent implements OnInit, OnChanges {
   productEventHandler(event: boolean){
     if(event){
       this.openForm = false;
+      this.productToUpdate = undefined;
       this.getProducts();
     }
+  }
+
+  updateProduct(product: Product){
+    this.productToUpdate = product;
+    this.openForm = true;
   }
 
 }

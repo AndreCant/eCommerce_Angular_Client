@@ -1,0 +1,7 @@
+.detail[aria-expanded="true"]{
+    color: #f33535;
+}
+.accordion-button:focus {
+    border-color: #f33535;
+    box-shadow: none;
+}

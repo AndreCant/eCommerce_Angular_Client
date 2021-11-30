@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CreateAction, EProductActions } from 'src/app/actions/product.actions';
+import { CreateAction, EProductActions, UpdateAction } from 'src/app/actions/product.actions';
 import { Product } from 'src/app/model/Product';
 import { IAppState } from 'src/app/state/app.states';
 
@@ -15,6 +15,9 @@ import { IAppState } from 'src/app/state/app.states';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+
+  @Input()
+  product?: Product;
 
   @Output()
   productEvent: EventEmitter<boolean>;
@@ -27,6 +30,7 @@ export class ProductFormComponent implements OnInit {
     this.productEvent = new EventEmitter();
 
     this.productForm = this.fb.group({
+      id: [0, []],
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
       type: ['shoes', [Validators.required]],
@@ -52,13 +56,45 @@ export class ProductFormComponent implements OnInit {
       this.toastr.success('', 'OK');
       this.close();
     });
+
+    updates$.pipe(
+      ofType(EProductActions.UPDATE_SUCCESS),
+      takeUntil(this.destroyed$)
+    ).subscribe(() => {
+      this.enableButton();
+      this.toastr.success('', 'OK');
+      this.close();
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.product) this.populateForm();
+  }
 
   ngOnDestroy() {
     this.destroyed$.next(true);
     this.destroyed$.complete();
+  }
+
+  populateForm(){
+    this.productForm = this.fb.group({
+      id: [this.product?.id, []],
+      name: [this.product?.name, [Validators.required]],
+      price: [this.product?.price, [Validators.required]],
+      type: [this.product?.type, [Validators.required]],
+      subType: [this.product?.sub_type, [Validators.required]],
+      gender: [this.product?.gender, [Validators.required]],
+      collection: [this.product?.collection, [Validators.required]],
+      color: [this.product?.color, [Validators.required]],
+      material: [this.product?.material, [Validators.required]],
+      short: [this.product?.short_description, [Validators.required]],
+      long: [this.product?.description, [Validators.required]],
+      small: [this.product?.size_available?.includes('S'), []],
+      medium: [this.product?.size_available?.includes('M'), []],
+      large: [this.product?.size_available?.includes('L'), []],
+      xlarge: [this.product?.size_available?.includes('XL'), []],
+      img: [this.product?.previewUrl, []]
+    });
   }
 
   disableButton(){
@@ -88,7 +124,7 @@ export class ProductFormComponent implements OnInit {
     if(sizes.length) size = sizes.join(',');
 
     const product: Product = {
-      id: 0,
+      id: values.id,
       name: values.name,
       short_description: values.short,
       description: values.long,
@@ -103,7 +139,12 @@ export class ProductFormComponent implements OnInit {
       previewUrl: values.img
     }
 
-    this.store.dispatch(new CreateAction(product));
+    if (this.product) {
+      this.store.dispatch(new UpdateAction(product, product.id));
+    }else{
+      this.store.dispatch(new CreateAction(product));
+    }
+
   }
 
 }

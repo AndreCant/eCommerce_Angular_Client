@@ -55,7 +55,7 @@
                                     <td>{{product.material}}</td>
                                     <td>{{product.collection}}</td>
                                     <td class="text-center"><a href="javascript:" (click)="deleteProduct(product.id)" title="Delete"><i class='fa fa-trash'></i></a></td>
-                                    <td class="text-center"><a href="javascript:" title="Edit"><i class='fa fa-edit'></i></a></td>
+                                    <td class="text-center"><a href="javascript:" (click)="updateProduct(product)" title="Edit"><i class='fa fa-edit'></i></a></td>
                                 </tr>
                             </tbody>
 
@@ -65,13 +65,43 @@
                                     <td>{{order.code}}</td>
                                     <td>{{order.status}}</td>
                                     <td>{{order.items?.length}}</td>
-                                    <td class="text-center"><a href="javascript:"  title="Details">Show Details</a></td>
+                                    <td>
+                                        <div class="accordion" id="accordion">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                  <button class="accordion-button collapsed detail" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + order.code" aria-expanded="false">
+                                                    Details - {{order.code}}
+                                                  </button>
+                                                </h2>
+                                                <div [id]="order.code" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                                  <div class="accordion-body card m-0">
+                                                    <table id="dataTable" class="table table-striped table-bordered" style="width:100%;">
+                                                        <thead style="background-color: #f33535;">
+                                                            <tr>
+                                                                <th>Code</th>
+                                                                <th>Size</th>
+                                                                <th>Quantity</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of order.items">
+                                                                <th>{{item.code}}</th>
+                                                                <th>{{item.size}}</th>
+                                                                <th>{{item.quantity}}</th>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
  
-                    <app-product-form *ngIf="openForm" (productEvent)="productEventHandler($event)"></app-product-form>
+                    <app-product-form *ngIf="openForm" (productEvent)="productEventHandler($event)" [product]="productToUpdate"></app-product-form>
                 </div>
             </div>
 
