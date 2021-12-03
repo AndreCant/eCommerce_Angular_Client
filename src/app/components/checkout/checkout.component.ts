@@ -12,10 +12,8 @@ import { OrderLineItem } from 'src/app/model/OrderLineItem';
 import { Payment } from 'src/app/model/Payment';
 import { Product } from 'src/app/model/Product';
 import { selectorPayment } from 'src/app/selectors/payment.selector';
-import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
-import { getUserId } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-checkout',
@@ -39,10 +37,11 @@ export class CheckoutComponent implements OnInit {
       ofType(EOrderActions.CREATE_SUCCESS),
       takeUntil(this.destroyed$)
     ).subscribe(() => {
-      window.localStorage.removeItem(AppConstants.CART);
       this.toastr.success('Order completed successfully!', 'Success!');
-      setTimeout(() => {window.location.replace('profile');}, 500);
-      
+      setTimeout(() => {
+        window.location.replace('profile');
+        window.localStorage.removeItem(AppConstants.CART);
+      }, 500);
     });
   }
 

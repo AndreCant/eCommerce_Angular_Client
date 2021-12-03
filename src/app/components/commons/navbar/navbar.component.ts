@@ -113,6 +113,7 @@ export class NavbarComponent implements OnInit {
     this.hideOverlay();
     const wishlist = document.getElementById('offcanvas-wishlist');
     if (wishlist) wishlist.classList.remove('offcanvas-open');
+    this.products$ = [];
   }
 
   showCart(){
@@ -126,6 +127,7 @@ export class NavbarComponent implements OnInit {
     this.hideOverlay();
     const cart = document.getElementById('offcanvas-cart');
     if (cart) cart.classList.remove('offcanvas-open');
+    this.products$ = [];
   }
 
   showOverlay(){

@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(5)]], 
       email: ['',[Validators.required, Validators.email]], 
       password: ['', [CustomValidators.validatePassword]],
-      role: ['admin', []],
+      role: ['customer', []],
       terms: [false, [Validators.requiredTrue]]
     });
   }
