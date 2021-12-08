@@ -40,6 +40,8 @@ import { AdminLayoutComponent } from './components/admin-page/admin-layout/admin
 import { ContentComponent } from './components/admin-page/content/content.component';
 import { UserRegistryEffects } from './effects/userRegistry-effects.service';
 import { ProductFormComponent } from './components/admin-page/product-form/product-form.component';
+import { decrypt } from './utility/Utitity';
+import { NotFoundPageComponent } from './components/commons/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { ProductFormComponent } from './components/admin-page/product-form/produ
     AsideComponent,
     AdminLayoutComponent,
     ContentComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,7 @@ import { ProductFormComponent } from './components/admin-page/product-form/produ
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }),
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -110,8 +113,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export function tokenGetter() {
   let loginStored: LoginResult;
-
-  let loginStr: string | null = localStorage.getItem(AppConstants.LOGIN_STORAGE);
+  const loginStorage =  localStorage.getItem(AppConstants.LOGIN_STORAGE);
+  let loginStr: string | null = loginStorage ? decrypt(loginStorage) : null;
 
   if (loginStr) {
     loginStored = JSON.parse(loginStr);

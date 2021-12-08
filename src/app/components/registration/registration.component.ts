@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppConstants } from 'src/app/app.constants';
-import { User } from 'src/app/model/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomValidators } from 'src/app/utility/CustomValidators';
+import { encrypt } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-registration',
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
     delete this.registerForm.value.terms;
 
     this.auth.register(this.registerForm.value).subscribe(res => {
-      localStorage.setItem(AppConstants.LOGIN_STORAGE, JSON.stringify(res));
+      localStorage.setItem(AppConstants.LOGIN_STORAGE, encrypt(JSON.stringify(res)));
       this.router.navigate(['']);
     }, error => {
        if(error.status === 409){

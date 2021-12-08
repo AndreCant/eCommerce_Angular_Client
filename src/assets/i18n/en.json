@@ -176,5 +176,27 @@
             "items": "N° of items",
             "status": "Status"
         }
+    },
+    "common": {
+        "notFoundTitle": "Page not found!",
+        "notFoundSubTitle": "You Seem to be trying to find his way home",
+        "backHome": "Back to home",
+        "menShoes": "Men shoes",
+        "runningShoes": "Running Shoes",
+        "sale": "Sale 40% Off",
+        "now": "Shop now",
+        "our": "Our products",
+        "line": "Weekly line up",
+        "freeT": "Free Shipping",
+        "freeB": "On all orders over €75,00",
+        "returnsT": "Free Returns",
+        "returnsB": "Returns are free within 9 days",
+        "paymentT": "100% Payment Secure",
+        "paymentB": "Your payment are safe with us",
+        "supportT": "Support 24/7",
+        "supportB": "Contact us 24 hours a day",
+        "info": "Information",
+        "newsletter": "You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.",
+        "up": "Sign Up"
     }
 }

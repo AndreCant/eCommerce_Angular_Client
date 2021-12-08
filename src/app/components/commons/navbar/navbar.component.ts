@@ -10,6 +10,7 @@ import { selectorUser } from 'src/app/selectors/user.selector';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
+import { isAdmin } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-navbar',
@@ -57,6 +58,10 @@ export class NavbarComponent implements OnInit {
 
     if (cart) return JSON.parse(cart).products;
     return {};
+  }
+
+  get isAdmin(){
+    return isAdmin();
   }
 
   get subTotal(){

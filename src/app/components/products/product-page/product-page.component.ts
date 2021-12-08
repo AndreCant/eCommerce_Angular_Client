@@ -32,6 +32,8 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+    
     this.activatedroute.paramMap.subscribe(params => {
       const productId = params.get('id');
 

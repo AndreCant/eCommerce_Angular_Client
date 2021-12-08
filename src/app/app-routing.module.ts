@@ -10,16 +10,20 @@ import { ProductListComponent } from './components/products/product-list/product
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AdminLayoutComponent } from './components/admin-page/admin-layout/admin-layout.component';
+import { AdminGuardService } from './services/auth/admin-guard.service';
+import { NotFoundPageComponent } from './components/commons/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "login", component: LoginComponent, canActivate: [GuestGuardService]},
-  {path: "registration", canActivate: [GuestGuardService], component: RegistrationComponent},
-  {path: "profile", canActivate: [AuthGuardService], component: ProfileComponent},
+  {path: "registration", component: RegistrationComponent, canActivate: [GuestGuardService]},
+  {path: "profile", component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'products/:gender/:type/:subtype', component: ProductListComponent },
   {path: 'product/:id', component: ProductPageComponent },
   {path: 'checkout', component: CheckoutComponent,  canActivate: [AuthGuardService] },
-  {path: 'admin', component: AdminLayoutComponent,  canActivate: [AuthGuardService] }
+  {path: 'admin', component: AdminLayoutComponent,  canActivate: [AdminGuardService] },
+  {path: '404', component: NotFoundPageComponent },
+  {path: '**', redirectTo: '404' }
 ];
 
 @NgModule({

@@ -7,7 +7,6 @@ import { ShowAllAction } from 'src/app/actions/product.actions';
 import { AppConstants } from 'src/app/app.constants';
 import { Product } from 'src/app/model/Product';
 import { selectorProduct } from 'src/app/selectors/product.selector';
-import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
 import { getUserId } from 'src/app/utility/Utitity';
 
@@ -27,7 +26,7 @@ export class ProductListComponent implements OnInit {
   subtypes: string[] = [];
   price: number[] = [];
 
-  constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private ser: ProductService, private toastr: ToastrService) {
+  constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private toastr: ToastrService) {
     this.products$ = this.store.pipe(select(selectorProduct));
   }
 
@@ -39,6 +38,8 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.activatedroute.paramMap.subscribe(params => {
       if(this.subtypes.length || this.size.length || this.price.length) window.location.reload();
       this.gender = params.get('gender');  

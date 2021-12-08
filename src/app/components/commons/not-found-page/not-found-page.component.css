@@ -1,0 +1,24 @@
+.error-box {
+    height: 100%;
+    width: 100%; 
+    margin-bottom: 10%;
+}
+.error-box .error-body {
+    padding-top: 5%; 
+}
+.error-box .error-title {
+    font-size: 210px;
+    font-weight: 900;
+    text-shadow: 4px 4px 0 #8d1111, 6px 6px 0 #fff;
+    line-height: 210px; 
+    color: #f33535;
+}
+.btn-rounded {
+    border-radius: 60px;
+    padding: 7px 18px;
+    background-color: #f33535;
+    border-color: #f33535;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    color: #fff;
+}

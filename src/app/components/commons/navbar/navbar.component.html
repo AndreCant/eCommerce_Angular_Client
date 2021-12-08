@@ -68,7 +68,7 @@
                         <p class="text-white">
                             <span class="theme-color">M</span>aster Mobile e 
                             <span class="theme-color">W</span>eb 
-                            <span class="theme-color">T</span>ecnologies 2021
+                            <span class="theme-color">T</span>echnologies 2021
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
@@ -139,7 +139,7 @@
                                         </span>
                                     </a>
                                 </li>
-                                <li class="cart-block position-relative" *ngIf="(user$ | async)?.role === 'admin' ">
+                                <li class="cart-block position-relative" *ngIf="isAdmin">
                                     <a class="offcanvas-toggle" href="/admin">
                                         <span class="position-relative" title="{{ 'nav.admin' | translate }}">
                                             <i class="icon-home"></i>

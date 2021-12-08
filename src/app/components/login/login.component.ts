@@ -3,6 +3,7 @@ import { LoginData } from '../../model/LoginData';
 import { AuthService } from '../../services/auth/auth.service';
 import { AppConstants } from '../../app.constants';
 import { Router } from '@angular/router';
+import { encrypt } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-login-page',
@@ -22,8 +23,7 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.auth.authenticate(this.loginData).subscribe(res => {
-      console.log(res);
-      localStorage.setItem(AppConstants.LOGIN_STORAGE, JSON.stringify(res));
+      localStorage.setItem(AppConstants.LOGIN_STORAGE, encrypt(JSON.stringify(res)));
       this.router.navigate(['']);
     }, error => {
       this.checkError(error);
