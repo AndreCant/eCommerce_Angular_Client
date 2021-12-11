@@ -8,7 +8,7 @@
                     <div class="myaccount-content">
                         <div class="row">
                             <div class="col">
-                                <h3>Payment Method</h3>
+                                <h3>{{ "checkout.method" | translate }}</h3>
                             </div>
                             <div class="col">
                                 <div *ngIf="!addPayment" class="d-lg-flex align-items-center mb-4 gap-3">
@@ -70,7 +70,7 @@
                     <!-- Subtotal -->
                     <li class="list-group-item d-flex justify-content-between align-items-center mb-2">
                         <ul class="items">
-                            <li>Total </li>
+                            <li>{{ "checkout.total" | translate }} </li>
                         </ul>
                         <ul class="amount">
                             <li>€ {{subTotal}}</li>
@@ -78,7 +78,7 @@
                     </li>
 
                     <li class="list-group-item text-center">
-                        <button class="btn theme-btn--dark1 btn--md" [disabled]="!this.selectedPayment" (click)="checkout()" >Proceed to checkout</button>
+                        <button class="btn theme-btn--dark1 btn--md" [disabled]="!this.selectedPayment" (click)="checkout()" >{{ "checkout.check" | translate }}</button>
                     </li>
                 </ul>
             </div>

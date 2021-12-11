@@ -49,7 +49,8 @@
                 "success": "Success!",
                 "detail": "Account details saved successfully."
             },
-            "save": "Save"
+            "save": "Save",
+            "address": "Billing Address"
         },
         "payment": {
             "delete": "Delete",
@@ -64,7 +65,8 @@
             "products": "Products",
             "size": "Size",
             "quantity": "Quantity"
-        }
+        },
+        "details": "Account Details"
     },
     "payment": {
         "title": "Payment Details",
@@ -79,7 +81,13 @@
             "success": "Success!",
             "detail": "Payment details saved successfully."
         },
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "validation": {
+            "card": "Incorrect Card Number! Accepted format: 0000 0000 0000 0000 (ex: 1234567890123456)",
+            "year": "Incorrect Year! Accepted format: YYYY (ex: 2021)",
+            "month": "Incorrect Month! Accepted format: MM (ex: 03)",
+            "cvv": "Incorrect CVV! Accepted format: XXX (ex: 958)"
+        }
     },
     "nav": {
         "men": "Men",
@@ -108,8 +116,14 @@
         },
         "profile": "Profile",
         "wishlist": "Wishlist",
+        "wishlistEmpty": "Your Wishlist is empty!",
         "cart": "Cart",
-        "admin": "Admin Dashboard"
+        "cartEmpty": "Your Cart is empty!",
+        "admin": "Admin Dashboard",
+        "sub": "Subtotal",
+        "checkout": "checkout",
+        "filter": "Filter By",
+        "cat": "Categories"
     },
     "product": {
         "review": "Write a review",
@@ -137,7 +151,8 @@
         "large": "Large (L)",
         "xlarge": "X-Large (XL)",
         "img": "Image Url",
-        "price": "Price"
+        "price": "Price",
+        "over": "Over"
     },
     "table": {
         "users": {
@@ -174,7 +189,10 @@
             "title": "Orders",
             "code": "Code",
             "items": "N° of items",
-            "status": "Status"
+            "status": "Status",
+            "size": "Size",
+            "quantity": "Quantity",
+            "details": "Details"
         }
     },
     "common": {
@@ -198,5 +216,15 @@
         "info": "Information",
         "newsletter": "You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.",
         "up": "Sign Up"
+    },
+    "aside": {
+        "users": "Users",
+        "products": "Products",
+        "orders": "Orders"
+    },
+    "checkout": {
+        "method": "Payment Method",
+        "total": "Total",
+        "check": "Proceed to checkout"
     }
 }

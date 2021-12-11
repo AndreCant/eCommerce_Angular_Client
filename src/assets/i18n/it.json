@@ -13,7 +13,8 @@
         "facebook": "Registrati con Facebook",
         "username": "Username",
         "email": "Email",
-        "signUp": "Registrati"
+        "signUp": "Registrati",
+        "error": "L'email inserita è già stata utilizzata!"
     },
     "login": {
         "title": "Log in",
@@ -47,7 +48,181 @@
             "message":{
                 "success": "Successo!",
                 "detail": "Informazioni dell'account salvate con successo!."
-            }
+            },
+            "save": "Salva",
+            "address": "Indirizzo di Spedizione"
+        },
+        "payment": {
+            "delete": "Elimina",
+            "add": "Aggiungi metodo di pagamento"
+        },
+        "paymentTab": "Metodo di Pagamento",
+        "accountTab": "Account",
+        "orderTab": "Ordini",
+        "order": {
+            "code": "Codice",
+            "status": "Stato",
+            "products": "Prodotti",
+            "size": "Taglia",
+            "quantity": "Quantità"
+        },
+        "details": "Anagrafica"
+    },
+    "payment": {
+        "title": "Dettaglio",
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "cardNumber": "Numero Carta",
+        "year": "Anno di Scadenza",
+        "month": "Mese di Scadenza",
+        "cvv": "CVV",
+        "save": "Salva",
+        "message":{
+            "success": "Successo!",
+            "detail": "Metodo di pagamento salvato correttamente!."
+        },
+        "cancel": "Cancella",
+        "validation": {
+            "card": "Numero Carta non corretto! Formato Accettato: 0000 0000 0000 0000 (ex: 1234567890123456)",
+            "year": "Anno non corretto! Formato Accettato: YYYY (ex: 2021)",
+            "month": "Mese non corretto! Formato Accettato: MM (ex: 03)",
+            "cvv": "CVV non corretto! Formato Accettato: XXX (ex: 958)"
         }
+    },
+    "nav": {
+        "men": "Uomo",
+        "women": "Donna",
+        "kids": "Bambino",
+        "shoes": {
+            "title": "Scarpe",
+            "lifestyle": "Lifestyle",
+            "running": "Running",
+            "tennis": "Tennis",
+            "all": "Tutte le Scarpe"
+        },
+        "clothing": {
+            "title": "Abbigliamento",
+            "top": "Tops & T-Shirts",
+            "pants": "Pantaloni",
+            "shorts": "Shorts",
+            "all": "Tutto l'Abbigliamento"
+        },
+        "accessories": {
+            "title": "Accessori",
+            "bags": "Borse",
+            "hats": "Cappelli",
+            "watches": "Orologi",
+            "all": "Tutti gli Accessori"
+        },
+        "profile": "Profilo",
+        "wishlist": "Lista dei Desideri",
+        "wishlistEmpty": "La tua Lista dei Desideri è vuota!",
+        "cart": "Carrello",
+        "cartEmpty": "Il tuo Carrello è vuoto!",
+        "admin": "Admin Dashboard",
+        "sub": "Totale",
+        "checkout": "Procedi all'ordine",
+        "filter": "Filtra Per",
+        "cat": "Categorie"
+    },
+    "product": {
+        "wishist": "Aggiungi alla Lista dei Desideri",
+        "size": "Taglia",
+        "quantity": "Quantità",
+        "cart": "Aggiungi al Carrello",
+        "description": "Descrizione",
+        "details": "Dettagli del Prodotto",
+        "category": "Categoria",
+        "material": "Materiale",
+        "collection": "Collezione",
+        "color": "Colore",
+        "name": "Nome Prodotto",
+        "type": "Tipo",
+        "subType": "Sotto Tipo",
+        "gender": "Sesso",
+        "fw": "Autunno / Inverno",
+        "ss": "Primavera / Estate",
+        "sDesc": "Descrizione Breve",
+        "sizeAvl": "Taglie Disponibili",
+        "small": "Small (S)",
+        "medium": "Medium (M)",
+        "large": "Large (L)",
+        "xlarge": "X-Large (XL)",
+        "img": "Url Immagine",
+        "price": "Prezzo",
+        "over": "Oltre"
+    },
+    "table": {
+        "users": {
+            "title": "Utenti",
+            "username": "Username",
+            "email": "Email",
+            "role": "Ruolo",
+            "name": "Nome",
+            "surname": "Cognome",
+            "address": "Indirizzo",
+            "phone": "Telefono"
+        },
+        "products": {
+            "title": "Prodotti",
+            "name": "Nome",
+            "sDesc": "Descrizione Breve",
+            "desc": "Descrizione",
+            "price": "Prezzo",
+            "gender": "Sesso",
+            "type": "Tipo",
+            "subType": "Sotto Tipo",
+            "size": "Taglie Disponibili",
+            "color": "Colore",
+            "material": "Materiale",
+            "collection": "Collezione",
+            "messages": {
+                "delete": {
+                    "title": "Successo!",
+                    "detail": "Prodotto eliminato correttamente!"
+                }
+            }
+        },
+        "orders": {
+            "title": "Ordini",
+            "code": "Codice",
+            "items": "N° di Prodotti",
+            "status": "Stato",
+            "size": "Taglia",
+            "quantity": "Quantità",
+            "details": "Dettagli"
+        }
+    },
+    "common": {
+        "notFoundTitle": "Pagina non trovata!",
+        "notFoundSubTitle": "Oops! Sembra che tu ti sia perso. Torna alla Home.",
+        "backHome": "Torna alla Home",
+        "menShoes": "Scarpe Uomo",
+        "runningShoes": "Scarpe Running",
+        "sale": "Sconto del 40%",
+        "now": "Acquista ora",
+        "our": "I nostri prodotti",
+        "line": "Line up settimanale",
+        "freeT": "Spedizione gratuita",
+        "freeB": "Su tutti gli ordini superiori a €75,00",
+        "returnsT": "Reso gratuito",
+        "returnsB": "Reso gratuito entro 9 giorni",
+        "paymentT": "100% Pagamento Sicuro",
+        "paymentB": "I tuoi pagamenti sono sicuri con noi",
+        "supportT": "Supporto 24/7",
+        "supportB": "Contattaci 24 ore al giorno",
+        "info": "Informazioni",
+        "newsletter": "Puoi cancellare l'iscrizione in ogni momento. Per questo scopo, si prega di cercare le nostre informazioni di contatto nelle note legali.",
+        "up": "Registrati"
+    },
+    "aside": {
+        "users": "Utenti",
+        "products": "Prodotti",
+        "orders": "Ordini"
+    },
+    "checkout": {
+        "method": "Metodo di Pagamento",
+        "total": "Totale",
+        "check": "Acquista ora"
     }
 }
