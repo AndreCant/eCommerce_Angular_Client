@@ -5,3 +5,14 @@
     border-color: #f33535;
     box-shadow: none;
 }
+.card{
+    background-color: #323248;
+    border-radius: 2rem;
+}
+.color{
+    color: #fff;
+}
+.body-color{
+    background-color: white;
+    border-radius: 0;
+}

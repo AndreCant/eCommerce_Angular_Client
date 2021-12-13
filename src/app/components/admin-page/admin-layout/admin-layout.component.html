@@ -1,15 +1,15 @@
-<div class="container wrapper mb-5">
-    <div class="row">
-      <div class="col-2">
-            <div class="sidebar-wrapper" data-simplebar="true">
-                <app-aside (chooseTabEvent)="setCurrentTab($event)"></app-aside>
-            </div>
-      </div>
+<div class="container wrapper margin">
+  <div class="row">
+    <div class="col-2">
+          <div class="sidebar-wrapper" data-simplebar="true">
+              <app-aside (chooseTabEvent)="setCurrentTab($event)"></app-aside>
+          </div>
+    </div>
 
-      <div class="col-10">
-        <div class="page-wrapper">
-            <app-content [currentTab]="currentTab" ></app-content>
-        </div>
-     </div>
+    <div class="col-10">
+      <div class="page-wrapper">
+          <app-content [currentTab]="currentTab" ></app-content>
+      </div>
     </div>
   </div>
+</div>

@@ -43,7 +43,7 @@ export class ContentComponent implements OnInit, OnChanges {
   }  
 
   get buttonLabel(){
-    return this.title?.slice(0, -1);
+    return window.localStorage.getItem(AppConstants.LANG_STORAGE) == 'en' ? this.title?.slice(0, -1) : this.title;
   }
 
   constructor(private translate$: TranslateService, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService) {
