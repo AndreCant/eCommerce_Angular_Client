@@ -32,7 +32,12 @@
                             <div class="product-size mr-5">
                                 <h3 class="title">{{ 'product.size' | translate }}</h3>
                                 <select #sizeSelect>
-                                    <option *ngFor="let size of availableSizes" value="{{size}}">{{size}}</option>
+                                    <option *ngFor="let size of availableSizes" value="{{size}}">{{
+                                        size === 'S' ? sizeSLabel : 
+                                            (size === 'M' ? sizeMLabel : 
+                                                (size === 'L' ? sizeLLabel : sizeXLLabel))
+                                            
+                                        }}</option>
                                 </select>
                             </div>
                             <div class="product-size mr-50">

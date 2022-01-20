@@ -22,3 +22,33 @@ export function isAdmin(): boolean{
 
     return login ? JSON.parse(login).user_role === AppConstants.ADMIN : false;
 }
+
+export function getSize(size: any, gender: any, type: any): any{
+    if (type !== 'shoes') return size;
+    switch (gender) {
+        case 'M': 
+            switch (size) {
+                case 'S': return 40;
+                case 'M': return 41;
+                case 'L': return 42;
+                case 'XL': return 43;
+                default: return size;
+            }
+        case 'F': 
+            switch (size) {
+                case 'S': return 37;
+                case 'M': return 38;
+                case 'L': return 39;
+                case 'XL': return 40;
+                default: return size;
+            }
+        case 'K': 
+            switch (size) {
+                case 'S': return 34;
+                case 'M': return 35;
+                case 'L': return 36;
+                case 'XL': return 37;
+                default: return size;
+            }
+    }
+}

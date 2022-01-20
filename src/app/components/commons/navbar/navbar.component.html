@@ -39,7 +39,7 @@
                     <img [src]="product?.previewUrl">
                 </a>
                 <div class="content">
-                    <a [routerLink]="['/product/' + product?.id]" (click)="hideWishlist()" class="title">{{product.name}}</a>
+                    <a [routerLink]="['/product/' + product?.id]" (click)="hideCart()" class="title">{{product.name}}</a>
                     <span class="quantity-price">{{prodCart[product.id].quantity}} x <span class="amount">€ {{product.price}}</span></span>
                     <a href="javascript:" class="remove" (click)="removeCart(product.id)">×</a>
                 </div>

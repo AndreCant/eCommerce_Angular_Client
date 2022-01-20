@@ -8,7 +8,7 @@ import { AppConstants } from 'src/app/app.constants';
 import { Product } from 'src/app/model/Product';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { IAppState } from 'src/app/state/app.states';
-import { getUserId } from 'src/app/utility/Utitity';
+import { getSize, getUserId } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-product-list',
@@ -35,6 +35,22 @@ export class ProductListComponent implements OnInit {
 
     if (wishlist) return JSON.parse(wishlist).products;
     return [];
+  }
+
+  get sizeSLabel(){
+    return getSize('S', this.gender, this.type);
+  }
+
+  get sizeMLabel(){
+    return getSize('M', this.gender, this.type);
+  }
+
+  get sizeLLabel(){
+    return getSize('L', this.gender, this.type);
+  }
+
+  get sizeXLLabel(){
+    return getSize('XL', this.gender, this.type);
   }
 
   ngOnInit(): void {

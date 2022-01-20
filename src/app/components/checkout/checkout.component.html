@@ -60,7 +60,7 @@
 
                     <li *ngFor="let product of products$" class="list-group-item d-flex justify-content-between align-items-center mb-2">
                         <ul class="items">
-                            <li><a [routerLink]="['/product/' + product?.id]" class="title">{{product.name}}, Size {{prodCart[product.id]?.size}}</a></li>
+                            <li><a [routerLink]="['/product/' + product?.id]" class="title">{{product.name}}, Size {{getSize(prodCart[product.id]?.size, product.gender, product.type)}}</a></li>
                         </ul>
                         <ul class="amount">
                             <li>{{prodCart[product.id]?.quantity}} x € {{product.price}}  <a href="javascript:;" class="ms-3" (click)="removeCart(product.id)" ><i class='bx bxs-trash order-actions'></i></a></li>

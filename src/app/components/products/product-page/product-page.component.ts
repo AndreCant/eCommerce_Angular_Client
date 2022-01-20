@@ -5,7 +5,7 @@ import { AppConstants } from 'src/app/app.constants';
 import { Image } from 'src/app/model/Image';
 import { Product } from 'src/app/model/Product';
 import { ProductService } from 'src/app/services/product.service';
-import { getUserId } from 'src/app/utility/Utitity';
+import { getSize, getUserId } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-product-page',
@@ -29,6 +29,22 @@ export class ProductPageComponent implements OnInit {
 
     if (wishlist && this.product$) return JSON.parse(wishlist).products.includes(this.product$.id);
     return false;
+  }
+
+  get sizeSLabel(){
+    return getSize('S', this.product$?.gender, this.product$?.type);
+  }
+
+  get sizeMLabel(){
+    return getSize('M', this.product$?.gender, this.product$?.type);
+  }
+
+  get sizeLLabel(){
+    return getSize('L', this.product$?.gender, this.product$?.type);
+  }
+
+  get sizeXLLabel(){
+    return getSize('XL', this.product$?.gender, this.product$?.type);
   }
 
   ngOnInit(): void {

@@ -14,6 +14,7 @@ import { Product } from 'src/app/model/Product';
 import { selectorPayment } from 'src/app/selectors/payment.selector';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
+import { getSize } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-checkout',
@@ -163,5 +164,9 @@ export class CheckoutComponent implements OnInit {
       
       this.store.dispatch(new CreateAction(order));
     }
+  }
+
+  getSize(size: any, gender: any, type: any){
+    return getSize(size, gender, type);
   }
 }
