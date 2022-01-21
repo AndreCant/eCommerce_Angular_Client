@@ -16,6 +16,7 @@ import { selectorOrder } from 'src/app/selectors/order.selector';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { selectorUserRegistry } from 'src/app/selectors/userRegistry.selector';
 import { IAppState } from 'src/app/state/app.states';
+import { getSize } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-content',
@@ -167,6 +168,12 @@ export class ContentComponent implements OnInit, OnChanges {
   updateProduct(product: Product){
     this.productToUpdate = product;
     this.openForm = true;
+  }
+
+  getSizes(sizes: any, gender: any, type: any){
+    return sizes.split(',').reduce((a: any, b: any) => {
+      return `${a},${getSize(b, gender, type)}`;
+    }, '').substring(1);
   }
 
 }

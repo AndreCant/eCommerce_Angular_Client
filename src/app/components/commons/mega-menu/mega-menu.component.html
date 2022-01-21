@@ -4,7 +4,14 @@
     <a *ngIf="gender=='K'" href="javascript::" class="pl-0">{{ "nav.kids" | translate }} <i class="ion-ios-arrow-down"></i></a>
     
     <ul class="mega-menu row">
-        <li class="col-4">
+        <li class="col-4" *ngFor="let category of categories$ | async">
+            <ul>
+                <li class="mega-menu-title"><a href="javascript::">{{category?.type_name}}</a></li>
+                <li *ngFor="let type of category?.sub_types?.split(';')"><a [routerLink]="['/products/' + gender + '/' + category.type_name + '/' + type]">{{ type }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/' + category.type_name + '/all']">{{ "nav." + category.type_name + ".all" | translate }}</a></li>
+            </ul>
+        </li>
+        <!-- <li class="col-4">
             <ul>
                 <li class="mega-menu-title"><a href="javascript::">{{ "nav.shoes.title" | translate }}</a></li>
                 <li><a [routerLink]="['/products/' + gender + '/shoes/lifestyle']">{{ "nav.shoes.lifestyle" | translate }}</a></li>
@@ -30,12 +37,6 @@
                 <li><a [routerLink]="['/products/' + gender + '/accessories/watches']">{{ "nav.accessories.watches" | translate }}</a></li>
                 <li><a [routerLink]="['/products/' + gender + '/accessories/all']">{{ "nav.accessories.all" | translate }}</a></li>
             </ul>
-        </li>
-        <li class="col-6 mt-4">
-            <a href="javascript::" class="zoom-in overflow-hidden"><img src="assets/img/mega-menu/1.jpg" alt="img"></a>
-        </li>
-        <li class="col-6 mt-4">
-            <a href="javascript::" class="zoom-in overflow-hidden"><img src="assets/img/mega-menu/2.jpg" alt="img"></a>
-        </li>
+        </li> -->
     </ul>
 </li>

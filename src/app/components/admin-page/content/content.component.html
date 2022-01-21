@@ -42,7 +42,7 @@
                                 </tr>
                             </tbody>
 
-                            <!-- Producst -->
+                            <!-- Products -->
                             <tbody *ngIf="currentTab === 'products'">
                                 <tr *ngFor="let product of products$ | async">
                                     <td>{{product.name}}</td>
@@ -50,7 +50,7 @@
                                     <td>{{product.sub_type}}</td>
                                     <td>{{product.price}}</td>
                                     <td>{{product.gender}}</td>
-                                    <td>{{product.size_available}}</td>
+                                    <td>{{getSizes(product.size_available, product.gender, product.type)}}</td>
                                     <td>{{product.color}}</td>
                                     <td>{{product.material}}</td>
                                     <td>{{product.collection}}</td>

@@ -93,7 +93,7 @@
                     <!-- first tab-pane -->
                     <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="single-product-desc">
-                            <p>{{ product$?.description }}</p>
+                            <p [innerHTML]="product$?.description"></p>
                         </div>
                     </div>
                     <!-- second tab-pane -->
@@ -109,7 +109,7 @@
                                 <li><span>{{ 'product.color' | translate }}</span></li>
                                 <li><span>{{ product$?.color }}</span></li>
                                 <li><span>{{ 'product.size' | translate }}</span></li>
-                                <li><span>{{ product$?.size_available }}</span></li>
+                                <li><span>{{getSizes(product$?.size_available, product$?.gender, product$?.type)}}</span></li>
                             </ul>
                         </div>
                     </div>

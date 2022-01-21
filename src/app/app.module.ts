@@ -42,6 +42,7 @@ import { UserRegistryEffects } from './effects/userRegistry-effects.service';
 import { ProductFormComponent } from './components/admin-page/product-form/product-form.component';
 import { decrypt } from './utility/Utitity';
 import { NotFoundPageComponent } from './components/commons/not-found-page/not-found-page.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { NotFoundPageComponent } from './components/commons/not-found-page/not-f
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects, UserRegistryEffects]),
     BrowserAnimationsModule,
+    AngularEditorModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',

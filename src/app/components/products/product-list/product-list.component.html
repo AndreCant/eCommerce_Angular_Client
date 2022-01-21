@@ -60,7 +60,12 @@
                             <h4 class="title">{{ "nav.filter" | translate }}</h4>
                             <h4 class="sub-title pt-10">{{ "nav.cat" | translate }}</h4>
 
-                            <div *ngIf="type=='shoes'">
+                            <div *ngFor="let cat_type of (category$ | async)?.sub_types?.split(';')" class="filter-check-box">
+                                <input type="checkbox" [id]="cat_type" name="subtype" [checked]="subtype==cat_type" (click)="filter($event)">
+                                <label [for]="cat_type">{{ cat_type }} </label>
+                            </div>
+                            
+                            <!-- <div *ngIf="type=='shoes'">
                                 <div class="filter-check-box">
                                     <input type="checkbox" id="lifestyle" name="subtype" [checked]="subtype=='lifestyle'" (click)="filter($event)">
                                     <label for="lifestyle">{{ "nav.shoes.lifestyle" | translate }} </label>
@@ -103,7 +108,7 @@
                                     <input type="checkbox" id="watches" name="subtype" [checked]="subtype=='watches'" (click)="filter($event)">
                                     <label for="watches">{{ "nav.accessories.watches" | translate }} </label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="check-box-inner mt-10">

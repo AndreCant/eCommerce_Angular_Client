@@ -139,4 +139,10 @@ export class ProductPageComponent implements OnInit {
 
     this.toastr.success('Product added to cart.', 'Success!');
   }
+
+  getSizes(sizes: any, gender: any, type: any){
+    return sizes.split(',').reduce((a: any, b: any) => {
+      return `${a},${getSize(b, gender, type)}`;
+    }, '').substring(1);
+  }
 }

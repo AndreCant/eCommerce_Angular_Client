@@ -3,11 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CreateAction, EProductActions, UpdateAction } from 'src/app/actions/product.actions';
+import { Category } from 'src/app/model/Category';
 import { Product } from 'src/app/model/Product';
+import { CategoryService } from 'src/app/services/category.service';
 import { IAppState } from 'src/app/state/app.states';
+import { getSize } from 'src/app/utility/Utitity';
 
 @Component({
   selector: 'app-product-form',
@@ -25,8 +28,9 @@ export class ProductFormComponent implements OnInit {
   productForm: FormGroup;
   isButtonDisabled: boolean = false;
   destroyed$ = new Subject<boolean>();
+  categories$? : Observable<Category[]>;
 
-  constructor(private fb: FormBuilder, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService) { 
+  constructor(private fb: FormBuilder, private store: Store<IAppState>, updates$: Actions, private toastr: ToastrService, private service: CategoryService) { 
     this.productEvent = new EventEmitter();
 
     this.productForm = this.fb.group({
@@ -69,6 +73,7 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.product) this.populateForm();
+    this.categories$ = this.service.getCategories();
   }
 
   ngOnDestroy() {
@@ -144,7 +149,9 @@ export class ProductFormComponent implements OnInit {
     }else{
       this.store.dispatch(new CreateAction(product));
     }
-
   }
 
+  getSize(size: any, gender: any, type: any){
+    return getSize(size, gender, type);
+  }
 }

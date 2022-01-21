@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ShowAllAction } from 'src/app/actions/product.actions';
 import { AppConstants } from 'src/app/app.constants';
+import { Category } from 'src/app/model/Category';
 import { Product } from 'src/app/model/Product';
 import { selectorProduct } from 'src/app/selectors/product.selector';
+import { CategoryService } from 'src/app/services/category.service';
 import { IAppState } from 'src/app/state/app.states';
 import { getSize, getUserId } from 'src/app/utility/Utitity';
 
@@ -21,12 +23,13 @@ export class ProductListComponent implements OnInit {
   type?: string | null;
   subtype?: string | null;
   products$?: Observable<Product[]>;
+  category$? : Observable<Category>;
 
   size: string[] = [];
   subtypes: string[] = [];
   price: number[] = [];
 
-  constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private toastr: ToastrService) {
+  constructor(private activatedroute: ActivatedRoute, private store: Store<IAppState>, private toastr: ToastrService, private service: CategoryService) {
     this.products$ = this.store.pipe(select(selectorProduct));
   }
 
@@ -63,6 +66,7 @@ export class ProductListComponent implements OnInit {
       this.subtype = params.get('subtype') !== 'all' ? params.get('subtype') : '';
       if(this.subtype) this.subtypes.push(this.subtype);
 
+      this.category$ = this.service.getCategoryByName(this.type);
       this.getProducts();
     });
   }

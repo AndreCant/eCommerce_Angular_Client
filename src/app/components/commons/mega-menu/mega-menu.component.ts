@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/model/Category';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-mega-menu',
@@ -7,10 +10,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MegaMenuComponent implements OnInit {
 
+  categories$? : Observable<Category[]>;
+
   @Input()
   gender?: string;
 
-  constructor() { }
+  constructor(private service: CategoryService) {
+    this.categories$ = this.service.getCategories();
+  }
 
   ngOnInit(): void {
   }
