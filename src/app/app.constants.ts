@@ -11,5 +11,6 @@ export enum AppConstants {
     PRODUCTS = 'products',
     ORDERS = 'orders',
     ENCRYPT_PASSWORD = 'MwtEncr2021Pass!',
-    ADMIN = 'admin'
+    ADMIN = 'admin',
+    CATEGORIES = 'categories',
 }

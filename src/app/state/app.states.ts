@@ -4,6 +4,7 @@ import { Registry } from "../model/Registry";
 import { User } from "../model/User";
 import { Order } from "../model/Order";
 import { UserRegistry } from "../model/UserRegistry";
+import { Category } from "../model/Category";
 
 /** APP STATE */
 export interface IAppState {
@@ -13,6 +14,7 @@ export interface IAppState {
     productState: IProductState;
     orderState: IOrderState;
     userRegistryState: IUserRegistryState;
+    categoryState: ICategoryState;
 }
 /**************** */
 
@@ -45,6 +47,11 @@ export interface IUserRegistryState {
     message: any;
 }
 
+export interface ICategoryState {
+    category: Category[];
+    message: any;
+}
+
 export const initialRegistryState: IRegistryState = {
     registry: {},
     message: null
@@ -72,5 +79,10 @@ export const initialOrderState: IOrderState = {
 
 export const initialUserRegistryState: IUserRegistryState = {
     userRegistry: [],
+    message: null
+};
+
+export const initialCategoryState: ICategoryState = {
+    category: [],
     message: null
 };

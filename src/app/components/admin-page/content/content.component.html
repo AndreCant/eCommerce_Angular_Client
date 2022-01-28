@@ -23,7 +23,7 @@
                 <div class="card-body">
 
                     <div *ngIf="!openForm" class="table-responsive overflow-hidden">
-                        <table id="dataTable" class="table table-striped table-bordered" style="width:100%;">
+                        <table id="dataTable" class="table table-bordered" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th *ngFor="let field of fields">{{ field }}</th>
@@ -90,6 +90,53 @@
                                                                 <th>{{item.quantity}}</th>
                                                             </tr>
                                                         </tbody>
+                                                    </table>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <!-- Categories -->
+                            <tbody *ngIf="currentTab === 'categories'">
+
+                                <tr *ngFor="let category of categories$ | async">
+                                    <td class="text-capitalize">{{category.type_name}}</td>
+                                    <td>
+                                        <div class="accordion" id="accordion">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                  <button class="accordion-button collapsed detail" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + category.type_name" aria-expanded="false">
+                                                    {{'table.categories.details' | translate}} - <span class="text-capitalize">&nbsp;{{category.type_name}}</span>
+                                                  </button>
+                                                </h2>
+                                                <div [id]="category.type_name" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                                  <div class="accordion-body card m-2 body-color">
+                                                    <table id="dataTable" class="table table-striped table-bordered table-secondary" style="width:100%;">
+                                                        <tr *ngFor="let item of category.sub_types?.split(';')">
+                                                            <th class="text-capitalize">{{item}}</th>
+                                                            <th class="grid row align-items-end">
+                                                                <div class="col-9" style="background-color: #fff;"></div>
+                                                                <div class="col-1">
+                                                                    <a href="javascript:" title="Edit"><i class='fa fa-edit'></i></a>
+                                                                </div>
+                                                                <div class="col-1">
+                                                                    <a href="javascript:" title="Edit"><i class='fa fa-trash'></i></a>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2">
+                                                                <div class="input-group m-0 p-0">
+                                                                    <input type="text" class="form-control p-0 m-0">
+                                                                    <div class="input-group-append">
+                                                                        <span><button class="btn btn-outline-secondary theme-btn--dark1 btn--sm float-right" type="button">Add Sub Category</button></span>
+                                                                    </div>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
                                                     </table>
                                                   </div>
                                                 </div>

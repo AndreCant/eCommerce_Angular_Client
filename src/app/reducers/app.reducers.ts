@@ -1,5 +1,6 @@
 import { ActionReducerMap } from "@ngrx/store";
 import { IAppState } from "../state/app.states";
+import { categoryReducer } from "./category.reducers";
 import { orderReducer } from "./order.reducers";
 import { paymentReducer } from "./payment.reducers";
 import { productReducer } from "./product.reducers";
@@ -13,5 +14,6 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
     paymentState: paymentReducer,
     productState: productReducer,
     orderState: orderReducer,
-    userRegistryState: userRegistryReducer
+    userRegistryState: userRegistryReducer,
+    categoryState: categoryReducer
  };

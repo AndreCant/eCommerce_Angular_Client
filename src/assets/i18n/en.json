@@ -193,6 +193,12 @@
             "size": "Size",
             "quantity": "Quantity",
             "details": "Details"
+        },
+        "categories": {
+            "title": "Categories",
+            "type": "Name",
+            "subTypes": "Sub Categories",
+            "details": "Sub Categories"
         }
     },
     "common": {
@@ -220,7 +226,8 @@
     "aside": {
         "users": "Users",
         "products": "Products",
-        "orders": "Orders"
+        "orders": "Orders",
+        "categories": "Categories"
     },
     "checkout": {
         "method": "Payment Method",

@@ -43,6 +43,7 @@ import { ProductFormComponent } from './components/admin-page/product-form/produ
 import { decrypt } from './utility/Utitity';
 import { NotFoundPageComponent } from './components/commons/not-found-page/not-found-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CategoryEffects } from './effects/category-effects.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects, UserRegistryEffects]),
+    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects, UserRegistryEffects, CategoryEffects]),
     BrowserAnimationsModule,
     AngularEditorModule,
     ToastrModule.forRoot({

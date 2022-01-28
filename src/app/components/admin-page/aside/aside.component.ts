@@ -30,4 +30,8 @@ export class AsideComponent implements OnInit {
     this.chooseTabEvent.emit(AppConstants.ORDERS);
   }
 
+  categories(){
+    this.chooseTabEvent.emit(AppConstants.CATEGORIES);
+  }
+
 }
