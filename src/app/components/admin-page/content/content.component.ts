@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ShowAllAction as ShowAllOrders } from 'src/app/actions/order.actions';
-import { ShowAllAction as ShowAllCategories } from 'src/app/actions/category.actions';
+import { ShowAllAction as ShowAllCategories, UpdateAction } from 'src/app/actions/category.actions';
 import { DeleteAction, EProductActions, ShowAllAction } from 'src/app/actions/product.actions';
 import { ShowUsersAction } from 'src/app/actions/userRegistry.actions';
 import { AppConstants } from 'src/app/app.constants';
@@ -30,6 +30,18 @@ export class ContentComponent implements OnInit, OnChanges {
 
   @Input()
   currentTab?: string;
+
+  @ViewChildren('subCategoriesInputs') 
+  subCategoriesInputs?: QueryList<ElementRef>;
+
+  @ViewChildren('typeDiv') 
+  typeDivs?: QueryList<ElementRef>;
+
+  @ViewChildren('typeLabel') 
+  typeLabels?: QueryList<ElementRef>;
+
+  @ViewChildren('typeInput') 
+  typeInputs?: QueryList<ElementRef>;
 
   fields: string[] = [];
   userRegistries$?: Observable<UserRegistry[]>;
@@ -110,7 +122,7 @@ export class ContentComponent implements OnInit, OnChanges {
           break;
           case AppConstants.ORDERS: fields = [objects[obj].code, objects[obj].status, objects[obj].items, ''];
           break;
-          case AppConstants.CATEGORIES: fields = [objects[obj].type, objects[obj].subTypes, ''];
+          case AppConstants.CATEGORIES: fields = [objects[obj].type, objects[obj].subTypes];
           break;
         }
 
@@ -194,6 +206,85 @@ export class ContentComponent implements OnInit, OnChanges {
     return sizes.split(',').reduce((a: any, b: any) => {
       return `${a},${getSize(b, gender, type)}`;
     }, '').substring(1);
+  }
+
+  deleteSubCategory(cat: Category, subCategory: string){
+    const subTypes = cat.sub_types?.split(';').filter(elem => {
+      return elem != subCategory;
+    })?.join(';');
+    
+    const category: Category = {
+      id: cat.id,
+      type_name: cat.type_name,
+      sub_types: subTypes
+    }
+
+    if(category.id) {
+      this.store.dispatch(new UpdateAction(category, category.id));
+      this.getCategories();
+    }
+  }
+
+  addSubCategory(cat: Category){
+    let newSubCategory;
+
+    this.subCategoriesInputs?.forEach(elem => {
+      if(elem.nativeElement.id == cat.id) newSubCategory = elem.nativeElement.value; 
+    });
+
+    if (newSubCategory) {
+      const category: Category = {
+        id: cat.id,
+        type_name: cat.type_name,
+        sub_types: cat.sub_types ? `${cat.sub_types};${newSubCategory}` : newSubCategory
+      }
+
+      if(category.id) {
+        this.store.dispatch(new UpdateAction(category, category.id));
+        this.getCategories();
+      }
+    }
+  }
+
+  showInput(id: any){
+    this.typeDivs?.forEach(elem => {
+      if(elem.nativeElement.id == id) elem.nativeElement.hidden = false; 
+    });
+
+    this.typeLabels?.forEach(elem => {
+      if(elem.nativeElement.id == id) elem.nativeElement.hidden = true; 
+    });
+  }
+
+  showLabel(id: any){
+    this.typeDivs?.forEach(elem => {
+      if(elem.nativeElement.id == id) elem.nativeElement.hidden = true; 
+    });
+
+    this.typeLabels?.forEach(elem => {
+      if(elem.nativeElement.id == id) elem.nativeElement.hidden = false; 
+    });
+  }
+
+  updateCategoryName(cat: Category){
+    let newCategoryName;
+
+    this.typeInputs?.forEach(elem => {
+      if(elem.nativeElement.id == cat.id) newCategoryName = elem.nativeElement.value;
+    });
+    
+    if (newCategoryName) {
+      const category: Category = {
+        id: cat.id,
+        type_name: newCategoryName,
+        sub_types: cat.sub_types
+      }
+
+      if(category.id) {
+        this.store.dispatch(new UpdateAction(category, category.id));
+        this.getCategories();
+      }
+    }
   }
 
 }

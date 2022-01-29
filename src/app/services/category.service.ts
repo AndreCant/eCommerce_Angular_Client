@@ -26,7 +26,7 @@ export class CategoryService {
   }
 
   updateCategory(category: Category, id: number): Observable<string>{
-    return this.httpClient.post<string>(`${baseUrl}/admin/category/${id}`, category);
+    return this.httpClient.patch<string>(`${baseUrl}/admin/category/${id}`, category);
   }
 
   deleteCategory(id: number): Observable<string>{

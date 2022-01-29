@@ -6,6 +6,7 @@
                     <i *ngIf="!currentTab || currentTab === 'users'" class='bx bx-user mr-5 ml-5'></i> 
                     <i *ngIf="currentTab === 'products'" class='bx bx-basket mr-5 ml-5'></i> 
                     <i *ngIf="currentTab === 'orders'" class='bx bx-file mr-5 ml-5'></i> 
+                    <i *ngIf="currentTab === 'categories'" class='bx bx-archive mr-5 ml-5'></i> 
                     {{title}}
                 </h3>
                 <div class="ms-auto" *ngIf="buttonForm">
@@ -101,9 +102,20 @@
 
                             <!-- Categories -->
                             <tbody *ngIf="currentTab === 'categories'">
-
                                 <tr *ngFor="let category of categories$ | async">
-                                    <td class="text-capitalize">{{category.type_name}}</td>
+                                    <td class="text-capitalize align-middle">
+                                        <div class="input-group m-0 p-0" hidden [id]="category.id" #typeDiv>
+                                            <input type="text" class="form-control p-0 m-0 text-capitalize" [id]="category.id" [value]="category.type_name"  #typeInput placeholder="Type name...">
+                                            <div class="input-group-append">
+                                                <span><button class="btn btn-outline-secondary theme-btn--light1 btn--sm float-right mx-2" (click)="showLabel(category.id)" type="button">Cancel</button></span>
+                                                <span><button class="btn btn-outline-secondary theme-btn--dark1 btn--sm float-right" (click)="updateCategoryName(category)" type="button">Update</button></span>
+                                            </div>
+                                        </div>
+                                        <div [id]="category.id" #typeLabel>
+                                            <a href="javascript:" title="Edit" (click)="showInput(category.id)"><i class='fa fa-edit mr-5'></i></a>
+                                            {{category.type_name}}
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="accordion" id="accordion">
                                             <div class="accordion-item">
@@ -114,29 +126,23 @@
                                                 </h2>
                                                 <div [id]="category.type_name" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                                   <div class="accordion-body card m-2 body-color">
-                                                    <table id="dataTable" class="table table-striped table-bordered table-secondary" style="width:100%;">
-                                                        <tr *ngFor="let item of category.sub_types?.split(';')">
-                                                            <th class="text-capitalize">{{item}}</th>
-                                                            <th class="grid row align-items-end">
-                                                                <div class="col-9" style="background-color: #fff;"></div>
-                                                                <div class="col-1">
-                                                                    <a href="javascript:" title="Edit"><i class='fa fa-edit'></i></a>
-                                                                </div>
-                                                                <div class="col-1">
-                                                                    <a href="javascript:" title="Edit"><i class='fa fa-trash'></i></a>
-                                                                </div>
-                                                            </th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th colspan="2">
-                                                                <div class="input-group m-0 p-0">
-                                                                    <input type="text" class="form-control p-0 m-0">
-                                                                    <div class="input-group-append">
-                                                                        <span><button class="btn btn-outline-secondary theme-btn--dark1 btn--sm float-right" type="button">Add Sub Category</button></span>
+                                                    <table id="dataTable" class="table table-striped table-bordered" style="width:100%;">
+                                                        <tbody>
+                                                            <tr *ngFor="let item of category.sub_types?.split(';')">
+                                                                <td class="text-capitalize">{{item}}</td>
+                                                                <td class="text-center"><a href="javascript:" (click)="deleteSubCategory(category, item)" title="Edit"><i class='fa fa-trash'></i></a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="input-group m-0 p-0">
+                                                                        <input #subCategoriesInputs type="text" class="form-control p-0 m-0" [id]="category.id">
+                                                                        <div class="input-group-append">
+                                                                            <span><button class="btn btn-outline-secondary theme-btn--dark1 btn--sm float-right mx-2" type="button" (click)="addSubCategory(category)">Add Sub Category</button></span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </th>
-                                                        </tr>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
                                                     </table>
                                                   </div>
                                                 </div>

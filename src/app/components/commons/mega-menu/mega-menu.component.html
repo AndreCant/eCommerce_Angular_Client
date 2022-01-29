@@ -5,10 +5,11 @@
     
     <ul class="mega-menu row">
         <li class="col-4" *ngFor="let category of categories$ | async">
-            <ul>
+            <ul class="mb-4">
                 <li class="mega-menu-title"><a href="javascript::">{{category?.type_name}}</a></li>
                 <li *ngFor="let type of category?.sub_types?.split(';')"><a [routerLink]="['/products/' + gender + '/' + category.type_name + '/' + type]">{{ type }}</a></li>
-                <li><a [routerLink]="['/products/' + gender + '/' + category.type_name + '/all']">{{ "nav." + category.type_name + ".all" | translate }}</a></li>
+                <li><a [routerLink]="['/products/' + gender + '/' + category.type_name + '/all']">All {{category.type_name}}</a></li>
+                <!-- <li><a [routerLink]="['/products/' + gender + '/' + category.type_name + '/all']">{{ "nav." + category.type_name + ".all" | translate }}</a></li> -->
             </ul>
         </li>
         <!-- <li class="col-4">

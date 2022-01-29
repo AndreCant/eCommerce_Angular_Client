@@ -10,9 +10,13 @@
                         <div class="row grid-view theme1">
                             <div class="grid-nav-wraper bg-lighten2 mb-30">
                                 <div class="row align-items-center">
-                                    <h5 *ngIf="gender=='M'" class="sub-title">{{ 'nav.men' | translate }} / {{ 'nav.' + type + '.title' | translate }}</h5>
+                                    <h5 *ngIf="gender=='M'" class="sub-title text-capitalize">{{ 'nav.men' | translate }} / {{type}}</h5>
+                                    <h5 *ngIf="gender=='F'" class="sub-title text-capitalize">{{ 'nav.women' | translate }} / {{type}}</h5>
+                                    <h5 *ngIf="gender=='K'" class="sub-title text-capitalize">{{ 'nav.kids' | translate }} / {{type}}</h5>
+
+                                    <!-- <h5 *ngIf="gender=='M'" class="sub-title">{{ 'nav.men' | translate }} / {{ 'nav.' + type + '.title' | translate }}</h5>
                                     <h5 *ngIf="gender=='F'" class="sub-title">{{ 'nav.women' | translate }} / {{ 'nav.' + type + '.title' | translate }}</h5>
-                                    <h5 *ngIf="gender=='K'" class="sub-title">{{ 'nav.kids' | translate }} / {{ 'nav.' + type + '.title' | translate }}</h5>
+                                    <h5 *ngIf="gender=='K'" class="sub-title">{{ 'nav.kids' | translate }} / {{ 'nav.' + type + '.title' | translate }}</h5> -->
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-4 col-xl-3 mb-10" *ngFor="let product of products$ | async">
