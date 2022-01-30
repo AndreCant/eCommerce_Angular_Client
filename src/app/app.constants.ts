@@ -13,4 +13,5 @@ export enum AppConstants {
     ENCRYPT_PASSWORD = 'MwtEncr2021Pass!',
     ADMIN = 'admin',
     CATEGORIES = 'categories',
+    BANNERS = 'banners',
 }

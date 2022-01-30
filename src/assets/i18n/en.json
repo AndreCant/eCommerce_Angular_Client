@@ -199,6 +199,13 @@
             "type": "Name",
             "subTypes": "Sub Categories",
             "details": "Sub Categories"
+        },
+        "banners": {
+            "title": "Banners",
+            "name": "Name",
+            "title_name": "Title",
+            "subTitle": "Sub Title",
+            "preview": "Preview"
         }
     },
     "common": {
@@ -233,5 +240,13 @@
         "method": "Payment Method",
         "total": "Total",
         "check": "Proceed to checkout"
+    },
+    "banner": {
+        "name": "Name",
+        "title": "Title",
+        "subTitle": "Sub Title",
+        "preview": "Preview",
+        "save":"Save",
+        "cancel":"Cancel"
     }
 }

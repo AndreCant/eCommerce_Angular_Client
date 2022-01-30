@@ -1,13 +1,17 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { ShowAction } from 'src/app/actions/banner.actions';
 import { ShowUserAction } from 'src/app/actions/user.actions';
 import { AppConstants } from 'src/app/app.constants';
+import { Banner } from 'src/app/model/Banner';
 import { Product } from 'src/app/model/Product';
 import { User } from 'src/app/model/User';
+import { selectorBanner } from 'src/app/selectors/banner.selector';
 import { selectorUser } from 'src/app/selectors/user.selector';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { BannerService } from 'src/app/services/banner.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
 import { isAdmin } from 'src/app/utility/Utitity';
@@ -23,6 +27,7 @@ export class NavbarComponent implements OnInit {
   products$?: Product[];
   currLanguage: any;
   Object = Object;
+  bannerLogo?: Banner;
 
   languages: any = {
     it: {
@@ -35,7 +40,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>, private service: ProductService) {
+  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>, private service: ProductService, private bService: BannerService) {
     this.user$ = this.store.pipe(select(selectorUser));
     let lang: string | null = localStorage.getItem(AppConstants.LANG_STORAGE);
 
@@ -86,6 +91,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getBanners();
     this.getUser();
   }
 
@@ -198,6 +204,12 @@ export class NavbarComponent implements OnInit {
       this.getProducts(AppConstants.CART);
       this.hideCart();
     }
+  }
+
+  getBanners(){
+    this.bService.getBannerByName('logo').subscribe(logo => {
+      this.bannerLogo = logo[0];
+    });
   }
 
 }

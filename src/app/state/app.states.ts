@@ -5,6 +5,7 @@ import { User } from "../model/User";
 import { Order } from "../model/Order";
 import { UserRegistry } from "../model/UserRegistry";
 import { Category } from "../model/Category";
+import { Banner } from "../model/Banner";
 
 /** APP STATE */
 export interface IAppState {
@@ -15,6 +16,7 @@ export interface IAppState {
     orderState: IOrderState;
     userRegistryState: IUserRegistryState;
     categoryState: ICategoryState;
+    bannerState: IBannerState;
 }
 /**************** */
 
@@ -51,6 +53,10 @@ export interface ICategoryState {
     category: Category[];
     message: any;
 }
+export interface IBannerState {
+    banner: Banner[];
+    message: any;
+}
 
 export const initialRegistryState: IRegistryState = {
     registry: {},
@@ -84,5 +90,9 @@ export const initialUserRegistryState: IUserRegistryState = {
 
 export const initialCategoryState: ICategoryState = {
     category: [],
+    message: null
+};
+export const initialBannerState: IBannerState = {
+    banner: [],
     message: null
 };

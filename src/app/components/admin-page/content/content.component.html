@@ -7,12 +7,40 @@
                     <i *ngIf="currentTab === 'products'" class='bx bx-basket mr-5 ml-5'></i> 
                     <i *ngIf="currentTab === 'orders'" class='bx bx-file mr-5 ml-5'></i> 
                     <i *ngIf="currentTab === 'categories'" class='bx bx-archive mr-5 ml-5'></i> 
+                    <i *ngIf="currentTab === 'banners'" class='bx bx-body mr-5 ml-5'></i> 
                     {{title}}
                 </h3>
-                <div class="ms-auto" *ngIf="buttonForm">
+                <div class="ms-auto" *ngIf="buttonProductForm">
                     <div class="col">
                         <div class="d-lg-flex align-items-center gap-3">
                             <div class="ms-auto"><button (click)="addProduct()" class="btn theme-btn--dark1 btn--md px-2 float-right"><i class="fa fa-plus-square" aria-hidden="true"></i>{{buttonLabel}}</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ms-auto" *ngIf="buttonCategoryForm">
+                    <div class="col">
+                        <div class="d-lg-flex align-items-center gap-3">
+                            <div class="ms-auto">
+                                <div #addCategoryButton>
+                                    <button (click)="showAddCategoryInputs()" class="btn theme-btn--dark1 btn--md px-2 float-right"><i class="fa fa-plus-square" aria-hidden="true"></i>Category</button>
+                                </div>
+                                <div class="input-group m-0 p-0" hidden #addCategoryInputs>
+                                    <input type="text" class="form-control p-0 m-0 text-capitalize" #addCategoryInput>
+                                    <div class="input-group-append">
+                                        <span><button class="btn btn-outline-secondary theme-btn--light1 btn--sm float-right mx-2" (click)="showAddCategoryButton()" type="button">Cancel</button></span>
+                                        <span><button class="btn btn-outline-secondary theme-btn--dark1 btn--sm float-right" (click)="createCategory()" type="button">Create</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ms-auto" *ngIf="buttonBannerForm">
+                    <div class="col">
+                        <div class="d-lg-flex align-items-center gap-3">
+                            <div class="ms-auto"><button (click)="addBanner()" class="btn theme-btn--dark1 btn--md px-2 float-right"><i class="fa fa-plus-square" aria-hidden="true"></i>Banner</button></div>
                         </div>
                     </div>
                 </div>
@@ -23,7 +51,7 @@
             <div class="card body-color">
                 <div class="card-body">
 
-                    <div *ngIf="!openForm" class="table-responsive overflow-hidden">
+                    <div *ngIf="!openFormProduct && !openFormBanner" class="table-responsive overflow-hidden">
                         <table id="dataTable" class="table table-bordered" style="width:100%;">
                             <thead>
                                 <tr>
@@ -112,6 +140,7 @@
                                             </div>
                                         </div>
                                         <div [id]="category.id" #typeLabel>
+                                            <a href="javascript:" title="Edit" (click)="deleteCategory(category.id)"><i class='fa fa-trash mr-5'></i></a>
                                             <a href="javascript:" title="Edit" (click)="showInput(category.id)"><i class='fa fa-edit mr-5'></i></a>
                                             {{category.type_name}}
                                         </div>
@@ -151,10 +180,23 @@
                                     </td>
                                 </tr>
                             </tbody>
+
+                            <!-- Products -->
+                            <tbody *ngIf="currentTab === 'banners'">
+                                <tr *ngFor="let banner of banners$ | async">
+                                    <td>{{banner.name}}</td>
+                                    <td class="text-truncate" style="max-width: 150px;">{{banner.title}}</td>
+                                    <td class="text-truncate" style="max-width: 150px;">{{banner.sub_title}}</td>
+                                    <td class="text-center"><img *ngIf="banner.image" [src]="banner.image" width="100" height="100"/></td>
+                                    <td class="text-center"><a href="javascript:" (click)="deleteBanner(banner.id)" title="Delete"><i class='fa fa-trash'></i></a></td>
+                                    <td class="text-center"><a href="javascript:" (click)="updateBanner(banner)" title="Edit"><i class='fa fa-edit'></i></a></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
  
-                    <app-product-form *ngIf="openForm" (productEvent)="productEventHandler($event)" [product]="productToUpdate"></app-product-form>
+                    <app-product-form *ngIf="openFormProduct" (productEvent)="productEventHandler($event)" [product]="productToUpdate"></app-product-form>
+                    <app-banner-form *ngIf="openFormBanner" (bannerEvent)="bannerEventHandler($event)" [banner]="bannerToUpdate"></app-banner-form>
                 </div>
             </div>
 

@@ -1,14 +1,15 @@
 <!-- main slider start -->
 <section class="bg-light position-relative">
     <div class="main-slider dots-style theme1">
-        <div class="slider-item bg-img bg-img1">
+        <div class="slider-item bg-img" [style]="'background-image:url(' + bannerCarousel?.image + ')'">
             <div class="container">
                 <div class="row slider-height">
                     <div class="col-12">
-                        <div class="slider-content slider-div-text">
-                            <p class="text-white text-uppercase mb-20">{{ 'common.menShoes' | translate }}</p>
+                        <div class="slider-content slider-div-text" *ngIf="bannerCarousel">
+                            <div [innerHTML]="bannerCarousel?.title"></div>
+                            <!-- <p class="text-white text-uppercase mb-20">{{ 'common.menShoes' | translate }}</p>
                             <h4 class="text-white text-capitalize mb-25">{{ 'common.runningShoes' | translate }}</h4>
-                            <h2 class="text-white mb-40">{{ 'common.sale' | translate }}</h2>
+                            <h2 class="text-white mb-40">{{ 'common.sale' | translate }}</h2> -->
                             <a [routerLink]="['/products/M/shoes/running']" class="theme--btn1 btn--lg text-uppercase rounded-5 mt-45 mt-sm-25">{{ 'common.now' | translate }}</a>
                         </div>
                     </div>
@@ -25,8 +26,7 @@
             <div class="col-lg-4 col-md-6 mb-30">
                 <div class="banner-thumb">
                     <div class="zoom-in d-block overflow-hidden position-relative">
-                        <!-- <img src="http://127.0.0.1:8000/uploads/images/R9E6BUp5vi5a5nfTPNNMlN64ygZv6Xhfj23v8vPY.jpg" alt="banner-thumb-naile"> -->
-                        <img src="assets/img/banner/4.jpg" alt="banner-thumb-naile">
+                        <img *ngIf="bannerMen" [src]="bannerMen?.image" alt="banner-thumb-naile">
                         <a [routerLink]="['/products/M/shoes/all']"
                             class="text-uppercase btn theme--btn1 btn--lg banner-btn position-absolute">{{ 'nav.men' | translate }}</a>
                     </div>
@@ -35,7 +35,7 @@
             <div class="col-lg-4 col-md-6 mb-30">
                 <div class="banner-thumb">
                     <div class="zoom-in d-block overflow-hidden position-relative">
-                        <img src="assets/img/banner/5.jpg" alt="banner-thumb-naile">
+                        <img *ngIf="bannerWomen" [src]="bannerWomen?.image" alt="banner-thumb-naile">
                         <a [routerLink]="['/products/F/shoes/all']"
                             class="text-uppercase btn theme--btn1 btn--lg banner-btn position-absolute">{{ 'nav.women' | translate }}</a>
                     </div>
@@ -45,7 +45,7 @@
             <div class="col-lg-4 col-md-6 mb-30">
                 <div class="banner-thumb">
                     <div class="zoom-in d-block overflow-hidden position-relative">
-                        <img src="assets/img/banner/24.jpg" alt="banner-thumb-naile">
+                        <img *ngIf="bannerKids" [src]="bannerKids?.image" alt="banner-thumb-naile">
                         <a [routerLink]="['/products/K/shoes/all']"
                             class="text-uppercase btn theme--btn1 btn--lg banner-btn position-absolute">{{ 'nav.kids' | translate }}</a>
                     </div>
@@ -123,42 +123,42 @@
         <div class="static-media-wrap theme-bg rounded-5">
             <div class="row">
                 <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-30" src="assets/img/icon/2.png"
+                    <div class="d-flex static-media2 flex-column flex-sm-row" *ngIf="bannerShipping">
+                        <img class="align-self-center mb-2 mb-sm-0 mr-30" [src]="bannerShipping.image"
                             alt="icon">
                         <div class="media-body">
-                            <h4 class="title text-capitalize text-white">{{ 'common.freeT' | translate }}</h4>
-                            <p class="text text-white">{{ 'common.freeB' | translate }}</p>
+                            <h4 class="title text-capitalize text-white" [innerHTML]="bannerShipping.title"></h4>
+                            <p class="text text-white" [innerHTML]="bannerShipping.sub_title"></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-30" src="assets/img/icon/3.png"
+                    <div class="d-flex static-media2 flex-column flex-sm-row" *ngIf="bannerReturns">
+                        <img class="align-self-center mb-2 mb-sm-0 mr-30" [src]="bannerReturns.image"
                             alt="icon">
                         <div class="media-body">
-                            <h4 class="title text-capitalize text-white">{{ 'common.returnsT' | translate }}</h4>
-                            <p class="text text-white">{{ 'common.returnsB' | translate }}</p>
+                            <h4 class="title text-capitalize text-white" [innerHTML]="bannerReturns.title"></h4>
+                            <p class="text text-white" [innerHTML]="bannerReturns.sub_title"></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-30" src="assets/img/icon/4.png"
+                    <div class="d-flex static-media2 flex-column flex-sm-row" *ngIf="bannerSecure">
+                        <img class="align-self-center mb-2 mb-sm-0 mr-30" [src]="bannerSecure.image"
                             alt="icon">
                         <div class="media-body">
-                            <h4 class="title text-capitalize text-white">{{ 'common.paymentT' | translate }}</h4>
-                            <p class="text text-white">{{ 'common.paymentB' | translate }}</p>
+                            <h4 class="title text-capitalize text-white" [innerHTML]="bannerSecure.title"></h4>
+                            <p class="text text-white" [innerHTML]="bannerSecure.sub_title"></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-30" src="assets/img/icon/5.png"
+                    <div class="d-flex static-media2 flex-column flex-sm-row" *ngIf="bannerSupport">
+                        <img class="align-self-center mb-2 mb-sm-0 mr-30" [src]="bannerSupport.image"
                             alt="icon">
                         <div class="media-body">
-                            <h4 class="title text-capitalize text-white">{{ 'common.supportT' | translate }}</h4>
-                            <p class="text text-white">{{ 'common.supportB' | translate }}</p>
+                            <h4 class="title text-capitalize text-white" [innerHTML]="bannerSupport.title"></h4>
+                            <p class="text text-white" [innerHTML]="bannerSupport.sub_title"></p>
                         </div>
                     </div>
                 </div>

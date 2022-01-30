@@ -8,8 +8,8 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-30">
                     <div class="footer-widget mx-w-400">
                         <div class="footer-logo mb-35">
-                            <a href="index.html">
-                                <img src="assets/img/logo/logo.png" alt="footer logo">
+                            <a href="/" *ngIf="bannerLogo">
+                                <img [src]="bannerLogo?.image" alt="logo">
                             </a>
                         </div>
                         <p class="text mb-30">Master Mobile e Web Technologies 2021</p>
@@ -52,10 +52,10 @@
                     <div class="footer-widget">
                         <div class="border-bottom cbb1 mb-25">
                             <div class="section-title pb-20">
-                                <h2 class="title text-dark text-uppercase">Newsletter</h2>
+                                <h2 class="title text-dark text-uppercase" [innerHTML]="bannerNewsletter?.title"></h2>
                             </div>
                         </div>
-                        <p class="text mb-20">{{'common.newsletter' | translate}}</p>
+                        <p class="text mb-20" [innerHTML]="bannerNewsletter?.sub_title"></p>
                         <div class="nletter-form mb-35">
                             <form class="form-inline position-relative">
                                 <input class="form-control" type="text" placeholder="youremail@gmail.com">
@@ -64,10 +64,12 @@
                         </div>
 
                         <div class="store d-flex">
-                            <a href="https://www.apple.com/" target="_blank" class="d-inline-block mr-3"><img
-                                    src="assets/img/icon/apple.png" alt="apple icon"> </a>
-                            <a href="https://play.google.com/store/" target="_blank" class="d-inline-block"><img
-                                    src="assets/img/icon/play.png" alt="apple icon" > </a>
+                            <a href="https://www.apple.com/" target="_blank" class="d-inline-block mr-3" *ngIf="bannerAppStore">
+                                <img [src]="bannerAppStore.image" alt="apple icon"> 
+                            </a>
+                            <a href="https://play.google.com/store/" target="_blank" class="d-inline-block" *ngIf="bannerPlayStore">
+                                <img [src]="bannerPlayStore.image" alt="apple icon" > 
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +92,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-8">
                     <div class="text-left">
-                        <img src="assets/img/payment/1.png" alt="img">
+                        <img *ngIf="bannerPay" [src]="bannerPay.image" alt="img">
                     </div>
                 </div>
             </div>

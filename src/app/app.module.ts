@@ -44,6 +44,8 @@ import { decrypt } from './utility/Utitity';
 import { NotFoundPageComponent } from './components/commons/not-found-page/not-found-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CategoryEffects } from './effects/category-effects.service';
+import { BannerEffects } from './effects/banner-effects.service';
+import { BannerFormComponent } from './components/admin-page/banner-form/banner-form.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { CategoryEffects } from './effects/category-effects.service';
     AdminLayoutComponent,
     ContentComponent,
     ProductFormComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    BannerFormComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import { CategoryEffects } from './effects/category-effects.service';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects, UserRegistryEffects, CategoryEffects]),
+    EffectsModule.forRoot([RegistryEffects, UserEffects, PaymentEffects, ProductEffects, OrderEffects, UserRegistryEffects, CategoryEffects, BannerEffects]),
     BrowserAnimationsModule,
     AngularEditorModule,
     ToastrModule.forRoot({

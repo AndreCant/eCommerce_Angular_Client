@@ -34,4 +34,8 @@ export class AsideComponent implements OnInit {
     this.chooseTabEvent.emit(AppConstants.CATEGORIES);
   }
 
+  banners(){
+    this.chooseTabEvent.emit(AppConstants.BANNERS);
+  }
+
 }

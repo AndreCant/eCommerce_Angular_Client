@@ -6,8 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ShowAllAction as ShowAllOrders } from 'src/app/actions/order.actions';
-import { ShowAllAction as ShowAllCategories, UpdateAction } from 'src/app/actions/category.actions';
+import { ShowAllAction as ShowAllCategories, UpdateAction, DeleteAction as DeleteCategoryAction, CreateAction } from 'src/app/actions/category.actions';
 import { DeleteAction, EProductActions, ShowAllAction } from 'src/app/actions/product.actions';
+import { DeleteAction as DeleteBannerAction, ShowAllAction as ShowAllBannerAction} from 'src/app/actions/banner.actions';
 import { ShowUsersAction } from 'src/app/actions/userRegistry.actions';
 import { AppConstants } from 'src/app/app.constants';
 import { Category } from 'src/app/model/Category';
@@ -20,6 +21,8 @@ import { selectorProduct } from 'src/app/selectors/product.selector';
 import { selectorUserRegistry } from 'src/app/selectors/userRegistry.selector';
 import { IAppState } from 'src/app/state/app.states';
 import { getSize } from 'src/app/utility/Utitity';
+import { Banner } from 'src/app/model/Banner';
+import { selectorBanner } from 'src/app/selectors/banner.selector';
 
 @Component({
   selector: 'app-content',
@@ -43,21 +46,41 @@ export class ContentComponent implements OnInit, OnChanges {
   @ViewChildren('typeInput') 
   typeInputs?: QueryList<ElementRef>;
 
+  @ViewChildren('addCategoryButton') 
+  addCategoryButton?: QueryList<ElementRef>;
+
+  @ViewChildren('addCategoryInputs') 
+  addCategoryInputs?: QueryList<ElementRef>;
+
+  @ViewChildren('addCategoryInput') 
+  addCategoryInput?: QueryList<ElementRef>;
+
   fields: string[] = [];
   userRegistries$?: Observable<UserRegistry[]>;
   products$?: Observable<Product[]>;
   orders$?: Observable<Order[]>;
   categories$?: Observable<Category[]>;
+  banners$?: Observable<Banner[]>;
   title?: string;
   labels?: any = {};
   button?: string;
   destroyed$ = new Subject<boolean>();
-  openForm: boolean = false;
+  openFormProduct: boolean = false;
+  openFormBanner: boolean = false;
   productToUpdate?: Product;
+  bannerToUpdate?: Banner;
 
-  get buttonForm(){
-    return this.currentTab === 'products' && !this.openForm;
+  get buttonProductForm(){
+    return this.currentTab === 'products' && !this.openFormProduct;
   }  
+
+  get buttonCategoryForm(){
+    return this.currentTab === 'categories';
+  }  
+
+  get buttonBannerForm(){
+    return this.currentTab === 'banners' && !this.openFormBanner;
+  } 
 
   get buttonLabel(){
     return window.localStorage.getItem(AppConstants.LANG_STORAGE) == 'en' ? this.title?.slice(0, -1) : this.title;
@@ -68,6 +91,7 @@ export class ContentComponent implements OnInit, OnChanges {
     this.products$ = this.store.pipe(select(selectorProduct));
     this.orders$ = this.store.pipe(select(selectorOrder));
     this.categories$ = this.store.pipe(select(selectorCategory));
+    this.banners$ = this.store.pipe(select(selectorBanner));
     this.setLabels();
 
     updates$.pipe(
@@ -84,7 +108,8 @@ export class ContentComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.openForm = false;
+    this.openFormProduct = false;
+    this.openFormBanner = false;
     this.setData(changes.currentTab.currentValue);
   }
 
@@ -109,6 +134,10 @@ export class ContentComponent implements OnInit, OnChanges {
     this.store.dispatch(new ShowAllCategories());
   }
 
+  getBanners(){
+    this.store.dispatch(new ShowAllBannerAction());
+  }
+
   setLabels(){
     this.translate$.get('table').subscribe(objects => {
       let fields : any = [];
@@ -123,6 +152,8 @@ export class ContentComponent implements OnInit, OnChanges {
           case AppConstants.ORDERS: fields = [objects[obj].code, objects[obj].status, objects[obj].items, ''];
           break;
           case AppConstants.CATEGORIES: fields = [objects[obj].type, objects[obj].subTypes];
+          break;
+          case AppConstants.BANNERS: fields = [objects[obj].name, objects[obj].title_name, objects[obj].subTitle, objects[obj].preview, '', ''];
           break;
         }
 
@@ -148,6 +179,9 @@ export class ContentComponent implements OnInit, OnChanges {
 
       case AppConstants.CATEGORIES: this.setCategoryData();
       break;
+
+      case AppConstants.BANNERS: this.setBannerData();
+      break;
     }
   }
 
@@ -155,16 +189,12 @@ export class ContentComponent implements OnInit, OnChanges {
     this.getUserRegistry();
     this.title = this.labels[AppConstants.USERS].title;
     this.fields = this.labels[AppConstants.USERS].fields;
-
-    // document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
   }
 
   setProductData(){
     this.getProducts();
     this.title = this.labels[AppConstants.PRODUCTS].title;
     this.fields = this.labels[AppConstants.PRODUCTS].fields;
-
-    // document.querySelector('#dataTable')?.dispatchEvent(new CustomEvent('dataTable'));
   }
 
   setOrderData(){
@@ -179,6 +209,12 @@ export class ContentComponent implements OnInit, OnChanges {
     this.fields = this.labels[AppConstants.CATEGORIES].fields;
   }
 
+  setBannerData(){
+    this.getBanners();
+    this.title = this.labels[AppConstants.BANNERS].title;
+    this.fields = this.labels[AppConstants.BANNERS].fields;
+  }
+
   deleteProduct(id: number | undefined){
     if(id){
       this.store.dispatch(new DeleteAction(id));
@@ -186,20 +222,32 @@ export class ContentComponent implements OnInit, OnChanges {
   }
 
   addProduct(){
-    this.openForm = true;
+    this.openFormProduct = true;
+  }
+
+  addBanner(){
+    this.openFormBanner = true;
   }
 
   productEventHandler(event: boolean){
     if(event){
-      this.openForm = false;
+      this.openFormProduct = false;
       this.productToUpdate = undefined;
       this.getProducts();
     }
   }
 
+  bannerEventHandler(event: boolean){
+    if(event){
+      this.openFormBanner = false;
+      this.bannerToUpdate = undefined;
+      this.getBanners();
+    }
+  }
+
   updateProduct(product: Product){
     this.productToUpdate = product;
-    this.openForm = true;
+    this.openFormProduct = true;
   }
 
   getSizes(sizes: any, gender: any, type: any){
@@ -285,6 +333,69 @@ export class ContentComponent implements OnInit, OnChanges {
         this.getCategories();
       }
     }
+  }
+
+  deleteCategory(id: any){
+    if (id) {
+      this.store.dispatch(new DeleteCategoryAction(id));
+      this.getCategories();
+    }
+  }
+
+  showAddCategoryInputs(){
+    this.addCategoryButton?.forEach(elem => {
+      elem.nativeElement.hidden = true; 
+    });
+
+    this.addCategoryInputs?.forEach(elem => {
+      elem.nativeElement.hidden = false;
+    });
+  }
+
+  showAddCategoryButton(){
+    this.addCategoryButton?.forEach(elem => {
+      elem.nativeElement.hidden = false; 
+    });
+
+    this.addCategoryInputs?.forEach(elem => {
+      elem.nativeElement.hidden = true;
+    });
+
+    this.addCategoryInput?.forEach(elem => {
+      elem.nativeElement.value = '';
+    });
+  }
+
+  createCategory(){
+    let newCategoryName;
+
+    this.addCategoryInput?.forEach(elem => {
+      newCategoryName = elem.nativeElement.value;
+    });
+
+    if (newCategoryName) {
+      const category: Category = {
+        id: 0,
+        type_name: newCategoryName,
+        sub_types: ''
+      }
+
+      this.store.dispatch(new CreateAction(category));
+      this.showAddCategoryButton();
+      this.getCategories();
+    }
+  }
+
+  deleteBanner(id: any){
+    if(id){
+      this.store.dispatch(new DeleteBannerAction(id));
+      this.getBanners();
+    }
+  }
+
+  updateBanner(banner: Banner){
+    this.bannerToUpdate = banner;
+    this.openFormBanner = true;
   }
 
 }
