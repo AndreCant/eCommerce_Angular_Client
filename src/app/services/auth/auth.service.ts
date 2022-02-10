@@ -9,7 +9,7 @@ import { LoginData } from '../../model/LoginData';
 import { LoginResult } from '../../model/LoginResult';
 import { User } from 'src/app/model/User';
 import { Router } from '@angular/router';
-import { decrypt } from 'src/app/utility/Utitity';
+import { decrypt } from 'src/app/utility/Utility';
 
 const loginURL = `${AppConstants.SERVICES_BASE_URL}/login`;
 const registerURL = `${AppConstants.SERVICES_BASE_URL}/register`;

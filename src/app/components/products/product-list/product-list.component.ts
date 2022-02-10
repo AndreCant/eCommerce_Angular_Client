@@ -10,7 +10,7 @@ import { Product } from 'src/app/model/Product';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { CategoryService } from 'src/app/services/category.service';
 import { IAppState } from 'src/app/state/app.states';
-import { getSize, getUserId } from 'src/app/utility/Utitity';
+import { getSize, getUserId } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-product-list',

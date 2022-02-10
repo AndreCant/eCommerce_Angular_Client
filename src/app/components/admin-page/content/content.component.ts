@@ -20,7 +20,7 @@ import { selectorOrder } from 'src/app/selectors/order.selector';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { selectorUserRegistry } from 'src/app/selectors/userRegistry.selector';
 import { IAppState } from 'src/app/state/app.states';
-import { getSize } from 'src/app/utility/Utitity';
+import { getSize } from 'src/app/utility/Utility';
 import { Banner } from 'src/app/model/Banner';
 import { selectorBanner } from 'src/app/selectors/banner.selector';
 

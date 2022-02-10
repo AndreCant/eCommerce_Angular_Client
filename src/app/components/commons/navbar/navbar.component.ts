@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { BannerService } from 'src/app/services/banner.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
-import { isAdmin } from 'src/app/utility/Utitity';
+import { isAdmin } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-navbar',

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../app.constants';
 import { Order } from '../model/Order';
-import { getUserId } from '../utility/Utitity';
+import { getUserId } from '../utility/Utility';
 
 const baseUrl = `${AppConstants.SERVICES_BASE_URL}/user/${getUserId()}`;
 

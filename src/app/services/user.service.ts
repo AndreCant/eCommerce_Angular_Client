@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../app.constants';
 import { User } from '../model/User';
-import { getUserId } from '../utility/Utitity';
+import { getUserId } from '../utility/Utility';
 
 @Injectable({
   providedIn: 'root'

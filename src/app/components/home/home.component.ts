@@ -10,7 +10,7 @@ import { Product } from 'src/app/model/Product';
 import { selectorBanner } from 'src/app/selectors/banner.selector';
 import { selectorProduct } from 'src/app/selectors/product.selector';
 import { IAppState } from 'src/app/state/app.states';
-import { getUserId } from 'src/app/utility/Utitity';
+import { getUserId } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-home',

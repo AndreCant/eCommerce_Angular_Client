@@ -1,5 +1,8 @@
 import { AppConstants } from "../app.constants";
 import * as CryptoJS from 'crypto-js';
+import { HttpClient } from "@angular/common/http";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LoginResult } from "../model/LoginResult";
 
 export function getUserId(): number | null{
     const loginStorage = localStorage.getItem(AppConstants.LOGIN_STORAGE);
@@ -51,4 +54,22 @@ export function getSize(size: any, gender: any, type: any): any{
                 default: return size;
             }
     }
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+  
+export function getToken() : string{
+    let loginStored: LoginResult;
+    const loginStorage =  localStorage.getItem(AppConstants.LOGIN_STORAGE);
+    let loginStr: string | null = loginStorage ? decrypt(loginStorage) : null;
+
+    if (loginStr) {
+        loginStored = JSON.parse(loginStr);
+    } else {
+        return '';
+    }
+
+    return loginStored.token;
 }

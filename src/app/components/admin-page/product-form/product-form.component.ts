@@ -10,7 +10,7 @@ import { Category } from 'src/app/model/Category';
 import { Product } from 'src/app/model/Product';
 import { CategoryService } from 'src/app/services/category.service';
 import { IAppState } from 'src/app/state/app.states';
-import { getSize } from 'src/app/utility/Utitity';
+import { getSize } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-product-form',

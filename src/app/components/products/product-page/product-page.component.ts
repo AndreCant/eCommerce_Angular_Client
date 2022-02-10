@@ -5,7 +5,7 @@ import { AppConstants } from 'src/app/app.constants';
 import { Image } from 'src/app/model/Image';
 import { Product } from 'src/app/model/Product';
 import { ProductService } from 'src/app/services/product.service';
-import { getSize, getUserId } from 'src/app/utility/Utitity';
+import { getSize, getUserId } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-product-page',

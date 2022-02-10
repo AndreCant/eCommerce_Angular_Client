@@ -20,14 +20,6 @@ export class BannerEffects {
       switchMap((bannerResp: Banner[]) => of(new ShowAllSuccessAction(bannerResp))))
   });
 
-  loadBannersByName$: Observable<Action> = createEffect(() => {
-    return this.actions$
-    .pipe(
-      ofType<ShowAction>(EBannerActions.SHOW),
-      switchMap((name) => this.bannerService.getBannerByName(name.payload)),
-      switchMap((bannerResp: Banner[]) => of(new ShowSuccessAction(bannerResp))))
-  });
-
   createBanner$: Observable<Action> = createEffect(() => {
     return this.actions$
     .pipe(

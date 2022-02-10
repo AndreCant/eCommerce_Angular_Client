@@ -3,7 +3,7 @@ import { LoginData } from '../../model/LoginData';
 import { AuthService } from '../../services/auth/auth.service';
 import { AppConstants } from '../../app.constants';
 import { Router } from '@angular/router';
-import { encrypt } from 'src/app/utility/Utitity';
+import { encrypt } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-login-page',

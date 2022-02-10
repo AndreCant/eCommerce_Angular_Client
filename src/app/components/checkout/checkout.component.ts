@@ -14,7 +14,7 @@ import { Product } from 'src/app/model/Product';
 import { selectorPayment } from 'src/app/selectors/payment.selector';
 import { ProductService } from 'src/app/services/product.service';
 import { IAppState } from 'src/app/state/app.states';
-import { getSize } from 'src/app/utility/Utitity';
+import { getSize } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-checkout',

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AppConstants } from 'src/app/app.constants';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomValidators } from 'src/app/utility/CustomValidators';
-import { encrypt } from 'src/app/utility/Utitity';
+import { encrypt } from 'src/app/utility/Utility';
 
 @Component({
   selector: 'app-registration',
