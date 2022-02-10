@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { ShowAction } from 'src/app/actions/banner.actions';
+import { ShowAction, ShowAllAction } from 'src/app/actions/banner.actions';
 import { ShowUserAction } from 'src/app/actions/user.actions';
 import { AppConstants } from 'src/app/app.constants';
 import { Banner } from 'src/app/model/Banner';
@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
 
   user$?: Observable<User>;
   products$?: Product[];
+  banners$?: Observable<Banner[]>;
   currLanguage: any;
   Object = Object;
   bannerLogo?: Banner;
@@ -40,8 +41,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>, private service: ProductService, private bService: BannerService) {
+  constructor(private authService: AuthService, private translate: TranslateService, private store: Store<IAppState>, private service: ProductService) {
     this.user$ = this.store.pipe(select(selectorUser));
+    this.banners$ = this.store.pipe(select(selectorBanner));
     let lang: string | null = localStorage.getItem(AppConstants.LANG_STORAGE);
 
     if (lang) {
@@ -91,8 +93,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getBanners();
     this.getUser();
+    this.getBanners();
+    this.setBanners();
   }
 
   logout(){
@@ -111,6 +114,10 @@ export class NavbarComponent implements OnInit {
 
   getUser(){
     this.store.dispatch(new ShowUserAction());
+  }
+
+  getBanners(){
+    this.store.dispatch(new ShowAllAction());
   }
 
   showWishlist(){
@@ -206,9 +213,16 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  getBanners(){
-    this.bService.getBannerByName('logo').subscribe(logo => {
-      this.bannerLogo = logo[0];
+  setBanners(){
+    this.banners$?.subscribe(banners => {
+      if (banners.length) {
+        banners.forEach(banner => {
+          switch (banner.name) {
+            case 'logo': this.bannerLogo = banner;
+            break;
+          }
+        });
+      }
     });
   }
 
