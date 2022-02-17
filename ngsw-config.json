@@ -31,10 +31,10 @@
     { 
       "name": "api", 
       "urls": [ 
-        "http://127.0.0.1:8000/api/rest/" 
+        "http://127.0.0.1:8000/api/rest/**" 
       ], 
       "cacheConfig": { 
-        "strategy": "performance", 
+        "strategy": "freshness", 
         "maxSize": 100, 
         "maxAge": "3d2h" 
       } 
